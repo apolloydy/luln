@@ -8,7 +8,7 @@ const App = () => {
   const [lifeExpectancy, setLifeExpectancy] = useState(74.5);
   const [remainingDays, setRemainingDays] = useState(0);
   const [remainingWeeks, setRemainingWeeks] = useState(0);
-  // const [_pastDays, setPastDays] = useState(0);
+  // // const [_pastDays, setPastDays] = useState(0);
   const [pastWeeks, setPastWeeks] = useState(0);
   // const _weeksPerRow = 52;
 
