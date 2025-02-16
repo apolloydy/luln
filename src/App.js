@@ -8,9 +8,9 @@ const App = () => {
   const [lifeExpectancy, setLifeExpectancy] = useState(74.5);
   const [remainingDays, setRemainingDays] = useState(0);
   const [remainingWeeks, setRemainingWeeks] = useState(0);
-  # const [_pastDays, setPastDays] = useState(0);
+  // const [_pastDays, setPastDays] = useState(0);
   const [pastWeeks, setPastWeeks] = useState(0);
-  # const _weeksPerRow = 52;
+  // const _weeksPerRow = 52;
 
   useEffect(() => {
     if (birthDate) {
@@ -24,7 +24,7 @@ const App = () => {
     const totalDays = Math.round(expectancy * 365.25);
     const past = Math.floor((today - birth) / (1000 * 60 * 60 * 24));
     const remaining = totalDays - past;
-    # setPastDays(past > 0 ? past : 0);
+    // setPastDays(past > 0 ? past : 0);
     setRemainingDays(remaining > 0 ? remaining : 0);
     setPastWeeks(Math.floor(past / 7));
     setRemainingWeeks(Math.floor(remaining / 7));
