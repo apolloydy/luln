@@ -182,3 +182,35 @@
 .grid-box.empty {
     background-color: black !important;
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 10px; /* 让整体左右有间距 */
+  }
+
+
+  .legend {
+    flex-direction: column; /* 让 legend 竖着排列 */
+    align-items: center;
+    max-width: 100%; /* 适配宽度 */
+  }
+
+  .legend-item {
+    flex-wrap: wrap; /* 允许换行 */
+    justify-content: center;
+  }
+
+  .grid-container {
+    overflow-x: auto; /* 允许左右滚动，防止超出屏幕 */
+    max-width: 100%; /* 限制最大宽度 */
+  }
+
+  .year-label {
+    font-size: 10px; /* 年份字体变小 */
+  }
+
+  .grid-box {
+    width: 4px; /* 缩小格子 */
+    height: 4px;
+  }
+}
