@@ -205,11 +205,11 @@
   }
 
   .year-label {
-    font-size: 7px; /* 年份字体变小 */
+    font-size: 8px; /* 年份字体变小 */
   }
 
   .year-label-placeholder {
-    font-size: 7px;  /* 让斜线大小合适 */
+    font-size: 8px;  /* 让斜线大小合适 */
   }
 
   .grid-box {
