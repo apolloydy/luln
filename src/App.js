@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./styles.css";
 
+
+function getWeekOfYear(date) {
+    const startOfYear = new Date(date.getFullYear(), 0, 1); // 当年的 1 月 1 日
+    const daysElapsed = Math.floor((date - startOfYear) / (1000 * 60 * 60 * 24)); // 计算过去的天数
+    return Math.floor(daysElapsed / 7) + 1; // 计算第几周
+}
+
 const App = () => {
   const [birthDate, setBirthDate] = useState("1989-01-06");
-  const [firstChildBirth, setFirstChildBirth] = useState("2020-04-09");
+  const [firstChildBirth, setFirstChildBirth] = useState("2020-04-09")
   const [lastChildBirth, setLastChildBirth] = useState("2022-02-23");
   const [lifeExpectancy, setLifeExpectancy] = useState(80);
   const [remainingDays, setRemainingDays] = useState(0);
   const [remainingWeeks, setRemainingWeeks] = useState(0);
-  const [pastWeeks, setPastWeeks] = useState(0);
+  const [thisWeek, setThisWeek] = useState(0);
+  const [thisYear, setThisYear] = useState(0);
   const [birthWeekOfYear, setBirthWeekOfYear] = useState(0);
   const [deathWeekOfYear, setDeathWeekOfYear] = useState(0);
   const [lifePercentage, setLifePercentage] = useState(0);
@@ -26,7 +34,7 @@ const App = () => {
 
 
     if (today < birth) {
-      setPastWeeks(0);
+      setThisWeek(0);
       setRemainingWeeks(Math.floor((expectancy * 365.25) / 7));
       return;
     }
@@ -35,10 +43,10 @@ const App = () => {
     const past = Math.floor((today - birth) / (1000 * 60 * 60 * 24));
     const remaining = totalDays - past;
 
-    setPastWeeks(past > 0 ? Math.floor(past / 7) : 0);
+    setThisYear(today.getFullYear());
+    setThisWeek(getWeekOfYear(today));
     setRemainingWeeks(remaining > 0 ? Math.floor(remaining / 7) : 0);
     setRemainingDays(remaining > 0 ? remaining : 0);
-    setPastWeeks(Math.floor(past / 7));
 
     // 计算出生年的第几周
     const startOfYear = new Date(birth.getFullYear(), 0, 1);
@@ -55,16 +63,17 @@ const App = () => {
   };
 
   const renderGrid = () => {
-    const birthYear = new Date(birthDate).getFullYear();
+    const birthYear = new Date(birthDate).getFullYear(); 
     const deathYear = birthYear + Math.floor(lifeExpectancy)+1;
     const totalYears = deathYear - birthYear;
+    
+    const firstChild =  new Date(firstChildBirth)
+    const firstChildYear = firstChild.getFullYear(); 
+    const firstChildWeek = getWeekOfYear(firstChild);
 
-    const firstChildWeek = Math.floor((new Date(firstChildBirth) - new Date(birthDate)) / (1000 * 60 * 60 * 24 * 7));
-    const lastChildWeek = Math.floor((new Date(lastChildBirth) - new Date(birthDate)) / (1000 * 60 * 60 * 24 * 7));
-    const lastChildAdultWeek = Math.floor(
-      (new Date(lastChildBirth).setFullYear(new Date(lastChildBirth).getFullYear() + 18) - new Date(birthDate)) /
-        (1000 * 60 * 60 * 24 * 7)
-    );
+    const lastChild =  new Date(lastChildBirth)
+    const lastChildYear = lastChild.getFullYear();
+    const lastChildWeek = getWeekOfYear(lastChild);
 
 
     return (
@@ -83,24 +92,24 @@ const App = () => {
               }
               <div className="weeks">
                 {Array.from({ length: 52 }).map((_, week) => {
-                  const weekIndex = yearOffset * 52 + week;
                   let boxClass = "grid-box";
                   let content = "";
 
                   if ((year === birthYear && week < birthWeekOfYear) || (year === deathYear - 1 && week > deathWeekOfYear)) {
                     boxClass += " empty"; // 渲染与背景色相同的格子
-                  } else if (weekIndex < pastWeeks) {
+                  } else if ((year < thisYear ) || (year === thisYear  &&  thisWeek > week)) {
                     boxClass += " past";
-                  } else if (year >= deathYear - 5 || ( year === deathYear -6 && week > deathWeekOfYear)) {
+                  } else if (year >= deathYear - 5 || ( year === deathYear - 6 && week > deathWeekOfYear)) {
                     boxClass += " last-years"; // last 5 years
                   } else {
                     boxClass += " remaining";
                   }
 
-                  if (weekIndex === firstChildWeek || weekIndex === lastChildWeek) boxClass += " child-birth";
-                  if (weekIndex === lastChildAdultWeek) boxClass += " child-18";
-                  if (weekIndex > firstChildWeek && weekIndex < lastChildAdultWeek) {
-                    content = <span className="child-raising-text" style={{ color: "orange" }}>/</span>;
+                  if (firstChildYear  === year &&  firstChildWeek === week) boxClass += " child-birth";
+                  if (lastChildYear  === year &&  lastChildWeek === week) boxClass += " child-birth";
+                  if (lastChildWeek === week && year === lastChildYear + 18) boxClass += " child-18";
+                  if (((firstChildYear < year) || (firstChildYear === year &&  firstChildWeek <= week )) && (year < lastChildYear + 18 || (  year === lastChildYear + 18  && lastChildWeek >= week ) ) ) {
+                    content = <span className="child-raising-text" style={{ color: "orange" }}>/</span>
                   }
 
                   return <div key={week} className={boxClass}>{content}</div>;
