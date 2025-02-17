@@ -69,7 +69,7 @@ const App = () => {
           return (
             <div key={year} className="year-row">
               {(year % 5 === 0) ? (
-               <span className="year-label">{year}</span>
+               <span className="year-label">{birthYear + year}</span>
                 ) : (
                  <span className="year-label-placeholder">{"1234"}</span> /* 为空但保持对齐 */
                 )

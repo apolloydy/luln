@@ -1,18 +1,24 @@
 .container {
   text-align: center;
   padding: 20px;
-  color: white;
-  background-color: black;
 }
 
 .urgent {
-  color: yellow;
+  color: red;
   font-weight: bold;
 }
 
 .now {
   color: green;
   font-weight: bold;
+}
+
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 让整个网格居中 */
+  gap: 0px;
+  margin-top: 20px;
 }
 
 .input-container {
@@ -23,28 +29,101 @@
   width: fit-content;
 }
 
-label {
-  margin-bottom: 10px;
+
+.year-row {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 让年份和网格居中 */
+  gap: 5px;
+  width: 100%;
+  margin-bottom: 0px; /* 取消行与行之间的间距 */
+  padding-bottom: 0px; /* 避免额外的间隔 */
+  line-height: 1; /* 保持紧凑 */
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(52, 12px); /* 1 Row = 1 Year */
-  gap: 2px;
-  margin: 20px auto;
-  width: fit-content;
+.year-label {
+  width: 60px;
+  font-weight: bold;
+  text-align: right;
+  font-size: 11px;  /* 让斜线大小合适 */
+}
+
+.year-label-placeholder {
+  width: 60px;
+  font-weight: bold;
+  text-align: right;
+  font-size: 11px;  /* 让斜线大小合适 */
+  background-color: black !important;
+  color: black;
+}
+
+
+.weeks {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0px;
+  justify-content: center; /* 关键点：让周数居中 */
 }
 
 .grid-box {
-  width: 10px;
-  height: 10px;
-  border-radius: 2px;
-  text-align: center;
-  font-size: 8px;
-  line-height: 10px;
+  width: 9px;
+  height: 8px;
+  border-radius: 0px;
+  background-color: #ddd;
+  display: flex;  /* 让内容居中 */
+  align-items: center;
+  justify-content: center;
+  font-size: 5px;  /* 让斜线大小合适 */
+  line-height: 1;  /* 避免换行 */
+  padding-bottom: 2px; /* 细微调整让斜线不会偏移 */
+}
+
+.child-raising {
+  background-color: brown;
+  color: white; /* 让斜线可见 */
   font-weight: bold;
-  color: black; /* Ensuring visibility */
-  position: relative;
+}
+
+.past {
+  background-color: #999;
+}
+
+.remaining {
+  background-color: #4caf50;
+}
+
+.child-birth {
+  background-color: blue;
+}
+
+.child-18 {
+  background-color: yellow;
+}
+
+.last-years {
+  background-color: red;
+}
+
+.legend {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* 让 legend 居中 */
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 让颜色块和文本之间有间距 */
+}
+
+.legend-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
 }
 
 .past {
@@ -63,60 +142,33 @@ label {
   background-color: yellow;
 }
 
-.last-years {
-  background-color: red;
-  color: white; /* Ensuring visibility on black background */
+.last-years { 
+  background-color: red; 
 }
 
-/* Raising Children Diagonal Slash */
-.raising-children::after {
-  content: "X";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.child-raising {
+  background-color: brown;
+}
+/* 让 legend 中的斜杠符号颜色正确 */
+.legend-item .raising-symbol {
   color: orange;
+  font-size: 20px;
   font-weight: bold;
+}
+
+/* 确保 child-raising 的斜杠正确对齐 */
+.grid-box .child-raising-text {
+  color: orange;
   font-size: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Legend */
-.legend {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin: 20px auto;
-  width: fit-content;
-  color: white; /* Ensuring text is visible */
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.legend-box {
-  width: 15px;
-  height: 15px;
-  margin-right: 10px;
-  border-radius: 2px;
-}
-
-.legend-box.past { background-color: gray; }
-.legend-box.remaining { background-color: green; }
-.legend-box.child-birth { background-color: blue; }
-.legend-box.child-18 { background-color: yellow; }
-.legend-box.last-years { background-color: red; }
-.legend-box.child-raising { background-color: orange;}
-
-.child-raising-text {
-  color: orange !important; /* Ensure color overrides */
   font-weight: bold;
-  font-size: 12px;
-  text-shadow: 0px 0px 2px black; /* Make it more readable */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  line-height: 1;
+}
+
+
+.grid-box.empty {
+    background-color: black !important;
 }
