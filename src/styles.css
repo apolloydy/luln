@@ -104,26 +104,29 @@
   background-color: red;
 }
 
+
 .legend {
   display: flex;
-  flex-direction: row;
-  justify-content: center; /* 让 legend 居中 */
-  align-items: center;
-  gap: 20px;
-  margin-top: 20px;
-  text-align: center;
+  flex-wrap: wrap; /* 允许换行 */
+  justify-content: center; /* 让内容在整个页面居中 */
+  align-items: center; /* 垂直方向居中 */
+  max-width: 450px; /* 限制宽度，确保 3 个一行 */
+  margin: 0 auto; /* 居中 */
+  gap: 20px; /* 控制每个 legend 之间的间距 */
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 8px; /* 让颜色块和文本之间有间距 */
+  gap: 5px; /* 让颜色块和文字之间有一点间距 */
+  white-space: nowrap; /* 防止换行 */
 }
 
 .legend-box {
   width: 16px;
   height: 16px;
   border-radius: 4px;
+
 }
 
 .past {

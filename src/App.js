@@ -11,6 +11,7 @@ const App = () => {
   const [pastWeeks, setPastWeeks] = useState(0);
   const [birthWeekOfYear, setBirthWeekOfYear] = useState(0);
   const [deathWeekOfYear, setDeathWeekOfYear] = useState(0);
+  const [lifePercentage, setLifePercentage] = useState(0);
 
   useEffect(() => {
     if (birthDate) {
@@ -46,6 +47,11 @@ const App = () => {
     // 计算去世年的第几周
     const startOfDeathYear = new Date(deathDate.getFullYear(), 0, 1);
     setDeathWeekOfYear(Math.floor((deathDate - startOfDeathYear) / (1000 * 60 * 60 * 24 * 7)));
+
+    // 剩余百分比
+    const percentage = (remaining * 100 / totalDays).toFixed(1);
+    setLifePercentage(percentage);
+
   };
 
   const renderGrid = () => {
@@ -60,6 +66,7 @@ const App = () => {
         (1000 * 60 * 60 * 24 * 7)
     );
 
+
     return (
       <div className="grid-container">
         {Array.from({ length: totalYears }).map((_, yearOffset) => {
@@ -71,7 +78,7 @@ const App = () => {
               {(year % 5 === 0) ? (
                <span className="year-label">{year}</span>
                 ) : (
-                 <span className="year-label-placeholder">{"1234"}</span> /* 为空但保持对齐 */
+                 <span className="year-label-placeholder">{"____"}</span> /* 为空但保持对齐 */
                 )
               }
               <div className="weeks">
@@ -109,7 +116,7 @@ const App = () => {
   return (
     <div className="container" style={{ backgroundColor: "black", color: "white" }}>
       <h1>
-        Life is <span className="urgent">Urgent</span>, Life is <span className="now">Now</span>
+        <span style={{ color: "green" }}>L</span>ife is <span style={{ color: "green" }}>U</span>rgent, <span style={{ color: "green" }}>L</span>ife is <span style={{ color: "green" }}>N</span>ow
       </h1>
       <div className="input-container">
         <label>Birth Date: <input type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} /></label>
@@ -117,7 +124,7 @@ const App = () => {
         <label>Last Child Birth Date: <input type="date" value={lastChildBirth} onChange={(e) => setLastChildBirth(e.target.value)} /></label>
         <label>Life Expectancy: <input type="number" value={lifeExpectancy} onChange={(e) => setLifeExpectancy(Number(e.target.value))} min="1" max="120" /></label>
       </div>
-      <h2>{remainingDays.toLocaleString()} days left ({remainingWeeks} weeks)</h2>
+      <h2 style={{ fontSize: "20px" }}>{remainingDays.toLocaleString()} days left ({remainingWeeks} weeks), <span style={{ color: "red" }}>{lifePercentage}% </span> remaining</h2>
       <div className="legend">
         <div className="legend-item"><div className="legend-box past"></div><span> Past</span></div>
         <div className="legend-item"><div className="legend-box remaining"></div><span> Remaining</span></div>
