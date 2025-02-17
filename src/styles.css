@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+.fancy-title {
+  font-family: 'Orbitron', sans-serif; /* 未来感、科技感 */
+  font-weight: 700;
+  letter-spacing: 2px; /* 增加间距，让文字更有气势 */
+  text-transform: uppercase; /* 全部大写，更有冲击力 */
+}
 .container {
   text-align: center;
   padding: 20px;

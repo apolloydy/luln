@@ -115,7 +115,7 @@ const App = () => {
 
   return (
     <div className="container" style={{ backgroundColor: "black", color: "white" }}>
-      <h1>
+      <h1 className="fancy-title">
         <span style={{ color: "green" }}>L</span>ife is <span style={{ color: "green" }}>U</span>rgent, <span style={{ color: "green" }}>L</span>ife is <span style={{ color: "green" }}>N</span>ow
       </h1>
       <div className="input-container">
