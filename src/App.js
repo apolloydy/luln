@@ -133,7 +133,7 @@ const App = () => {
         <label>Last Child Birth Date: <input type="date" value={lastChildBirth} onChange={(e) => setLastChildBirth(e.target.value)} /></label>
         <label>Life Expectancy: <input type="number" value={lifeExpectancy} onChange={(e) => setLifeExpectancy(Number(e.target.value))} min="1" max="120" /></label>
       </div>
-      <h2 style={{ fontSize: "20px" }}>{remainingDays.toLocaleString()} days left ({remainingWeeks} weeks), <span style={{ color: "red" }}>{lifePercentage}% </span> remaining</h2>
+      <h2 style={{ fontSize: "20px" }}>{remainingDays.toLocaleString()} days left ({remainingWeeks} weeks), <span style={{ color: "green" }}>{lifePercentage}% </span> remaining</h2>
       <div className="legend">
         <div className="legend-item"><div className="legend-box past"></div><span> Past</span></div>
         <div className="legend-item"><div className="legend-box remaining"></div><span> Remaining</span></div>
