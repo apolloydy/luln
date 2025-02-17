@@ -188,7 +188,6 @@
     padding: 10px; /* 让整体左右有间距 */
   }
 
-
   .legend {
     flex-direction: column; /* 让 legend 竖着排列 */
     align-items: center;
@@ -206,7 +205,11 @@
   }
 
   .year-label {
-    font-size: 8px; /* 年份字体变小 */
+    font-size: 7px; /* 年份字体变小 */
+  }
+
+  .year-label-placeholder {
+    font-size: 7px;  /* 让斜线大小合适 */
   }
 
   .grid-box {
