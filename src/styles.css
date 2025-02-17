@@ -206,11 +206,11 @@
   }
 
   .year-label {
-    font-size: 10px; /* 年份字体变小 */
+    font-size: 8px; /* 年份字体变小 */
   }
 
   .grid-box {
-    width: 4px; /* 缩小格子 */
-    height: 4px;
+    width: 6px; /* 缩小格子 */
+    height: 6px;
   }
 }
