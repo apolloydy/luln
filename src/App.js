@@ -8,10 +8,19 @@ function getWeekOfYear(date) {
     return Math.floor(daysElapsed / 7) + 1; // 计算第几周
 }
 
+const getEffectiveLastChildBirth = (firstChildBirth, lastChildBirth) => {
+    if (lastChildBirth && lastChildBirth !== "") {
+        return lastChildBirth; // ✅ lastChildBirth 存在，直接用它
+    } else if (firstChildBirth && firstChildBirth !== "") {
+        return firstChildBirth; // ✅ lastChildBirth 为空时，使用 firstChildBirth
+    }
+    return null; // ❌ 两者都为空，返回 null（防止 Invalid Date）
+};
+
 const App = () => {
   const [birthDate, setBirthDate] = useState(() => localStorage.getItem("birthDate") || "1962-06-18");
-  const [firstChildBirth, setFirstChildBirth] = useState(() => localStorage.getItem("firstChildBirth") ||  "1990-04-01")
-  const [lastChildBirth, setLastChildBirth] = useState(() => localStorage.getItem("lastChildBirth") || "1990-04-01");
+  const [firstChildBirth, setFirstChildBirth] = useState(() => localStorage.getItem("firstChildBirth") ||  "")
+  const [lastChildBirth, setLastChildBirth] = useState(() => localStorage.getItem("lastChildBirth") || "");
   const [lifeExpectancy, setLifeExpectancy] = useState(() => localStorage.getItem("lifeExpectancy") || 80);
   const [remainingDays, setRemainingDays] = useState(0);
   const [remainingWeeks, setRemainingWeeks] = useState(0);
@@ -80,8 +89,9 @@ const App = () => {
     const firstChild =  new Date(firstChildBirth)
     const firstChildYear = firstChild.getFullYear(); 
     const firstChildWeek = getWeekOfYear(firstChild);
-
-    const lastChild =  new Date(lastChildBirth)
+    
+    const effectiveLastChildBirth =  getEffectiveLastChildBirth(firstChildBirth, lastChildBirth);
+    const lastChild =  new Date(effectiveLastChildBirth)
     const lastChildYear = lastChild.getFullYear();
     const lastChildWeek = getWeekOfYear(lastChild);
 
@@ -139,8 +149,13 @@ const App = () => {
       </h1>
       <div className="input-container">
         <label>Birth Date: <input type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} /></label>
-        <label>First Child Birth Date: <input type="date" value={firstChildBirth} onChange={(e) => setFirstChildBirth(e.target.value)} /></label>
-        <label>Last Child Birth Date: <input type="date" value={lastChildBirth} onChange={(e) => setLastChildBirth(e.target.value)} /></label>
+        <label>
+            First Child Birth Date: 
+            <input type="date"
+             value={firstChildBirth ? firstChildBirth : ""}
+             onChange={(e) => setFirstChildBirth(e.target.value || null)} />
+        </label>
+        <label>Last Child Birth Date: <input type="date" value={lastChildBirth ? lastChildBirth : ""} onChange={(e) => setLastChildBirth(e.target.value || null)} /></label>
         <label>Life Expectancy: <input type="number" value={lifeExpectancy} onChange={(e) => setLifeExpectancy(Number(e.target.value))} min="1" max="120" /></label>
       </div>
       <h2 style={{ fontSize: "20px" }}>{remainingDays.toLocaleString()} days left ({remainingWeeks} weeks), <span style={{ color: "green" }}>{lifePercentage}% </span> remaining</h2>
