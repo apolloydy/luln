@@ -53,9 +53,6 @@ function getRandomQuote() {
   return quotes[Math.floor(Math.random() * quotes.length)];
 }
 
-
-
-
 const App = () => {
   const [birthDate, setBirthDate] = useState(() => localStorage.getItem("birthDate") || "1962-06-18");
   const [firstChildBirth, setFirstChildBirth] = useState(() => localStorage.getItem("firstChildBirth") || "")
@@ -89,7 +86,7 @@ const App = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setQuote(getRandomQuote());
-    }, 10000); // 10 秒换一句
+    }, 20000); // 20 秒换一句
 
     return () => clearInterval(interval);
   }, []);
