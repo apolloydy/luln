@@ -234,6 +234,7 @@ const App = () => {
             ))}
           </em>
       </div>
+      {renderGrid()}
       <div className="legend">
         <div className="legend-item"><div className="legend-box past"></div><span> Past</span></div>
         <div className="legend-item"><div className="legend-box remaining"></div><span> Remaining</span></div>
@@ -242,7 +243,6 @@ const App = () => {
         <div className="legend-item"><span className="raising-symbol">-</span><span> Raising Children</span></div>
         <div className="legend-item"><div className="legend-box last-years"></div> Last 5 Years</div>
       </div>
-      {renderGrid()}
     </div>
   );
 };
