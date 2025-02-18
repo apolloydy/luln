@@ -1,4 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
+.quote-section em {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #e0e0e0;
+  white-space: pre-wrap; /* 若想支持 \n 换行 */
+}
+
 .fancy-title {
   font-family: 'Orbitron', sans-serif; /* 未来感、科技感 */
   font-weight: 700;

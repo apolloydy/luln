@@ -24,9 +24,29 @@ function getColorTran(pct) {
   return pctColor
 }
 const quotes = [
-  "'绝望之为虚妄，正与希望相同。'",
-  "Better to walk than curse the road",
-  "To live is to suffer, to survive is to find some meaning in the suffering",
+  "\" Despair is as illusory as hope. \"",
+  "\" Better to walk than curse the road. \"",
+  "\" To live is to suffer, to survive is to find some meaning in the suffering. \"",
+  "\" All phenomena are like a dream, an illusion, a bubble and a shadow,\n Like dew and lightning. Thus should you meditate upon them. \"",
+  "\" He who has a why to live for can bear almost any how. \"",
+  "\" We are our choices. \"",
+  "\" To be is to be in time. \"",
+  "\" Dwell on the beauty of life. Watch the stars, and see yourself running with them. \"",
+  "\" Life can only be understood backwards; but it must be lived forwards. \"",
+  "\" You must live in the present, launch yourself on every wave,\n find your eternity in each moment. \"",
+  "\" There are no facts, only interpretations. \"",
+  "\" A wise man will make more opportunities than he finds. \"",
+  "\" The future depends on what you do today. \"",
+  "\" We forfeit three-fourths of ourselves in order to be like other people. \"",
+  "\" Every man is born as many men and dies as a single one. \"",
+  "\" The best way to find out if you \n can trust somebody is to trust them. \"",
+  "\" You could leave life right now.\n Let that determine what you do and say and think. \"",
+  "\" Life is what happens when you’re busy making other plans. \"",
+  "\" Do not dwell in the past, do not dream of the future,\n concentrate the mind on the present moment. \"",
+  "\" Your time is limited, so don’t waste it living someone else’s life. \"",
+  "\" “An idea that is not dangerous is unworthy of being called an idea at all \"",
+  "\" “The reasonable man adapts himself to the world:\n the unreasonable one persists in trying to adapt the world to himself. \n Therefore all progress depends on the unreasonable man. \"",
+  "\" Sometimes people don't want to hear the truth\n because they don't want their illusions destroyed. \"",
 ];
 
 function getRandomQuote() {
@@ -207,7 +227,15 @@ const App = () => {
         </span> remaining
       </h2>
       <div className="quote-section" style={{ marginTop: "20px" }}>
-        <em>{quote}</em>
+          <em>
+            {/* 2) 将 \n 转换为 <br /> */}
+            {quote.split("\n").map((line, index) => (
+              <React.Fragment key={index}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
+          </em>
       </div>
       <div className="legend">
         <div className="legend-item"><div className="legend-box past"></div><span> Past</span></div>
