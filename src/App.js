@@ -144,7 +144,7 @@ const App = () => {
 
     const lastChild = new Date(lastChildBirth)
     const lastChildYear = (lastChild.getFullYear() > firstChildYear) ? lastChild.getFullYear() : firstChildYear;
-    const lastChildWeek = (getWeekOfYear(lastChild) > firstChildWeek) ? getWeekOfYear(lastChild) : firstChildWeek;
+    const lastChildWeek = (lastChild.getFullYear() >= firstChildYear) ? getWeekOfYear(lastChild) : firstChildWeek;
 
 
 
