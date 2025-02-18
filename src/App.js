@@ -170,7 +170,20 @@ const App = () => {
         <label>Last Child Birth Date: <input type="date" value={lastChildBirth ? lastChildBirth : ""} onChange={(e) => setLastChildBirth(e.target.value || null)} /></label>
         <label>Life Expectancy: <input type="number" value={lifeExpectancy} onChange={(e) => setLifeExpectancy(Number(e.target.value))} min="1" max="120" /></label>
       </div>
-      <h2 style={{ fontSize: "20px" }}><span style={{ color: remiainColor }}>{remainingDays.toLocaleString()} </span> days left (<span style={{ color: remiainColor }}>{remainingWeeks}</span> weeks), <span style={{ color: remiainColor }}>{lifePercentage}% </span> remaining</h2>
+      <h2 style={{ fontSize: "20px" }}>
+        <span 
+          className={remainingDays > 0 ? "remaining-days-animated" : ""}
+          style={{ color: remiainColor }}>{remainingDays.toLocaleString()} 
+        </span> days left (
+        <span 
+          className={remainingDays > 0 ? "remaining-days-animated" : ""}
+          style={{ color: remiainColor }}>{remainingWeeks}
+        </span> weeks), 
+        <span 
+          className={remainingDays > 0 ? "remaining-days-animated" : ""}
+          style={{ color: remiainColor }}>{lifePercentage}% 
+        </span> remaining
+      </h2>
       <div className="legend">
         <div className="legend-item"><div className="legend-box past"></div><span> Past</span></div>
         <div className="legend-item"><div className="legend-box remaining"></div><span> Remaining</span></div>

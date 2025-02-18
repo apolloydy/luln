@@ -217,3 +217,22 @@
     height: 6px;
   }
 }
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    color: #fff;
+  }
+  50% {
+    transform: scale(1.1);
+    color: #ff5555;
+  }
+  100% {
+    transform: scale(1);
+    color: #fff;
+  }
+}
+
+.remaining-days-animated {
+  display: inline-block;
+  animation: pulse 1s ease-in-out;
+}
