@@ -8,6 +8,12 @@ function getWeekOfYear(date) {
     return Math.floor(daysElapsed / 7) + 1; // 计算第几周
 }
 
+function getPct(year, lifeExpectancy, birthDate) {
+    const birth = new Date(birthDate);
+    const currentDate = new Date(year, 0, 1);
+    return (currentDate - birth ) * 100 / (lifeExpectancy * 365.25 * 24 * 60 * 60 * 1000)  
+}
+
 const App = () => {
   const [birthDate, setBirthDate] = useState(() => localStorage.getItem("birthDate") || "1962-06-18");
   const [firstChildBirth, setFirstChildBirth] = useState(() => localStorage.getItem("firstChildBirth") ||  "")
@@ -94,12 +100,24 @@ const App = () => {
 
           return (
             <div key={year} className="year-row">
-              {(year % 5 === 0) ? (
-               <span className="year-label">{year}</span>
-                ) : (
-                 <span className="year-label-placeholder">{"____"}</span> /* 为空但保持对齐 */
-                )
+            {(() => {
+              if (year % 5 === 0) {
+                return <span className="year-label">{year}</span>;
+              } else if (year % 5 === 1) {
+                const pct = getPct(year-1, lifeExpectancy, birthDate).toFixed(0);
+// 使用 HSL 让颜色深浅随百分比变化
+const hue = 120 - (pct * 1.2);  // 120° (绿色) → 0° (红色)
+const lightness = 90 - (pct * 0.6); // 90% (浅色) → 40% (深色)
+
+// 确保 lightness 在合理范围
+const finalLightness = Math.max(30, Math.min(90, lightness));
+
+const pctColor = `hsl(${hue}, 80%, ${finalLightness}%)`;
+                return <span className="year-label" style={{ color: pctColor }} >{"(" + getPct(year-1, lifeExpectancy, birthDate).toFixed(0) + "%)"}</span>;
+              }else {
+                return <span className="year-label-placeholder">{"____"}</span>; // 为空但保持对齐
               }
+            })()}
               <div className="weeks">
                 {Array.from({ length: 52 }).map((_, week) => {
                   let boxClass = "grid-box";
