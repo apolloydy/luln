@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# 忽略 Vim 交换文件
+*.swp
+*.swo
+*.swn

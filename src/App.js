@@ -9,10 +9,10 @@ function getWeekOfYear(date) {
 }
 
 const App = () => {
-  const [birthDate, setBirthDate] = useState("1989-01-06");
-  const [firstChildBirth, setFirstChildBirth] = useState("2020-04-09")
-  const [lastChildBirth, setLastChildBirth] = useState("2022-02-23");
-  const [lifeExpectancy, setLifeExpectancy] = useState(80);
+  const [birthDate, setBirthDate] = useState(() => localStorage.getItem("birthDate") || "1962-06-18");
+  const [firstChildBirth, setFirstChildBirth] = useState(() => localStorage.getItem("firstChildBirth") ||  "1990-04-01")
+  const [lastChildBirth, setLastChildBirth] = useState(() => localStorage.getItem("lastChildBirth") || "1990-04-01");
+  const [lifeExpectancy, setLifeExpectancy] = useState(() => localStorage.getItem("lifeExpectancy") || 80);
   const [remainingDays, setRemainingDays] = useState(0);
   const [remainingWeeks, setRemainingWeeks] = useState(0);
   const [thisWeek, setThisWeek] = useState(0);
@@ -22,10 +22,20 @@ const App = () => {
   const [lifePercentage, setLifePercentage] = useState(0);
 
   useEffect(() => {
+    localStorage.setItem("birthDate", birthDate);
+    localStorage.setItem("lifeExpectancy", lifeExpectancy);
     if (birthDate) {
       calculateDays(birthDate, lifeExpectancy);
     }
   }, [birthDate, lifeExpectancy]);
+
+  useEffect(() => {
+    localStorage.setItem("firstChildBirth", firstChildBirth);
+  }, [firstChildBirth]);
+
+  useEffect(() => {
+    localStorage.setItem("lastChildBirth", lastChildBirth);
+  }, [lastChildBirth]);
 
   const calculateDays = (birthDate, expectancy) => {
     const birth = new Date(birthDate);
