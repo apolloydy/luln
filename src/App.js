@@ -14,6 +14,16 @@ function getPct(year, lifeExpectancy, birthDate) {
     return (currentDate - birth ) * 100 / (lifeExpectancy * 365.25 * 24 * 60 * 60 * 1000)  
 }
 
+function getColorTran(pct) {
+    // 使用 HSL 让颜色深浅随百分比变化
+    const hue = 120 - (pct * 1.2);  // 120° (绿色) → 0° (红色)
+    const lightness = 90 - (pct * 0.6); // 90% (浅色) → 40% (深色)
+    // 确保 lightness 在合理范围
+    const finalLightness = Math.max(30, Math.min(90, lightness));
+    const pctColor = `hsl(${hue}, 80%, ${finalLightness}%)`;
+    return pctColor
+}
+
 const App = () => {
   const [birthDate, setBirthDate] = useState(() => localStorage.getItem("birthDate") || "1962-06-18");
   const [firstChildBirth, setFirstChildBirth] = useState(() => localStorage.getItem("firstChildBirth") ||  "")
@@ -105,14 +115,7 @@ const App = () => {
                 return <span className="year-label">{year}</span>;
               } else if (year % 5 === 1) {
                 const pct = getPct(year-1, lifeExpectancy, birthDate).toFixed(0);
-// 使用 HSL 让颜色深浅随百分比变化
-const hue = 120 - (pct * 1.2);  // 120° (绿色) → 0° (红色)
-const lightness = 90 - (pct * 0.6); // 90% (浅色) → 40% (深色)
-
-// 确保 lightness 在合理范围
-const finalLightness = Math.max(30, Math.min(90, lightness));
-
-const pctColor = `hsl(${hue}, 80%, ${finalLightness}%)`;
+                const pctColor = getColorTran(pct);
                 return <span className="year-label" style={{ color: pctColor }} >{"(" + getPct(year-1, lifeExpectancy, birthDate).toFixed(0) + "%)"}</span>;
               }else {
                 return <span className="year-label-placeholder">{"____"}</span>; // 为空但保持对齐
@@ -137,7 +140,7 @@ const pctColor = `hsl(${hue}, 80%, ${finalLightness}%)`;
                   if (lastChildYear  === year &&  lastChildWeek === week) boxClass += " child-birth";
                   if (lastChildWeek === week && year === lastChildYear + 18) boxClass += " child-18";
                   if (((firstChildYear < year) || (firstChildYear === year &&  firstChildWeek <= week )) && (year < lastChildYear + 18 || (  year === lastChildYear + 18  && lastChildWeek >= week ) ) ) {
-                    content = <span className="child-raising-text" style={{ color: "orange" }}>/</span>
+                    content = <span className="child-raising-text" style={{ color: "orange" }}>-</span>
                   }
 
                   return <div key={week} className={boxClass}>{content}</div>;
@@ -149,6 +152,7 @@ const pctColor = `hsl(${hue}, 80%, ${finalLightness}%)`;
       </div>
     );
   };
+  const remiainColor = getColorTran(100-lifePercentage);
 
   return (
     <div className="container" style={{ backgroundColor: "black", color: "white" }}>
@@ -166,13 +170,13 @@ const pctColor = `hsl(${hue}, 80%, ${finalLightness}%)`;
         <label>Last Child Birth Date: <input type="date" value={lastChildBirth ? lastChildBirth : ""} onChange={(e) => setLastChildBirth(e.target.value || null)} /></label>
         <label>Life Expectancy: <input type="number" value={lifeExpectancy} onChange={(e) => setLifeExpectancy(Number(e.target.value))} min="1" max="120" /></label>
       </div>
-      <h2 style={{ fontSize: "20px" }}>{remainingDays.toLocaleString()} days left ({remainingWeeks} weeks), <span style={{ color: "green" }}>{lifePercentage}% </span> remaining</h2>
+      <h2 style={{ fontSize: "20px" }}><span style={{ color: remiainColor }}>{remainingDays.toLocaleString()} </span> days left (<span style={{ color: remiainColor }}>{remainingWeeks}</span> weeks), <span style={{ color: remiainColor }}>{lifePercentage}% </span> remaining</h2>
       <div className="legend">
         <div className="legend-item"><div className="legend-box past"></div><span> Past</span></div>
         <div className="legend-item"><div className="legend-box remaining"></div><span> Remaining</span></div>
         <div className="legend-item"><div className="legend-box child-birth"></div><span> Child Birth</span></div>
         <div className="legend-item"><div className="legend-box child-18"></div><span> Child Turns 18</span></div>
-        <div className="legend-item"><span className="raising-symbol">/</span><span> Raising Children</span></div>
+        <div className="legend-item"><span className="raising-symbol">-</span><span> Raising Children</span></div>
         <div className="legend-item"><div className="legend-box last-years"></div> Last 5 Years</div>
       </div>
       {renderGrid()}
