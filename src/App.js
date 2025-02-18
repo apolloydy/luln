@@ -8,15 +8,6 @@ function getWeekOfYear(date) {
     return Math.floor(daysElapsed / 7) + 1; // 计算第几周
 }
 
-const getEffectiveLastChildBirth = (firstChildBirth, lastChildBirth) => {
-    if (lastChildBirth && lastChildBirth !== "") {
-        return lastChildBirth; // ✅ lastChildBirth 存在，直接用它
-    } else if (firstChildBirth && firstChildBirth !== "") {
-        return firstChildBirth; // ✅ lastChildBirth 为空时，使用 firstChildBirth
-    }
-    return null; // ❌ 两者都为空，返回 null（防止 Invalid Date）
-};
-
 const App = () => {
   const [birthDate, setBirthDate] = useState(() => localStorage.getItem("birthDate") || "1962-06-18");
   const [firstChildBirth, setFirstChildBirth] = useState(() => localStorage.getItem("firstChildBirth") ||  "")
@@ -90,10 +81,9 @@ const App = () => {
     const firstChildYear = firstChild.getFullYear(); 
     const firstChildWeek = getWeekOfYear(firstChild);
     
-    const effectiveLastChildBirth =  getEffectiveLastChildBirth(firstChildBirth, lastChildBirth);
-    const lastChild =  new Date(effectiveLastChildBirth)
-    const lastChildYear = lastChild.getFullYear();
-    const lastChildWeek = getWeekOfYear(lastChild);
+    const lastChild =  new Date(lastChildBirth)
+    const lastChildYear = (lastChild.getFullYear() > firstChildYear) ? lastChild.getFullYear() : firstChildYear ;
+    const lastChildWeek = (getWeekOfYear(lastChild) > firstChildWeek) ? getWeekOfYear(lastChild) : firstChildWeek ;
 
 
     return (
