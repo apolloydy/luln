@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.css";
+import { Tooltip } from "react-tooltip";
 
 
 function getWeekOfYear(date) {
@@ -11,7 +12,14 @@ function getWeekOfYear(date) {
 function getPct(year, lifeExpectancy, birthDate) {
   const birth = new Date(birthDate);
   const currentDate = new Date(year, 0, 1);
-  return (currentDate - birth) * 100 / (lifeExpectancy * 365.25 * 24 * 60 * 60 * 1000)
+  const pct = (currentDate - birth) * 100 / (lifeExpectancy * 365.25 * 24 * 60 * 60 * 1000)
+  if (pct < 0) {
+    return 0
+  }
+  if (pct > 100) {
+    return 100
+  }
+  return pct
 }
 
 function getColorTran(pct) {
@@ -169,6 +177,7 @@ const App = () => {
                 {Array.from({ length: 52 }).map((_, week) => {
                   let boxClass = "grid-box";
                   let content = "";
+                  const tooltipText = `${year} (${getPct(year, lifeExpectancy, birthDate).toFixed(1)}%)`;
 
                   if ((year === birthYear && week < birthWeekOfYear) || (year === deathYear - 1 && week > deathWeekOfYear)) {
                     boxClass += " empty"; // 渲染与背景色相同的格子
@@ -187,12 +196,24 @@ const App = () => {
                     content = <span className="child-raising-text" style={{ color: "orange" }}>-</span>
                   }
 
-                  return <div key={week} className={boxClass}>{content}</div>;
+                  return (
+                    <div
+                      key={week}
+                      className={boxClass}
+                      data-tooltip-id="year-tooltip"
+                      data-tooltip-content={tooltipText}
+                    >
+                      {content}
+                    </div>
+                  );
                 })}
               </div>
             </div>
           );
         })}
+
+        {/* 这里是 Tooltip 组件，必须独立存在 */}
+        <Tooltip id="year-tooltip" place="top" effect="solid" />
       </div>
     );
   };
@@ -229,15 +250,15 @@ const App = () => {
         </span> remaining
       </h2>
       <div className="quote-section" style={{ marginTop: "20px" }}>
-          <em>
-            {/* 2) 将 \n 转换为 <br /> */}
-            {quote.split("\n").map((line, index) => (
-              <React.Fragment key={index}>
-                {line}
-                <br />
-              </React.Fragment>
-            ))}
-          </em>
+        <em>
+          {/* 2) 将 \n 转换为 <br /> */}
+          {quote.split("\n").map((line, index) => (
+            <React.Fragment key={index}>
+              {line}
+              <br />
+            </React.Fragment>
+          ))}
+        </em>
       </div>
       {renderGrid()}
       <div className="legend">
