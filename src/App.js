@@ -205,6 +205,7 @@ const App = () => {
       </h1>
       <div className="input-container">
         <label>Birth Date: <input type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} /></label>
+        <label>Life Expectancy: <input type="number" value={lifeExpectancy} onChange={(e) => setLifeExpectancy(Number(e.target.value))} min="1" max="120" /></label>
         <label>
           First Child Birth Date:
           <input type="date"
@@ -212,7 +213,6 @@ const App = () => {
             onChange={(e) => setFirstChildBirth(e.target.value || null)} />
         </label>
         <label>Last Child Birth Date: <input type="date" value={lastChildBirth ? lastChildBirth : ""} onChange={(e) => setLastChildBirth(e.target.value || null)} /></label>
-        <label>Life Expectancy: <input type="number" value={lifeExpectancy} onChange={(e) => setLifeExpectancy(Number(e.target.value))} min="1" max="120" /></label>
       </div>
       <h2 style={{ fontSize: "20px" }}>
         <span
