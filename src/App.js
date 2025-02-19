@@ -3,7 +3,7 @@ import "./styles.css";
 import { Tooltip } from "react-tooltip";
 import techEvents from "./techEvents"; // 导入科技事件
 import quotes from "./quote"; // 导入名言
-
+import bodyDevelopmentFacts from "./bodyDevelopmentFacts"; // 导入身体发育事实
 
 function getWeekOfYear(date) {
   const startOfYear = new Date(date.getFullYear(), 0, 1); // 当年的 1 月 1 日
@@ -38,6 +38,127 @@ function getRandomQuote() {
   return quotes[Math.floor(Math.random() * quotes.length)];
 }
 
+function calculateDays(birthDate, expectancy, setThisWeek, setRemainingWeeks, setRemainingDays, setThisYear, setBirthWeekOfYear, setDeathWeekOfYear, setLifePercentage) {
+  const birth = new Date(birthDate);
+  const today = new Date();
+  const deathDate = new Date(birth.getTime() + expectancy * 365.25 * 24 * 60 * 60 * 1000);
+
+  if (today < birth) {
+    setThisWeek(0);
+    setRemainingWeeks(Math.floor((expectancy * 365.25) / 7));
+    return;
+  }
+
+  const totalDays = Math.round(expectancy * 365.25);
+  const past = Math.floor((today - birth) / (1000 * 60 * 60 * 24));
+  const remaining = totalDays - past;
+
+  setThisYear(today.getFullYear());
+  setThisWeek(getWeekOfYear(today));
+  setRemainingWeeks(remaining > 0 ? Math.floor(remaining / 7) : 0);
+  setRemainingDays(remaining > 0 ? remaining : 0);
+
+  // 计算出生年的第几周
+  const startOfYear = new Date(birth.getFullYear(), 0, 1);
+  setBirthWeekOfYear(Math.floor((birth - startOfYear) / (1000 * 60 * 60 * 24 * 7)));
+
+  // 计算去世年的第几周
+  const startOfDeathYear = new Date(deathDate.getFullYear(), 0, 1);
+  setDeathWeekOfYear(Math.floor((deathDate - startOfDeathYear) / (1000 * 60 * 60 * 24 * 7)));
+
+  // 剩余百分比
+  const percentage = (remaining * 100 / totalDays).toFixed(1);
+  setLifePercentage(percentage);
+}
+
+function renderGrid(birthDate, lifeExpectancy, firstChildBirth, lastChildBirth, thisYear, thisWeek, birthWeekOfYear, deathWeekOfYear, techEvents, bodyDevelopmentFacts) {
+  const birthYear = new Date(birthDate).getFullYear();
+  const deathYear = birthYear + Math.floor(lifeExpectancy) + 1;
+  const totalYears = deathYear - birthYear;
+
+  const firstChild = new Date(firstChildBirth)
+  const firstChildYear = firstChild.getFullYear();
+  const firstChildWeek = getWeekOfYear(firstChild);
+
+  const lastChild = new Date(lastChildBirth)
+  const lastChildYear = (lastChild.getFullYear() > firstChildYear) ? lastChild.getFullYear() : firstChildYear;
+  const lastChildWeek = (lastChild.getFullYear() >= firstChildYear) ? getWeekOfYear(lastChild) : firstChildWeek;
+
+  return (
+    <div className="grid-container">
+      {Array.from({ length: totalYears }).map((_, yearOffset) => {
+        const year = birthYear + yearOffset;
+        if (year < birthYear || year > deathYear) return null;
+
+        return (
+          <div key={year} className="year-row">
+            {(() => {
+              if (year % 5 === 0) {
+                return <span className="year-label">{year}</span>;
+              } else if (year % 5 === 1) {
+                const pct = getPct(year - 1, lifeExpectancy, birthDate).toFixed(0);
+                const pctColor = getColorTran(pct);
+                return <span className="year-label" style={{ color: pctColor }} >{"(" + getPct(year - 1, lifeExpectancy, birthDate).toFixed(0) + "%)"}</span>;
+              } else {
+                return <span className="year-label-placeholder">{"____"}</span>; // 为空但保持对齐
+              }
+            })()}
+            <div className="weeks">
+              {Array.from({ length: 52 }).map((_, week) => {
+                let boxClass = "grid-box";
+                let content = "";
+                let age
+                if (week < birthWeekOfYear) {
+                  age = year - new Date(birthDate).getFullYear() - 1;
+                  if (age < 0) {
+                    age = 0;
+                  }
+                } else {
+                  age = year - new Date(birthDate).getFullYear();
+                }
+                let eventText = techEvents[year] || "The future belongs to those who innovate.";
+                let bodyDevelopmentFactsText =  bodyDevelopmentFacts[age] || "You’ve unlocked the secret to immortality. Please share the cheat code!";
+                const tooltipText = `[age ${age}]: ${bodyDevelopmentFactsText} <br />  [${year}]: ${eventText}`;
+
+                if ((year === birthYear && week < birthWeekOfYear) || (year === deathYear - 1 && week > deathWeekOfYear)) {
+                  boxClass += " empty"; // 渲染与背景色相同的格子
+                } else if ((year < thisYear) || (year === thisYear && thisWeek > week)) {
+                  boxClass += " past";
+                } else if (year >= deathYear - 5 || (year === deathYear - 6 && week > deathWeekOfYear)) {
+                  boxClass += " last-years"; // last 5 years
+                } else {
+                  boxClass += " remaining";
+                }
+
+                if (firstChildYear === year && firstChildWeek === week) boxClass += " child-birth";
+                if (lastChildYear === year && lastChildWeek === week) boxClass += " child-birth";
+                if (lastChildWeek === week && year === lastChildYear + 18) boxClass += " child-18";
+                if (((firstChildYear < year) || (firstChildYear === year && firstChildWeek <= week)) && (year < lastChildYear + 18 || (year === lastChildYear + 18 && lastChildWeek >= week))) {
+                  content = <span className="child-raising-text" style={{ color: "orange" }}>-</span>
+                }
+
+                return (
+                  <div
+                    key={week}
+                    className={boxClass}
+                    data-tooltip-id="year-tooltip"
+                    data-tooltip-html={tooltipText}
+                  >
+                    {content}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+
+      {/* 这里是 Tooltip 组件，必须独立存在 */}
+      <Tooltip id="year-tooltip" place="top" effect="solid" />
+    </div>
+  );
+}
+
 const App = () => {
   const [birthDate, setBirthDate] = useState(() => localStorage.getItem("birthDate") || "1962-06-18");
   const [firstChildBirth, setFirstChildBirth] = useState(() => localStorage.getItem("firstChildBirth") || "")
@@ -50,12 +171,13 @@ const App = () => {
   const [birthWeekOfYear, setBirthWeekOfYear] = useState(0);
   const [deathWeekOfYear, setDeathWeekOfYear] = useState(0);
   const [lifePercentage, setLifePercentage] = useState(0);
+  const [quote, setQuote] = useState(getRandomQuote());
 
   useEffect(() => {
     localStorage.setItem("birthDate", birthDate);
     localStorage.setItem("lifeExpectancy", lifeExpectancy);
     if (birthDate) {
-      calculateDays(birthDate, lifeExpectancy);
+      calculateDays(birthDate, lifeExpectancy, setThisWeek, setRemainingWeeks, setRemainingDays, setThisYear, setBirthWeekOfYear, setDeathWeekOfYear, setLifePercentage);
     }
   }, [birthDate, lifeExpectancy]);
 
@@ -66,7 +188,6 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("lastChildBirth", lastChildBirth);
   }, [lastChildBirth]);
-  const [quote, setQuote] = useState(getRandomQuote());
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -76,126 +197,6 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const calculateDays = (birthDate, expectancy) => {
-    const birth = new Date(birthDate);
-    const today = new Date();
-    const deathDate = new Date(birth + expectancy * 365.25 * 60 * 60 * 1000);
-
-
-    if (today < birth) {
-      setThisWeek(0);
-      setRemainingWeeks(Math.floor((expectancy * 365.25) / 7));
-      return;
-    }
-
-    const totalDays = Math.round(expectancy * 365.25);
-    const past = Math.floor((today - birth) / (1000 * 60 * 60 * 24));
-    const remaining = totalDays - past;
-
-    setThisYear(today.getFullYear());
-    setThisWeek(getWeekOfYear(today));
-    setRemainingWeeks(remaining > 0 ? Math.floor(remaining / 7) : 0);
-    setRemainingDays(remaining > 0 ? remaining : 0);
-
-    // 计算出生年的第几周
-    const startOfYear = new Date(birth.getFullYear(), 0, 1);
-    setBirthWeekOfYear(Math.floor((birth - startOfYear) / (1000 * 60 * 60 * 24 * 7)));
-
-    // 计算去世年的第几周
-    const startOfDeathYear = new Date(deathDate.getFullYear(), 0, 1);
-    setDeathWeekOfYear(Math.floor((deathDate - startOfDeathYear) / (1000 * 60 * 60 * 24 * 7)));
-
-    // 剩余百分比
-    const percentage = (remaining * 100 / totalDays).toFixed(1);
-    setLifePercentage(percentage);
-
-  };
-
-  const renderGrid = () => {
-    const birthYear = new Date(birthDate).getFullYear();
-    const deathYear = birthYear + Math.floor(lifeExpectancy) + 1;
-    const totalYears = deathYear - birthYear;
-
-    const firstChild = new Date(firstChildBirth)
-    const firstChildYear = firstChild.getFullYear();
-    const firstChildWeek = getWeekOfYear(firstChild);
-
-    const lastChild = new Date(lastChildBirth)
-    const lastChildYear = (lastChild.getFullYear() > firstChildYear) ? lastChild.getFullYear() : firstChildYear;
-    const lastChildWeek = (lastChild.getFullYear() >= firstChildYear) ? getWeekOfYear(lastChild) : firstChildWeek;
-
-
-
-    return (
-      <div className="grid-container">
-        {Array.from({ length: totalYears }).map((_, yearOffset) => {
-          const year = birthYear + yearOffset;
-          if (year < birthYear || year > deathYear) return null;
-
-          return (
-            <div key={year} className="year-row">
-              {(() => {
-                if (year % 5 === 0) {
-                  return <span className="year-label">{year}</span>;
-                } else if (year % 5 === 1) {
-                  const pct = getPct(year - 1, lifeExpectancy, birthDate).toFixed(0);
-                  const pctColor = getColorTran(pct);
-                  return <span className="year-label" style={{ color: pctColor }} >{"(" + getPct(year - 1, lifeExpectancy, birthDate).toFixed(0) + "%)"}</span>;
-                } else {
-                  return <span className="year-label-placeholder">{"____"}</span>; // 为空但保持对齐
-                }
-              })()}
-              <div className="weeks">
-                {Array.from({ length: 52 }).map((_, week) => {
-                  let boxClass = "grid-box";
-                  let content = "";
-                  let age
-                  if (week < birthWeekOfYear) {
-                    age = year - new Date(birthDate).getFullYear() -1;
-                  } else {
-                     age = year - new Date(birthDate).getFullYear();
-                  }
-                  let eventText = techEvents[year] || "The future belongs to those who innovate.";
-                  const tooltipText = `age: ${age} (${getPct(year, lifeExpectancy, birthDate).toFixed(1)}%)  <br />  [${year}]:${eventText}`;
-
-                  if ((year === birthYear && week < birthWeekOfYear) || (year === deathYear - 1 && week > deathWeekOfYear)) {
-                    boxClass += " empty"; // 渲染与背景色相同的格子
-                  } else if ((year < thisYear) || (year === thisYear && thisWeek > week)) {
-                    boxClass += " past";
-                  } else if (year >= deathYear - 5 || (year === deathYear - 6 && week > deathWeekOfYear)) {
-                    boxClass += " last-years"; // last 5 years
-                  } else {
-                    boxClass += " remaining";
-                  }
-
-                  if (firstChildYear === year && firstChildWeek === week) boxClass += " child-birth";
-                  if (lastChildYear === year && lastChildWeek === week) boxClass += " child-birth";
-                  if (lastChildWeek === week && year === lastChildYear + 18) boxClass += " child-18";
-                  if (((firstChildYear < year) || (firstChildYear === year && firstChildWeek <= week)) && (year < lastChildYear + 18 || (year === lastChildYear + 18 && lastChildWeek >= week))) {
-                    content = <span className="child-raising-text" style={{ color: "orange" }}>-</span>
-                  }
-
-                  return (
-                    <div
-                      key={week}
-                      className={boxClass}
-                      data-tooltip-id="year-tooltip"
-                      data-tooltip-html={tooltipText}
-                    >
-                      {content}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
-
-        {/* 这里是 Tooltip 组件，必须独立存在 */}
-        <Tooltip id="year-tooltip" place="top" effect="solid" />
-      </div>
-    );
-  };
   const remiainColor = getColorTran(100 - lifePercentage);
 
   return (
@@ -239,7 +240,7 @@ const App = () => {
           ))}
         </em>
       </div>
-      {renderGrid()}
+      {renderGrid(birthDate, lifeExpectancy, firstChildBirth, lastChildBirth, thisYear, thisWeek, birthWeekOfYear, deathWeekOfYear, techEvents, bodyDevelopmentFacts)}
       <div className="legend">
         <div className="legend-item"><div className="legend-box past"></div><span> Past</span></div>
         <div className="legend-item"><div className="legend-box remaining"></div><span> Remaining</span></div>
