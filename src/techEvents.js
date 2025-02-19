@@ -124,9 +124,6 @@ const techEvents = {
     2022: "Nuclear fusion breakthrough: scientists achieve net energy gain in fusion reaction.",
     2023: "AI becomes mainstream with ChatGPT and MidJourney.",
     2024: "Tools like ChatGPT, Claude, and Gemini became popular for content creation, coding, and problem solving ",
-  
-    // Future Years - Inspirational Messages
-    2025: "The future belongs to those who innovate.",
   };
   
   export default techEvents;

@@ -4,6 +4,7 @@ import { Tooltip } from "react-tooltip";
 import techEvents from "./techEvents"; // 导入科技事件
 import quotes from "./quote"; // 导入名言
 import bodyDevelopmentFacts from "./bodyDevelopmentFacts"; // 导入身体发育事实
+import futurePredictions from "./futurePredictions"; // 导入身体发育事实
 
 function getWeekOfYear(date) {
   const startOfYear = new Date(date.getFullYear(), 0, 1); // 当年的 1 月 1 日
@@ -71,7 +72,7 @@ function calculateDays(birthDate, expectancy, setThisWeek, setRemainingWeeks, se
   setLifePercentage(percentage);
 }
 
-function renderGrid(birthDate, lifeExpectancy, firstChildBirth, lastChildBirth, thisYear, thisWeek, birthWeekOfYear, deathWeekOfYear, techEvents, bodyDevelopmentFacts) {
+function renderGrid(birthDate, lifeExpectancy, firstChildBirth, lastChildBirth, thisYear, thisWeek, birthWeekOfYear, deathWeekOfYear, techEvents, bodyDevelopmentFacts, futurePredictions) {
   const birthYear = new Date(birthDate).getFullYear();
   const deathYear = birthYear + Math.floor(lifeExpectancy) + 1;
   const totalYears = deathYear - birthYear;
@@ -116,8 +117,16 @@ function renderGrid(birthDate, lifeExpectancy, firstChildBirth, lastChildBirth, 
                 } else {
                   age = year - new Date(birthDate).getFullYear();
                 }
-                let eventText = techEvents[year] || "The future belongs to those who innovate.";
-                let bodyDevelopmentFactsText =  bodyDevelopmentFacts[age] || "You’ve unlocked the secret to immortality. Please share the cheat code!";
+                let eventText = "";
+
+                if (techEvents[year]) {
+                  eventText = techEvents[year]; // 如果有历史事件，就用它
+                } else if (futurePredictions[year]) {
+                  eventText = `(Prediction) ${futurePredictions[year]}`; // 如果是未来预测，前面加上 "(Prediction)"
+                } else {
+                  eventText = "The future belongs to those who innovate."; // 如果都没有，使用默认文本
+                }
+                let bodyDevelopmentFactsText = bodyDevelopmentFacts[age] || "You’ve unlocked the secret to immortality. Please share the cheat code!";
                 const tooltipText = `[age ${age}]: ${bodyDevelopmentFactsText} <br />  [${year}]: ${eventText}`;
 
                 if ((year === birthYear && week < birthWeekOfYear) || (year === deathYear - 1 && week > deathWeekOfYear)) {
@@ -240,7 +249,7 @@ const App = () => {
           ))}
         </em>
       </div>
-      {renderGrid(birthDate, lifeExpectancy, firstChildBirth, lastChildBirth, thisYear, thisWeek, birthWeekOfYear, deathWeekOfYear, techEvents, bodyDevelopmentFacts)}
+      {renderGrid(birthDate, lifeExpectancy, firstChildBirth, lastChildBirth, thisYear, thisWeek, birthWeekOfYear, deathWeekOfYear, techEvents, bodyDevelopmentFacts, futurePredictions)}
       <div className="legend">
         <div className="legend-item"><div className="legend-box past"></div><span> Past</span></div>
         <div className="legend-item"><div className="legend-box remaining"></div><span> Remaining</span></div>
