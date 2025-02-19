@@ -7,6 +7,7 @@
   line-height: 1.5;
   color: #e0e0e0;
   white-space: pre-wrap; /* 若想支持 \n 换行 */
+  transition: opacity 0.5s ease-in-out;
 }
 
 .fancy-title {
