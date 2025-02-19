@@ -177,7 +177,13 @@ const App = () => {
                 {Array.from({ length: 52 }).map((_, week) => {
                   let boxClass = "grid-box";
                   let content = "";
-                  const tooltipText = `${year} (${getPct(year, lifeExpectancy, birthDate).toFixed(1)}%)`;
+                  let age
+                  if (week < birthWeekOfYear) {
+                    age = year - new Date(birthDate).getFullYear() -1;
+                  } else {
+                     age = year - new Date(birthDate).getFullYear();
+                  }
+                  const tooltipText = `age: ${age} (${getPct(year, lifeExpectancy, birthDate).toFixed(1)}%)`;
 
                   if ((year === birthYear && week < birthWeekOfYear) || (year === deathYear - 1 && week > deathWeekOfYear)) {
                     boxClass += " empty"; // 渲染与背景色相同的格子
