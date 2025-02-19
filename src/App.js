@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./styles.css";
 import { Tooltip } from "react-tooltip";
+import techEvents from "./techEvents"; // 导入科技事件
+import quotes from "./quote"; // 导入名言
 
 
 function getWeekOfYear(date) {
@@ -31,36 +33,6 @@ function getColorTran(pct) {
   const pctColor = `hsl(${hue}, 80%, ${finalLightness}%)`;
   return pctColor
 }
-const quotes = [
-  "\" Despair is as illusory as hope. \"",
-  "\" Better to walk than curse the road. \"",
-  "\" To live is to suffer, to survive is to find some meaning in the suffering. \"",
-  "\" He who has a why to live for can bear almost any how. \"",
-  "\" We are our choices. \"",
-  "\" Man is not the lord of beings. Man is the shepherd of Being. \"",
-  "\" There is no cure for birth and death, save to enjoy the interval. \"",
-  "\" Real generosity toward the future lies in giving all to the present. \"",
-  "\" To be is to be in time. \"",
-  "\" Compare yourself to who you were yesterday, not to who someone else is today. \"",
-  "\" We are always complaining that our days are few, and acting as though there would be no end to them. \"",
-  "\" You will never live if you are looking for the meaning of life. \"",
-  "\" Dwell on the beauty of life. Watch the stars, and see yourself running with them. \"",
-  "\" Life can only be understood backwards; but it must be lived forwards. \"",
-  "\" It is never too late to be what you might have been. \"",
-  "\" You must live in the present, launch yourself on every wave, find your eternity in each moment. \"",
-  "\" There are no facts, only interpretations. \"",
-  "\" A wise man will make more opportunities than he finds. \"",
-  "\" The future depends on what you do today. \"",
-  "\" We forfeit three-fourths of ourselves in order to be like other people. \"",
-  "\" Every man is born as many men and dies as a single one. \"",
-  "\" The best way to find out if you can trust somebody is to trust them. \"",
-  "\" You could leave life right now. Let that determine what you do and say and think. \"",
-  "\" Life is what happens when you’re busy making other plans. \"",
-  "\" Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment. \"",
-  "\" Your time is limited, so don’t waste it living someone else’s life. \"",
-  "\" An idea that is not dangerous is unworthy of being called an idea at all \"",
-  "\" Sometimes people don't want to hear the truth because they don't want their illusions destroyed. \"",
-];
 
 function getRandomQuote() {
   return quotes[Math.floor(Math.random() * quotes.length)];
@@ -183,7 +155,8 @@ const App = () => {
                   } else {
                      age = year - new Date(birthDate).getFullYear();
                   }
-                  const tooltipText = `age: ${age} (${getPct(year, lifeExpectancy, birthDate).toFixed(1)}%)`;
+                  let eventText = techEvents[year] || "The future belongs to those who innovate.";
+                  const tooltipText = `age: ${age} (${getPct(year, lifeExpectancy, birthDate).toFixed(1)}%)  <br />  [${year}]:${eventText}`;
 
                   if ((year === birthYear && week < birthWeekOfYear) || (year === deathYear - 1 && week > deathWeekOfYear)) {
                     boxClass += " empty"; // 渲染与背景色相同的格子
@@ -207,7 +180,7 @@ const App = () => {
                       key={week}
                       className={boxClass}
                       data-tooltip-id="year-tooltip"
-                      data-tooltip-content={tooltipText}
+                      data-tooltip-html={tooltipText}
                     >
                       {content}
                     </div>
