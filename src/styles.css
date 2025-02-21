@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
 
+
 .quote-section em {
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
@@ -11,11 +12,12 @@
 }
 
 .fancy-title {
-  font-family: 'Orbitron', sans-serif; /* 未来感、科技感 */
+  font-family: Orbitron, sans-serif; /* 未来感、科技感 */
   font-weight: 700;
   letter-spacing: 2px; /* 增加间距，让文字更有气势 */
   text-transform: uppercase; /* 全部大写，更有冲击力 */
 }
+
 .container {
   text-align: center;
   padding: 20px;
@@ -35,7 +37,7 @@
   display: flex;
   flex-direction: column;
   align-items: center; /* 让整个网格居中 */
-  gap: 0px;
+  gap: 0;
   margin-top: 20px;
 }
 
@@ -47,6 +49,7 @@
   max-width: 600px; /* 限制宽度，确保 3 个一行 */
   margin: 0 auto; /* 居中 */
   gap: 20px; /* 控制每个 legend 之间的间距 */
+  color: #9e7546;            /* 文字变成白色 */
 }
 
 
@@ -56,8 +59,8 @@
   justify-content: center; /* 让年份和网格居中 */
   gap: 5px;
   width: 100%;
-  margin-bottom: 0px; /* 取消行与行之间的间距 */
-  padding-bottom: 0px; /* 避免额外的间隔 */
+  margin-bottom: 0; /* 取消行与行之间的间距 */
+  padding-bottom: 0; /* 避免额外的间隔 */
   line-height: 1; /* 保持紧凑 */
 }
 
@@ -81,14 +84,14 @@
 .weeks {
   display: flex;
   flex-wrap: nowrap;
-  gap: 0px;
+  gap: 0;
   justify-content: center; /* 关键点：让周数居中 */
 }
 
 .grid-box {
   width: 8px;
   height: 8px;
-  border-radius: 0px;
+  border-radius: 0;
   background-color: #ddd;
   display: flex;  /* 让内容居中 */
   align-items: center;
@@ -101,10 +104,10 @@
 .__react_component_tooltip {
   font-size: 14px;
   padding: 8px;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgb(0 0 0 / 80%);
   color: white;
   border-radius: 5px;
-  box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 10px rgb(255 255 255 / 20%);
   transition: opacity 0.2s ease-in-out;
 }
 
@@ -182,6 +185,7 @@
 .child-raising {
   background-color: brown;
 }
+
 /* 让 legend 中的斜杠符号颜色正确 */
 .legend-item .raising-symbol {
   color: orange;
@@ -206,7 +210,7 @@
     background-color: black !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (width <= 768px) {
   .container {
     padding: 10px; /* 让整体左右有间距 */
   }
@@ -240,15 +244,18 @@
     height: 6px;
   }
 }
+
 @keyframes pulse {
   0% {
     transform: scale(1);
     color: #fff;
   }
+
   50% {
     transform: scale(1.1);
-    color: #ff5555;
+    color: #f55;
   }
+
   100% {
     transform: scale(1);
     color: #fff;
@@ -258,4 +265,24 @@
 .remaining-days-animated {
   display: inline-block;
   animation: pulse 1s ease-in-out;
+}
+
+/* 给所有输入框设置深色背景+白色文字 */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  background-color: #333; /* 深灰色背景 */
+  color: #fff;            /* 白色文字 */
+  border: 1px solid #666; /* 浅灰边框 */
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus {
+  outline: none;
+  border-color: #4ade80; /* 聚焦时边框变绿，可自定义 */
 }
