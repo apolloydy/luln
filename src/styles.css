@@ -49,7 +49,6 @@
   max-width: 600px; /* 限制宽度，确保 3 个一行 */
   margin: 0 auto; /* 居中 */
   gap: 20px; /* 控制每个 legend 之间的间距 */
-  color: #9e7546;            /* 文字变成白色 */
 }
 
 
