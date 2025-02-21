@@ -74,7 +74,7 @@ const Vo2Max = () => {
 
   return (
     <div style={{ textAlign: "center", padding: "20px", backgroundColor: "black", color: "white" }}>
-      <h2>VO₂ Max Peak & Decline Model</h2>
+      <h2>[WIP] VO₂ Max Peak & Decline Model</h2>
       
       <div style={{ marginBottom: "10px" }}>
         <label style={{ marginRight: 10 }}>
