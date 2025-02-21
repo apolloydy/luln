@@ -1,105 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+/* 
+  1) 移除不需要的 @import (Orbitron, Caveat) 
+     如果你还有别的字体需要，可以自行保留或添加。
+*/
 
-
+/* 2) 保留 .quote-section em，如果仍需要对名言文字做特殊样式 */
 .quote-section em {
-  font-family: 'Playfair Display', serif;
+  /* 如果你不想换字体，可去掉 font-family */
+  /* font-family: 'Playfair Display', serif; */
   font-size: 1.2rem;
   line-height: 1.5;
   color: #e0e0e0;
-  white-space: pre-wrap; /* 若想支持 \n 换行 */
+  white-space: pre-wrap; 
   transition: opacity 0.5s ease-in-out;
 }
 
-.fancy-title {
-  font-family: Orbitron, sans-serif; /* 未来感、科技感 */
-  font-weight: 700;
-  letter-spacing: 2px; /* 增加间距，让文字更有气势 */
-  text-transform: uppercase; /* 全部大写，更有冲击力 */
-}
-
+/* 3) container：页面主要容器 */
 .container {
   text-align: center;
   padding: 20px;
 }
 
-.urgent {
-  color: red;
-  font-weight: bold;
-}
-
-.now {
-  color: green;
-  font-weight: bold;
-}
-
+/* 4) 生成周网格的容器 + 相关样式 */
 .grid-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* 让整个网格居中 */
+  align-items: center;
   gap: 0;
   margin-top: 20px;
 }
 
 .input-container {
   display: flex;
-  flex-wrap: wrap; /* 允许换行 */
-  justify-content: center; /* 让内容在整个页面居中 */
-  align-items: center; /* 垂直方向居中 */
-  max-width: 600px; /* 限制宽度，确保 3 个一行 */
-  margin: 0 auto; /* 居中 */
-  gap: 20px; /* 控制每个 legend 之间的间距 */
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  gap: 20px;
 }
-
 
 .year-row {
   display: flex;
   align-items: center;
-  justify-content: center; /* 让年份和网格居中 */
+  justify-content: center;
   gap: 5px;
   width: 100%;
-  margin-bottom: 0; /* 取消行与行之间的间距 */
-  padding-bottom: 0; /* 避免额外的间隔 */
-  line-height: 1; /* 保持紧凑 */
+  margin-bottom: 0;
+  padding-bottom: 0;
+  line-height: 1;
 }
 
-.year-label {
-  width: 60px;
-  font-weight: bold;
-  text-align: right;
-  font-size: 11px;  /* 让斜线大小合适 */
-}
-
+.year-label,
 .year-label-placeholder {
   width: 60px;
   font-weight: bold;
   text-align: right;
-  font-size: 11px;  /* 让斜线大小合适 */
+  font-size: 11px;
+}
+
+/* 让占位标签背景是黑色、文字也黑色，以便“隐形” */
+.year-label-placeholder {
   background-color: black !important;
   color: black;
 }
-
 
 .weeks {
   display: flex;
   flex-wrap: nowrap;
   gap: 0;
-  justify-content: center; /* 关键点：让周数居中 */
+  justify-content: center;
 }
 
+/* 单个格子样式 */
 .grid-box {
   width: 8px;
   height: 8px;
   border-radius: 0;
   background-color: #ddd;
-  display: flex;  /* 让内容居中 */
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 5px;  /* 让斜线大小合适 */
-  line-height: 1;  /* 避免换行 */
-  padding-bottom: 2px; /* 细微调整让斜线不会偏移 */
+  font-size: 5px;
+  line-height: 1;
+  padding-bottom: 2px;
 }
 
+/* react-tooltip 的默认类名 */
 .__react_component_tooltip {
   font-size: 14px;
   padding: 8px;
@@ -110,55 +96,11 @@
   transition: opacity 0.2s ease-in-out;
 }
 
+/* 状态样式 */
 .child-raising {
   background-color: brown;
-  color: white; /* 让斜线可见 */
+  color: white;
   font-weight: bold;
-}
-
-.past {
-  background-color: #999;
-}
-
-.remaining {
-  background-color: #4caf50;
-}
-
-.child-birth {
-  background-color: blue;
-}
-
-.child-18 {
-  background-color: yellow;
-}
-
-.last-years {
-  background-color: red;
-}
-
-
-.legend {
-  display: flex;
-  flex-wrap: wrap; /* 允许换行 */
-  justify-content: center; /* 让内容在整个页面居中 */
-  align-items: center; /* 垂直方向居中 */
-  max-width: 450px; /* 限制宽度，确保 3 个一行 */
-  margin: 0 auto; /* 居中 */
-  gap: 20px; /* 控制每个 legend 之间的间距 */
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 5px; /* 让颜色块和文字之间有一点间距 */
-  white-space: nowrap; /* 防止换行 */
-}
-
-.legend-box {
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-
 }
 
 .past {
@@ -177,22 +119,44 @@
   background-color: yellow;
 }
 
-.last-years { 
-  background-color: red; 
+.last-years {
+  background-color: red;
 }
 
-.child-raising {
-  background-color: brown;
+/* 图例区域 */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 450px;
+  margin: 0 auto;
+  gap: 20px;
 }
 
-/* 让 legend 中的斜杠符号颜色正确 */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.legend-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+/* 修正重复定义的 .past, .remaining, .child-birth, .child-18, .last-years 颜色，如有冲突可合并 */
+
+/* 给 raising-symbol（图例中的小短横）一个橙色 */
 .legend-item .raising-symbol {
   color: orange;
   font-size: 20px;
   font-weight: bold;
 }
 
-/* 确保 child-raising 的斜杠正确对齐 */
+/* 网格里实际显示的短横符号 */
 .grid-box .child-raising-text {
   color: orange;
   font-size: 10px;
@@ -204,84 +168,79 @@
   line-height: 1;
 }
 
-
+/* 对应空白格子 */
 .grid-box.empty {
-    background-color: black !important;
+  background-color: black !important;
 }
 
+/* 响应式：当屏幕宽度 <= 768px */
 @media screen and (width <= 768px) {
   .container {
-    padding: 10px; /* 让整体左右有间距 */
+    padding: 10px;
   }
 
   .legend {
-    flex-direction: column; /* 让 legend 竖着排列 */
+    flex-direction: column;
     align-items: center;
-    max-width: 100%; /* 适配宽度 */
+    max-width: 100%;
   }
 
   .legend-item {
-    flex-wrap: wrap; /* 允许换行 */
+    flex-wrap: wrap;
     justify-content: center;
   }
 
   .grid-container {
-    overflow-x: auto; /* 允许左右滚动，防止超出屏幕 */
-    max-width: 100%; /* 限制最大宽度 */
+    overflow-x: auto;
+    max-width: 100%;
   }
 
-  .year-label {
-    font-size: 8px; /* 年份字体变小 */
-  }
-
+  .year-label,
   .year-label-placeholder {
-    font-size: 8px;  /* 让斜线大小合适 */
+    font-size: 8px;
   }
 
   .grid-box {
-    width: 6px; /* 缩小格子 */
+    width: 6px;
     height: 6px;
   }
 }
 
+/* 让剩余天数闪动的动画 */
 @keyframes pulse {
   0% {
     transform: scale(1);
     color: #fff;
   }
-
   50% {
     transform: scale(1.1);
     color: #f55;
   }
-
   100% {
     transform: scale(1);
     color: #fff;
   }
 }
-
 .remaining-days-animated {
   display: inline-block;
   animation: pulse 1s ease-in-out;
 }
 
-/* 给所有输入框设置深色背景+白色文字 */
+/* 给输入框深色背景+白色文字 */
 input[type="text"],
 input[type="number"],
 input[type="date"],
 select {
-  background-color: #333; /* 深灰色背景 */
-  color: #fff;            /* 白色文字 */
-  border: 1px solid #666; /* 浅灰边框 */
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #666;
   padding: 4px 8px;
   border-radius: 4px;
 }
-
 input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="date"]:focus,
 select:focus {
   outline: none;
-  border-color: #4ade80; /* 聚焦时边框变绿，可自定义 */
+  border-color: #4ade80;
 }
