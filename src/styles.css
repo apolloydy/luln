@@ -78,8 +78,8 @@
 
 /* 单个格子样式 */
 .grid-box {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 0;
   background-color: #ddd;
   display: flex;
