@@ -16,8 +16,13 @@
 
 /* 3) container：页面主要容器 */
 .container {
+  /* 保持原有样式 */
   text-align: center;
   padding: 20px;
+
+  /* 让容器水平居中 */
+  margin: 0 auto;
+  max-width: 1000px; /* 你可以根据需要调节这个宽度 */
 }
 
 /* 4) 生成周网格的容器 + 相关样式 */
