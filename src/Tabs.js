@@ -45,6 +45,17 @@ const Tabs = () => {
                 >
                    Chronic Disease
                 </NavLink>
+                <NavLink
+                    to="/Causes Of Death"
+                    className={({ isActive }) =>
+                        "text-lg font-semibold transition " +
+                        (isActive
+                            ? "text-green-400 border-b-2 border-green-400"
+                            : "text-gray-300 hover:text-white")
+                    }
+                >
+                   Causes Of Death
+                </NavLink>
             </nav>
         </header>
     );
