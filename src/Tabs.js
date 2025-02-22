@@ -23,8 +23,9 @@ const Tabs = () => {
                 >
                     Life Expectancy
                 </NavLink>
+
                 <NavLink
-                    to="/vo2max"
+                    to="/Causes Of Death"
                     className={({ isActive }) =>
                         "text-lg font-semibold transition " +
                         (isActive
@@ -32,7 +33,7 @@ const Tabs = () => {
                             : "text-gray-300 hover:text-white")
                     }
                 >
-                    VO₂ Max
+                    Causes Of Death
                 </NavLink>
                 <NavLink
                     to="/Chronic Disease"
@@ -43,10 +44,10 @@ const Tabs = () => {
                             : "text-gray-300 hover:text-white")
                     }
                 >
-                   Chronic Disease
+                    Chronic Disease
                 </NavLink>
                 <NavLink
-                    to="/Causes Of Death"
+                    to="/vo2max"
                     className={({ isActive }) =>
                         "text-lg font-semibold transition " +
                         (isActive
@@ -54,7 +55,7 @@ const Tabs = () => {
                             : "text-gray-300 hover:text-white")
                     }
                 >
-                   Causes Of Death
+                    VO₂ Max
                 </NavLink>
             </nav>
         </header>
