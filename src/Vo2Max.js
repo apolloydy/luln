@@ -6,13 +6,13 @@ Chart.register(...registerables);
 
 /** VO₂ Max 范围表 */
 const vo2MaxCategories = [
-  { min: 0,   max: 25,  description: "日常活动可能都吃力，需加强基础体能" },
-  { min: 25,  max: 35,  description: "可进行轻度慢跑、日常健身" },
-  { min: 35,  max: 45,  description: "可进行规律跑步、骑行等中等强度运动" },
-  { min: 45,  max: 55,  description: "可进行5K、10K跑步，或高强度间歇训练" },
-  { min: 55,  max: 65,  description: "可参与马拉松、铁人三项等耐力项目" },
-  { min: 65,  max: 80,  description: "高水平耐力运动员水平" },
-  { min: 80,  max: 200, description: "精英/职业运动员水平" },
+  { min: 0, max: 25, description: "Even daily activities might be challenging; focus on building basic fitness." },
+  { min: 25, max: 35, description: "Able to do light jogging or regular fitness routines." },
+  { min: 35, max: 45, description: "Capable of regular running, cycling, or other moderate-intensity exercises." },
+  { min: 45, max: 55, description: "Suitable for 5K/10K runs or high-intensity interval training." },
+  { min: 55, max: 65, description: "Can participate in marathons, triathlons, and other endurance events." },
+  { min: 65, max: 80, description: "High-level endurance athlete." },
+  { min: 80, max: 200, description: "Elite/professional athlete level." },
 ];
 
 /** 30～60 岁的年衰减率 */
@@ -84,7 +84,7 @@ function generateVo2Array(ageNow, vo2Now, trainingLevel, customRate, endAge) {
     if (age <= ageNow) return vo2Now;
     if (age >= 30) return target30;
 
-    const yearsTo30 = 30 - ageNow; 
+    const yearsTo30 = 30 - ageNow;
     const slope = (target30 - vo2Now) / yearsTo30;
     const diff = age - ageNow;
     return vo2Now + slope * diff;
@@ -93,7 +93,7 @@ function generateVo2Array(ageNow, vo2Now, trainingLevel, customRate, endAge) {
   // 计算 30~60 岁以及 60 岁后指数衰减情况下的 VO2
   // 注意，这里要先假设“30 岁那年时 VO2 = target30”
   function getVo2After30(age) {
-    if (age < 30) return target30; 
+    if (age < 30) return target30;
     if (age <= 60) {
       const yearsAfter30 = age - 30;
       return target30 * Math.pow(1 - annualRate30to60, yearsAfter30);
@@ -125,9 +125,9 @@ function generateVo2Array(ageNow, vo2Now, trainingLevel, customRate, endAge) {
       vo2 = getVo2After30(age);
     } else {
       // 在 [30-transition30, 30+transition30] 之间，做插值
-      const t = (age - lower30) / (upper30 - lower30); 
-      const linearVal = getVo2Before30(age); 
-      const expoVal = getVo2After30(age); 
+      const t = (age - lower30) / (upper30 - lower30);
+      const linearVal = getVo2Before30(age);
+      const expoVal = getVo2After30(age);
       vo2 = lerp(linearVal, expoVal, t);
     }
 
@@ -166,7 +166,7 @@ function generateVo2Array(ageNow, vo2Now, trainingLevel, customRate, endAge) {
 
       // 再和前面“可能已经过一次插值”的 vo2 做一个折中
       // 也可以直接赋值 = blended，看你是否希望 30 岁区的过渡优先级更高
-      vo2 = (vo2 + blended) / 2; 
+      vo2 = (vo2 + blended) / 2;
     }
 
     arr.push({ age, vo2 });
@@ -234,11 +234,10 @@ function Vo2Max() {
   const vo2MaxData = generateVo2Array(ageNow, currentVo2, trainingLevel, customDeclineRate, endAge);
 
   const chartData = {
-    labels: vo2MaxData.map(d => d.age),
     datasets: [
       {
         label: "VO₂ Max (ml/kg/min)",
-        data: vo2MaxData.map(d => d.vo2),
+        data: vo2MaxData.map(d => ({ x: d.age, y: d.vo2 })),
         borderColor: "blue",
         cubicInterpolationMode: "monotone",
         tension: 0.4,
@@ -249,13 +248,13 @@ function Vo2Max() {
 
   return (
     <div style={{ textAlign: "center", padding: 20, backgroundColor: "black", color: "white" }}>
-      <h2>VO₂ Max with Smooth Transition</h2>
-      <p>生日: {storedBirthday} (推算年龄: {ageNow})</p>
-      <p>寿命: {endAge} 岁 (localStorage.lifeExpectancy)</p>
+      <h2>VO₂ Max Prediction</h2>
+      <p>Birthday: {storedBirthday} (Current Age: {ageNow})</p>
+      <p>LifeExpectancy: {endAge} Years (localStorage.lifeExpectancy)</p>
 
       <div style={{ marginBottom: 10 }}>
         <label style={{ marginRight: 10 }}>
-          当前 VO₂ Max:
+          Current VO₂ Max:
           <input
             type="number"
             step="1"
@@ -274,9 +273,9 @@ function Vo2Max() {
             onChange={(e) => setTrainingLevel(e.target.value)}
             style={{ marginLeft: 5 }}
           >
-            <option value="high">High (10年降3%，limit=60)</option>
-            <option value="moderate">Moderate (10年降5%，limit=55)</option>
-            <option value="low">Low (10年降10%，limit=45)</option>
+            <option value="high">High (-3% per decade, limit=60)</option>
+            <option value="moderate">Moderate (-5% per decade, limit=55)</option>
+            <option value="low">Low (-10% per decade , limit=45)</option>
             <option value="custom">Custom</option>
           </select>
         </label>
@@ -295,15 +294,38 @@ function Vo2Max() {
       </div>
 
       <div style={{ width: "80%", margin: "20px auto" }}>
-        <Line data={chartData} />
+        <Line
+          data={chartData}
+          options={{
+            responsive: true,
+            scales: {
+              x: {
+                type: 'linear',       // 指定数值轴
+                title: {
+                  display: true,
+                  text: 'Age',
+                },
+                ticks: {
+                  stepSize: 1,        // 如果想让刻度按 1 岁为步进
+                },
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: 'VO₂ Max (ml/kg/min)',
+                },
+              },
+            },
+          }}
+        />
       </div>
 
-      <h3>VO₂ Max 范围对应活动示例</h3>
+      <h3>VO₂ Max Range & Sample Activities</h3>
       <table style={{ margin: "0 auto", borderCollapse: "collapse" }}>
         <thead>
           <tr style={{ borderBottom: "1px solid white" }}>
-            <th style={{ padding: "8px 12px" }}>VO₂ Max 范围</th>
-            <th style={{ padding: "8px 12px" }}>对应活动示例</th>
+            <th style={{ padding: "8px 12px" }}>VO₂ Max Range</th>
+            <th style={{ padding: "8px 12px" }}>Sample Activities</th>
           </tr>
         </thead>
         <tbody>
