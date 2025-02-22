@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Tabs from "./Tabs";
 import LifeExpectancy from "./LifeExpectancy";
 import Vo2Max from "./Vo2Max";
+import ChronicDisease from "./ChronicDisease";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/" element={<Navigate to="/life-expectancy" replace />} />
         <Route path="/life-expectancy" element={<LifeExpectancy />} />
         <Route path="/vo2max" element={<Vo2Max />} />
+        <Route path="/Chronic Disease" element={<ChronicDisease />} />
       </Routes>
     </Router>
   );

@@ -34,6 +34,17 @@ const Tabs = () => {
                 >
                     VO₂ Max
                 </NavLink>
+                <NavLink
+                    to="/Chronic Disease"
+                    className={({ isActive }) =>
+                        "text-lg font-semibold transition " +
+                        (isActive
+                            ? "text-green-400 border-b-2 border-green-400"
+                            : "text-gray-300 hover:text-white")
+                    }
+                >
+                   Chronic Disease
+                </NavLink>
             </nav>
         </header>
     );
