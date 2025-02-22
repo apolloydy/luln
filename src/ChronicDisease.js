@@ -27,7 +27,7 @@ const ChronicDisease = () => {
 
     return (
         <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">The Four Horsemen of Chronic Disease</h2>
+            <h2 className="text-2xl font-bold mb-4">The Five Horsemen of Chronic Disease</h2>
             <ul className="space-y-4">
                 {diseases.map((disease, index) => (
                     <li key={index} className="p-4 border rounded-lg shadow">
