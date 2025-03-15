@@ -5,6 +5,7 @@ import LifeExpectancy from "./LifeExpectancy";
 import Vo2Max from "./Vo2Max";
 import ChronicDisease from "./ChronicDisease";
 import DeathStatistics from "./DeathStatistics";
+import Contact from './Contact';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/Causes Of Death" element={<DeathStatistics />} />
         <Route path="/Chronic Disease" element={<ChronicDisease />} />
         <Route path="/vo2max" element={<Vo2Max />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   );
