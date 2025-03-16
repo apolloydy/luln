@@ -35,6 +35,19 @@ const Wellbing = () => {
         </NavLink>
 
         <NavLink
+          to="life-style-changes"
+          className={({ isActive }) =>
+            `block mb-4 ${
+              isActive
+                ? 'text-green-400 font-bold'
+                : 'text-gray-600 hover:text-green-400'
+            }`
+          }
+        >
+          Life Style Changes
+        </NavLink>
+
+        <NavLink
           to="vo2max"
           className={({ isActive }) =>
             `block mb-4 ${
