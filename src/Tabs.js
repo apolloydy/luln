@@ -1,4 +1,3 @@
-// Tabs.jsx
 import React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -25,7 +24,7 @@ const Tabs = () => {
                 </NavLink>
 
                 <NavLink
-                    to="/Causes Of Death"
+                    to="/wellbing"
                     className={({ isActive }) =>
                         "text-lg font-semibold transition " +
                         (isActive
@@ -33,30 +32,9 @@ const Tabs = () => {
                             : "text-gray-300 hover:text-white")
                     }
                 >
-                    Causes Of Death
+                    Wellbing
                 </NavLink>
-                <NavLink
-                    to="/Chronic Disease"
-                    className={({ isActive }) =>
-                        "text-lg font-semibold transition " +
-                        (isActive
-                            ? "text-green-400 border-b-2 border-green-400"
-                            : "text-gray-300 hover:text-white")
-                    }
-                >
-                    Chronic Disease
-                </NavLink>
-                <NavLink
-                    to="/vo2max"
-                    className={({ isActive }) =>
-                        "text-lg font-semibold transition " +
-                        (isActive
-                            ? "text-green-400 border-b-2 border-green-400"
-                            : "text-gray-300 hover:text-white")
-                    }
-                >
-                    VO₂ Max
-                </NavLink>
+
                 <NavLink
                     to="/contact"
                     className={({ isActive }) =>

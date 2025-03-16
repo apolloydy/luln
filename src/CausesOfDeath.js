@@ -1,6 +1,7 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
+import DeathStatistics from './DeathStatistics'; // 引入
 
 // 注册 Chart.js 组件
 Chart.register(ArcElement, Tooltip, Legend);
