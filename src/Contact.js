@@ -7,10 +7,10 @@ function Contact() {
       <h2>Contact Us</h2>
       <p>If you would like to send us a message, please click below:</p>
       <a 
-        href="mailto:no-reply@luln.org?subject=Hello%20from%20LULN" 
+        href="mailto:contactus@luln.org?subject=Hello%20from%20LULN" 
         style={{ color: 'lightgreen', fontWeight: 'bold', textDecoration: 'underline' }}
       >
-        Send Email
+        Send Email: contactus@luln.org
       </a>
     </div>
   );
