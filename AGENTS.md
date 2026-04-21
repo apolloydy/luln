@@ -80,6 +80,19 @@
 - If deployment behavior is changed, keep the `push -> deploy` workflow intact
 - Before changing contact or email delivery behavior, verify whether the site should keep using `MailChannels`
 
+## Local Verification Workflow
+
+- After each meaningful code change, run a local verification pass before `commit` or `push`
+- Preferred verification flow for this project:
+  - make sure the app can start locally
+  - check that the local site responds over `localhost`
+  - review key routes such as `/life-expectancy`, `/contact`, and `/wellbing`
+  - inspect visible text/content changes for obvious wording mistakes
+  - check for obvious route, rendering, or layout regressions
+- The assistant should do as much verification as possible locally each time
+- The user will still do final visual review in the browser, especially for layout and styling judgment
+- If something cannot be verified locally, say so explicitly before `commit` or `push`
+
 ## Notes
 
 - The user wants conversation in Chinese, while keeping technical terms in English
