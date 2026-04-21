@@ -1,90 +1,155 @@
 import React from "react";
-import { Pie } from "react-chartjs-2";
-import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
+import { Bar } from "react-chartjs-2";
+import {
+  BarElement,
+  CategoryScale,
+  Chart,
+  Legend,
+  LinearScale,
+  Tooltip,
+} from "chart.js";
+import {
+  leadingCausesOfDeath2024,
+  leadingCausesOfDeath2024Source,
+} from "./data/wellbing/leadingCausesOfDeath2024";
 
-// 注册 Chart.js 组件
-Chart.register(ArcElement, Tooltip, Legend);
+Chart.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
+
+const causes = leadingCausesOfDeath2024;
+
+const chartData = {
+  labels: causes.slice(0, 10).map((cause) => `${cause.rank}. ${cause.name}`),
+  datasets: [
+    {
+      label: "% of total deaths",
+      data: causes.slice(0, 10).map((cause) => cause.percentage),
+      backgroundColor: causes.slice(0, 10).map((cause) => cause.color),
+      borderRadius: 10,
+      borderSkipped: false,
+      maxBarThickness: 18,
+    },
+  ],
+};
+
+const chartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  indexAxis: "y",
+  scales: {
+    x: {
+      grid: {
+        color: "rgba(148, 163, 184, 0.12)",
+      },
+      ticks: {
+        color: "#cbd5e1",
+        callback(value) {
+          return `${value}%`;
+        },
+      },
+    },
+    y: {
+      grid: {
+        display: false,
+      },
+      ticks: {
+        color: "#e2e8f0",
+      },
+    },
+  },
+  plugins: {
+    legend: {
+      display: false,
+    },
+    tooltip: {
+      backgroundColor: "rgba(15, 23, 42, 0.96)",
+      titleColor: "#f8fafc",
+      bodyColor: "#e2e8f0",
+      displayColors: false,
+      callbacks: {
+        label(context) {
+          const cause = causes[context.dataIndex];
+          return `${cause.percentage}% of all U.S. deaths in 2024`;
+        },
+        afterLabel(context) {
+          const cause = causes[context.dataIndex];
+          return `Deaths: ${cause.deaths.toLocaleString()} | Rate: ${cause.rate} per 100,000`;
+        },
+      },
+    },
+  },
+};
+
+const topThree = causes.slice(0, 3);
 
 const CausesOfDeath = () => {
-    let causes = [
-        { name: "Heart Disease", percentage: 21.4, color: "#FF6384", source: "https://www.cdc.gov/nchs/fastats/leading-causes-of-death.htm" },
-        { name: "Cancer", percentage: 18.5, color: "#36A2EB", source: "https://www.cdc.gov/nchs/fastats/leading-causes-of-death.htm" },
-        { name: "Accidents (Unintentional Injuries)", percentage: 6.9, color: "#FFCE56", source: "https://www.cdc.gov/nchs/fastats/leading-causes-of-death.htm" },
-        { name: "COVID-19", percentage: 5.7, color: "#4BC0C0", source: "https://www.cdc.gov/nchs/fastats/leading-causes-of-death.htm" },
-        { name: "Stroke", percentage: 5.0, color: "#9966FF", source: "https://www.cdc.gov/nchs/fastats/leading-causes-of-death.htm" },
-        { name: "Chronic Lower Respiratory Diseases", percentage: 4.5, color: "#FF9F40", source: "https://www.cdc.gov/nchs/fastats/leading-causes-of-death.htm" },
-        { name: "Alzheimer’s Disease", percentage: 3.7, color: "#C9CBCF", source: "https://www.cdc.gov/nchs/fastats/leading-causes-of-death.htm" },
-        { name: "Diabetes", percentage: 3.1, color: "#F7464A", source: "https://www.cdc.gov/nchs/fastats/leading-causes-of-death.htm" },
-        { name: "Kidney Diseases", percentage: 1.8, color: "#46BFBD", source: "https://www.cdc.gov/nchs/fastats/leading-causes-of-death.htm" },
-        { name: "Liver Disease", percentage: 1.6, color: "#FDB45C", source: "https://www.cdc.gov/nchs/fastats/leading-causes-of-death.htm" }
-    ];
-
-    // 计算现有总和
-    let totalPercentage = causes.reduce((sum, cause) => sum + cause.percentage, 0);
-
-    // 如果总和小于 100%，添加 "Others"
-    if (totalPercentage < 100) {
-        causes.push({
-            name: "Others",
-            percentage: (100 - totalPercentage).toFixed(1), // 保留一位小数
-            color: "#888888", // 低饱和度灰色
-            source: "https://www.cdc.gov/nchs/fastats/leading-causes-of-death.htm"
-        });
-    }
-
-    const chartData = {
-        labels: causes.map(cause => cause.name),
-        datasets: [
-            {
-                data: causes.map(cause => cause.percentage),
-                backgroundColor: causes.map(cause => cause.color),
-                hoverBackgroundColor: causes.map(cause => cause.color),
-                borderWidth: 1,
-            },
-        ],
-    };
-
-    const chartOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                display: true,
-                position: "right",
-                labels: {
-                    color: "white",
-                    font: { size: 14 },
-                },
-            },
-            tooltip: {
-                backgroundColor: "rgba(255,255,255,0.95)",
-                titleColor: "#333",
-                bodyColor: "#333",
-                borderColor: "#ccc",
-                borderWidth: 1,
-                displayColors: false,
-                callbacks: {
-                    label: function (tooltipItem) {
-                        const cause = causes[tooltipItem.dataIndex];
-                        return `${cause.name}: ${cause.percentage}%`;
-                    },
-                    afterLabel: function (tooltipItem) {
-                        const cause = causes[tooltipItem.dataIndex];
-                        return cause.name === "Others" ? "Includes various minor causes" : `Source: ${cause.source}`;
-                    }
-                }
-            }
-        }
-    };
-
-    return (
-        <div className="p-6 flex flex-col items-center w-full">
-            <h2 className="text-2xl font-bold mb-4 text-white">Leading Causes of Death (2022)</h2>
-            <div className="relative w-full" style={{ maxWidth: "600px", height: "400px" }}>
-                <Pie data={chartData} options={chartOptions} />
-            </div>
+  return (
+    <section className="death-card">
+      <div className="death-card-header">
+        <div>
+          <span className="death-eyebrow">CDC Final Data</span>
+          <h2 className="death-title">Leading causes of death in the United States, 2024</h2>
+          <p className="death-subtitle">
+            Suicide entered the top 10 in 2024, replacing COVID-19, while heart disease, cancer,
+            and unintentional injuries remained the top three causes.
+          </p>
         </div>
-    );
+        <a
+          href={leadingCausesOfDeath2024Source.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="death-source-link"
+        >
+          View Source
+        </a>
+      </div>
+
+      <div className="death-summary-grid">
+        {topThree.map((cause) => (
+          <article key={cause.name} className="death-summary-item">
+            <span className="death-rank">{`#${cause.rank}`}</span>
+            <strong>{cause.name}</strong>
+            <span>{cause.percentage}% of all deaths</span>
+            <span>{cause.deaths.toLocaleString()} deaths</span>
+          </article>
+        ))}
+      </div>
+
+      <div className="death-layout">
+        <div className="death-chart-panel">
+          <div className="relative h-[420px] w-full">
+            <Bar data={chartData} options={chartOptions} />
+          </div>
+        </div>
+
+        <div className="death-list-panel">
+          {causes.map((cause) => (
+            <article key={cause.name} className="death-list-item">
+              <div className="death-list-heading">
+                <div className="death-list-title-wrap">
+                  <span
+                    className="death-color-dot"
+                    style={{ backgroundColor: cause.color }}
+                    aria-hidden="true"
+                  />
+                  <strong>{cause.rank ? `${cause.rank}. ${cause.name}` : cause.name}</strong>
+                </div>
+                <span className="death-list-percent">{cause.percentage}%</span>
+              </div>
+
+              <div className="death-list-meta">
+                <span>{cause.deaths.toLocaleString()} deaths</span>
+                {cause.rate !== null ? <span>{cause.rate} per 100,000</span> : <span>Residual category</span>}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <p className="death-footnote">
+        Source: <a href={leadingCausesOfDeath2024Source.url} target="_blank" rel="noopener noreferrer" className="death-inline-link">{leadingCausesOfDeath2024Source.label}</a>. Accessed {leadingCausesOfDeath2024Source.accessed}.
+      </p>
+    </section>
+  );
 };
 
 export default CausesOfDeath;

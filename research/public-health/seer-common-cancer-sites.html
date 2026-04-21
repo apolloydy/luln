@@ -1,0 +1,3152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Common Cancer Sites &mdash; Cancer Stat Facts</title>
+
+<script src="/j/jquery-3.6.0.min.js"></script>
+
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/s/base.css" />
+<link rel="stylesheet" href="/s/styles.css" />
+
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://static.cancer.gov">
+<link rel="preconnect" href="https://www.platform.twitter.com">
+
+
+<!-------------------------Meta Tags for Social Sharing---------------------------------->
+<!----TWITTER---->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="https://seer.cancer.gov/i/tile-fact.jpg" />
+
+<!----Open Graph---->
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://seer.cancer.gov/i/tile-fact.jpg" />
+<meta property="og:site_name" content="SEER" />
+<!--custom_head--><link rel="stylesheet" href="/s/nv.d3.css" type="text/css">
+<link rel="stylesheet" href="s/nv.d3.factsheets.css" type="text/css">
+<!--
+To avoid the flash of the default data when waiting for the JS to kick in and create the SVGs, we hide the data accessibly in styles.css and then only show it to visual users if there is no JS as a fallback. Screen readers get access to it all times. These styles bring the data back into view and supress the SVG containers.
+-->
+<noscript>
+	<style>
+		.defaultData { position: relative; width: auto; height: auto; padding: 0; margin: 0; overflow: auto; clip: none; border: 0; }
+		.svgEnhance { display: none; }
+	</style>
+</noscript>
+
+<!-- Start Meta Tag Insertion -->
+   <meta name='description' content='Cancer Statistical Fact Sheets are summaries of common cancer types developed to provide an overview of frequently-requested cancer statistics including incidence, mortality, survival, stage, prevalence, and lifetime risk.'>
+   <meta property='twitter:title' content='Common Cancer Sites - Cancer Stat Facts'> 
+   <meta property='twitter:description' content='Cancer Statistical Fact Sheets are summaries of common cancer types developed to provide an overview of frequently-requested cancer statistics including incidence, mortality, survival, stage, prevalence, and lifetime risk.'> 
+   <meta property='twitter:url' content='https://seer.cancer.gov/statfacts/html/common.html'> 
+   <meta property='og:title' content='Common Cancer Sites - Cancer Stat Facts'> 
+   <meta property='og:description' content='Cancer Statistical Fact Sheets are summaries of common cancer types developed to provide an overview of frequently-requested cancer statistics including incidence, mortality, survival, stage, prevalence, and lifetime risk.'> 
+   <meta property='og:url' content='https://seer.cancer.gov/statfacts/html/common.html'> 
+<!-- End Meta Tag Insertion --><!--/custom_head--></head>
+
+<body  class="reports " onload='IMS_Onload.run();'>
+
+	<a class="visually-hidden-focusable" href="#skipnav">Skip to Main Content</a>
+
+<!-- Blue Header -->
+<!-- NCI, SEER, Search, Navigation -->
+<!-- HEADER --> 
+<header class="push" role="banner">
+	<!---gov banner--->
+<section id="usa-banner" aria-label="Official government website">
+	<div class="container-lg">
+	  <div class="row">
+		<div class="usa-banner__header-text py-3">
+		  <img class="me-2" src="/i/usa-banner-flag-icon.png" alt="" /> An official website of the United States government
+		</div>
+	  </div>
+	</div>
+  </section>
+<!---end gov banner--> 
+
+	<div class="container-lg">
+    	<div class="row">
+        	<div class="col-md-8">
+		        <a class="seerLogo" href="/" title="Return Home">
+		        	<img src="/i/seer.svg" alt="Surveillance, Epidemiology, and End Results Program" width="1022.1" height="85.8" />
+		        </a>
+            </div>
+            <div class="col-md-4 search">
+				<div class="share">
+					<a class="facebook-share-button" href="" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank">
+						<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+							<path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+						</svg>
+						Share <span class="visually-hidden"> on Facebook</span>
+					</a>
+						
+						<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="small" data-dnt="true" data-show-count="false">Tweet</a>
+						<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+						<a class="print text-nowrap" href="javascript:window.print();">
+							<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fff" viewBox="0 0 32 32">
+								<g><path d="M24.67 10.62h-2.86V7.49H10.82v3.12H7.95c-.5 0-.9.4-.9.9v7.66h3.77v1.31L15 24.66h6.81v-5.44h3.77v-7.7c-.01-.5-.41-.9-.91-.9zM11.88 8.56h8.86v2.06h-8.86V8.56zm10.98 9.18h-1.05v-2.1h-1.06v7.96H16.4c-1.58 0-.82-3.74-.82-3.74s-3.65.89-3.69-.78v-3.43h-1.06v2.06H9.77v-3.58h13.09v3.61zm.75-4.91c-.4 0-.72-.32-.72-.72s.32-.72.72-.72c.4 0 .72.32.72.72s-.32.72-.72.72zm-4.12 2.96h-6.1v1.06h6.1v-1.06zm-6.11 3.15h6.1v-1.06h-6.1v1.06z"></path></g>
+							</svg>
+							<span>Print</span>
+						</a>
+					</div>
+	
+		        <form action="/search" method="get" name="search" onSubmit="return searchCheck(this.q) && NCIAnalytics.SiteSearch(this);">
+                        <label for="searchsite">Search SEER:</label>
+                        <input id="searchsite" type="text" size="15" name="q" placeholder="Search SEER" />
+                        <input type="image" src="/i/search_btn.png" class="greenBtn" alt="Search"/>
+                </form>
+            </div>
+        </div>
+ </div>
+</header>
+<div id="topnav">
+
+    <!-- Global nav/utilit bar/language  -->
+        <!-- BEGIN NAVIGATION -->
+        <!-- Begin nav-search bar -->
+			<nav class="navbar navbar-expand-lg navbar-dark" aria-labelledby="offcanvasLabel">
+				<div class="container-lg">
+					<button class="navbar-toggler my-2 py-1" id="mainNavToggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+						<strong class="align-middle">Main Menu</strong>
+					</button>
+					<div class="offcanvas offcanvas-start container-fluid px-0" id="mainNav" aria-controls="offcanvasLabel" aria-labelledby="offcanvasLabel" data-bs-scroll="true">
+						<div class="offcanvas-header">
+							<div class="menu-label-wrapper"><div class="navbar-brand d-lg-none seer-logo"></div>
+							<h3 class="offcanvas-title text-white" id="offcanvasLabel">Main Menu</h3></div>
+							
+							<button type="button" class="btn-close text-reset me-1" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+						</div>
+						<div class="offcanvas-body">
+							<ul class="navbar-nav mb-2 mb-lg-0 w-100">
+								<li class="nav-item short-text">
+									<a class="nav-link active" href="/" id="home-nav">Home</a>
+								</li>
+								<li class="nav-item dropdown">
+									<button class="nav-link dropdown-toggle text-nowrap" href="#" id="cancerStatisticsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Cancer Statistics
+									</button>
+									<ul class="dropdown-menu three-column" aria-labelledby="cancerStatisticsDropdown">
+										<div class="container-lg">
+											<div class="row dropdown-header-wrapper">
+												<div class="col-12 ps-lg-0">
+													<li class="pe-0 ps-lg-0">
+														<a class="dropdown-item dropdown-header landing-link" href="/statistics/">Cancer Statistics</a>
+													</li>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-4">
+													<ul class="multi-column-dropdown">
+														<li><a class="dropdown-item dropdown-header" href="/statistics/reports.html">Reports on Cancer</a></li>
+														<li><a class="dropdown-item" href="/report_to_nation/">Annual Report to the Nation on the Status of Cancer</a></li>
+														<li><a class="dropdown-item" href="/statfacts/">Cancer Stat Facts</a></li>
+														<li><a class="dropdown-item" href="/statistics/preliminary-estimates/">Preliminary Cancer Incidence Rates and Trends</a></li>
+														<li class="d-lg-none"><a class="dropdown-item" href="/publications/">SEER Publications</a></li>
+													</ul>
+												</div>
+												<div class="col-lg-4">
+													<ul class="multi-column-dropdown">
+														<li><a class="dropdown-item dropdown-header" href="/statistics/interactive.html">Interactive Tools, Maps, &amp; Graphs</a></li>
+														<li><a class="dropdown-item" href="/statistics-network/">Cancer Statistics Explorer Network</a></li>
+													</ul>
+												</div>
+												<div class="col-lg-4">
+													<ul class="multi-column-dropdown">
+														<li><a class="dropdown-item dropdown-header" href="/statistics/resources.html">Understanding Statistics</a></li>
+														<li><a class="dropdown-item" href="/statistics/videos/">Did You Know? Video Series</a></li>
+														<li><a class="dropdown-item" href="/statistics/types.html">Defining Cancer Statistics</a></li>
+														<li><a class="dropdown-item" href="/cgi-bin/glossary/glossary.pl">Glossary of Statistical Terms</a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</ul>
+								</li>
+								<li class="nav-item dropdown">
+									<button class="nav-link dropdown-toggle text-nowrap" href="#" id="dataSoftwareDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										SEER Data &amp; Software
+									</button>
+									<ul class="dropdown-menu four-column" aria-labelledby="dataSoftwareDropdown">
+										<div class="container-lg">
+											<div class="row dropdown-header-wrapper">
+												<div class="col-12 ps-lg-0">
+													<li class="pe-0 ps-lg-0">
+														<a class="dropdown-item dropdown-header landing-link" href="/data-software/">SEER Data &amp; Software</a>
+													</li>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-3">
+													<ul class="multi-column-dropdown">
+														<li><a class="dropdown-item dropdown-header" href="/data/">SEER Incidence Database</a></li>
+														<li><a class="dropdown-item" href="/data/product-comparison.html">Comparison of Data Products</a></li>
+														<li><a class="dropdown-item" href="/data/access.html">How to Request the Data</a></li>
+													</ul>
+												</div>
+												<div class="col-lg-3">
+													<ul class="multi-column-dropdown">
+														<li><a class="dropdown-item dropdown-header" href="/data-software/documentation/">Documentation for Data</a></li>
+														<li><a class="dropdown-item" href="/data-software/documentation/seerstat/">SEER*Stat Database Details</a></li>
+														<li><a class="dropdown-item" href="/data-software/documentation/seerstat/nccr/">NCCR Databases in SEER*Stat</a></li>
+														<li><a class="dropdown-item" href="/analysis/">Variable and Recode Definitions</a></li>
+													</ul>
+												</div>
+												<div class="col-lg-3">
+													<ul class="multi-column-dropdown">
+														<li><a class="dropdown-item dropdown-header" href="/data-software/datasets.html">U.S. Datasets</a></li>
+														<li><a class="dropdown-item" href="/mortality/">U.S. Mortality</a></li>
+														<li><a class="dropdown-item" href="/data-software/uspopulations.html">U.S. Populations</a></li>
+														<li><a class="dropdown-item" href="/stdpopulations/">Standard Populations</a></li>
+														<li><a class="dropdown-item" href="/data-software/linked_databases.html">SEER Linked Databases</a></li>
+													</ul>
+												</div>
+												<div class="col-lg-3">
+													<ul class="multi-column-dropdown">
+														<li><a class="dropdown-item dropdown-header" href="/data-software/software.html">Statistical Software</a></li>
+														<li><a class="dropdown-item" href="/seerstat/">SEER*Stat</a></li>
+														<li><a class="dropdown-item" href="/seerprep/">SEER*Prep</a></li>
+														<li><a class="dropdown-item" href="/hdcalc/">Health Drivers Calculator (HD*Calc)</a></li>
+														<li><a class="dropdown-item exit pe-5 pe-lg-2" href="https://surveillance.cancer.gov/tools/">Methods &amp; Tools for Population-based Cancer Statistics</a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</ul>
+								</li>
+								<li class="nav-item dropdown">
+									<button class="nav-link dropdown-toggle text-nowrap" href="#" id="registryOperationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Registry Operations
+									</button>
+									<ul class="dropdown-menu four-column" aria-labelledby="registryOperationsDropdown">
+										<div class="container-lg">
+											<div class="row dropdown-header-wrapper">
+												<div class="col-12 ps-lg-0">
+													<li class="pe-0 ps-lg-0">
+														<a class="dropdown-item dropdown-header landing-link" href="/registrars/">Registry Operations</a>
+													</li>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-3">
+													<ul class="multi-column-dropdown">
+														<li><a class="dropdown-item dropdown-header" href="/registrars/guidelines.html">Reporting Guidelines</a></li>
+														<li><a class="dropdown-item" href="/tools/codingmanuals/">SEER Program Coding Manual</a></li>
+														<li><a class="dropdown-item" href="/tools/heme/">Hematopoietic Project</a></li>
+														<li><a class="dropdown-item" href="/tools/solidtumor/">Solid Tumor Rules</a></li>
+													</ul>
+												</div>
+												<div class="col-lg-3">
+													<ul class="multi-column-dropdown">
+														<li><a class="dropdown-item dropdown-header" href="/registrars/tools-software.html">Tools &amp; Software</a></li>
+														<li><a class="dropdown-item" href="/seertools/glossary/">Glossary for Registrars</a></li>
+														<li><a class="dropdown-item" href="/tools/seerrx/">SEER*Rx - Drug Database</a></li>
+														<li><a class="dropdown-item" href="/seerabs/">SEER Abstracting Tool</a></li>
+														<li><a class="dropdown-item" href="/seerdms/">SEER Data Management System (SEER*DMS)</a></li>
+													</ul>
+												</div>
+												<div class="col-lg-3">
+													<ul class="multi-column-dropdown mb-lg-2">
+														<li><a class="dropdown-item dropdown-header" href="/registrars/staging.html">Staging</a></li>
+														<li><a class="dropdown-item" href="/tools/staging/rsa.html">Registrar Staging Assistant (SEER*RSA)</a></li>
+														<li><a class="dropdown-item" href="/tools/ssm/">Summary Stage 2018</a></li>
+														<li><a class="dropdown-item" href="/tools/staging/index.html">Staging Resources</a></li>
+														<li><a class="dropdown-item" href="/tools/staging/eod/" id="eod-menu-link">Extent of Disease 2018</a></li>
+													</ul>
+												</div>
+												<div class="col-lg-3">
+													<ul class="multi-column-dropdown">
+														<li><a class="dropdown-item dropdown-header" href="/registrars/qa.html">Questions &amp; Answers</a></li>
+														<li><a class="dropdown-item" href="/seer-inquiry/">SEER Inquiry System</a></li>
+														<li><a class="dropdown-item" href="/registrars/contact.html">Ask a SEER Registrar</a></li>
+														<li><a class="dropdown-item" href="/registrars/data-collection.html">Data Collection Answers</a></li>
+													</ul>
+													<li class="mb-0 mb-lg-3"><a class="dropdown-item dropdown-header unlisted-children" href="/cancerpathchart/">Cancer PathCHART</a></li>
+													
+													<li class="mb-0 mb-lg-3"><a class="dropdown-item dropdown-header" href="/training/">Training</a></li>
+												</div>
+											</div>
+										</div>
+									</ul>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-nowrap text-nowrap" href="/news/" id="news-nav">News &amp; Events</a>
+								</li>
+								<li class="nav-item dropdown short-text">
+									<button class="nav-link dropdown-toggle text-nowrap" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										About SEER
+									</button>
+									<ul class="dropdown-menu three-column" aria-labelledby="aboutDropdown">
+										<div class="container-lg">
+											<div class="row dropdown-header-wrapper">
+												<div class="col-12 ps-lg-0">
+													<li class="pe-0 ps-lg-0">
+														<a class="dropdown-item dropdown-header landing-link" href="/about/">About SEER</a>
+													</li>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-4">
+													<ul class="multi-column-dropdown">
+														<li><a class="dropdown-item dropdown-header" href="/about/overview.html">Program Overview</a></li>
+														<li><a class="dropdown-item" href="/about/goals.html">Goals of the SEER Program</a></li>
+														<li><a class="dropdown-item" href="/about/factsheets/">Fact Sheets &amp; Brochures</a></li>
+														<li><a class="dropdown-item" href="/about/organizations.html">Collaborating Organizations</a></li>
+													</ul>
+												</div>
+												<div class="col-lg-4">
+													<ul class="multi-column-dropdown">
+														<li><a class="dropdown-item dropdown-header" href="/registries/">SEER Registries</a></li>
+														<li><a class="dropdown-item" href="/registries/cancer_registry/">What is a Cancer Registry?</a></li>
+														<li><a class="dropdown-item" href="/registries/list.html">List of Registries</a></li>
+														<li><a class="dropdown-item" href="/registries/terms.html">Registry Groupings</a></li>
+														<li><a class="dropdown-item" href="/registries/characteristics.html">Population Characteristics</a></li>
+													</ul>
+												</div>
+												<div class="col-lg-4">
+													<ul class="multi-column-dropdown mb-lg-2">
+														<li><a class="dropdown-item dropdown-header" href="/about/activities.html">Research Activities</a></li>
+														<li><a class="dropdown-item" href="/biospecimen/">Residual Tissue Repository Program</a></li>
+														<li><a class="dropdown-item" href="/vtr/">SEER-Linked Virtual Tissue Repository Program</a></li>
+													</ul>
+													<li class="mb-0 mb-lg-3"><a class="dropdown-item dropdown-header unlisted-children" href="/qi/">SEER Data Quality Initiatives</a></li>
+												</div>
+											</div>
+										</div>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div> <!-- End offcanvas -->
+				</div>
+			</nav>
+        <!-- End nav-search bar -->
+        <!-- END NAVIGATION -->
+    <!-- END Global nav/utility bar/language -->
+
+</div>
+
+ <!-- BEGIN NAVIGATION -->
+    <!-- Begin nav-search bar -->
+
+
+<!-- End topnav -->
+
+ 
+
+<!-- White Section -->
+<div class="section">
+	<div class="highlighted">
+    	<!-- Crumbs -->
+        <div class="container-lg">  
+			<button class="togLeftNav button" data-bs-toggle="modal" data-bs-target="#leftNav"><span>Section Menu</span></button>
+            <ol class="breadcrumb"><li class="breadcrumb-item"><a href="/">Home</a> </li><li class="breadcrumb-item"><a href="/statistics/">Cancer Statistics</a> </li><li class="breadcrumb-item"><a href="/statistics/reports.html">Reports on Cancer</a> </li><li class="breadcrumb-item mobile-crumb"><a href="/statfacts/">Cancer Stat Facts</a> </li><li class="breadcrumb-item" aria-current="page">Common Cancer Sites &mdash; Cancer Stat Facts</li></ol>            						<h1><!--body_title-->Cancer Stat Facts: Common Cancer Sites<!--/body_title--></h1>
+					        </div>    	
+		    </div>
+    <div class="container-lg body ps-lg-0 pb-4"><img src="/i/left-body.png" alt="" class="bg-front">
+    	<div class="row">
+    	<!-- Smaller, Aside Column -->
+        <div class="col-lg-3">
+ 	 	 	<div class="leftNav-wrap">
+            	<nav class="subNav leftNav" aria-label="Reports on Cancer">
+	<strong><a href="/statistics/reports.html">Reports on Cancer</a></strong>
+	<ul>
+		<li><a href="/report_to_nation/">Annual Report to the Nation</a></li>
+		<li><a class="active" href="/statfacts/">Cancer Stat Facts</a></li>	
+		
+		<li><a href="/csr/">Cancer Statistics Review</a>
+			<ul>
+				<li><a href="/csr/previous.html">Archive</a></li>
+			</ul>
+		</li>
+		<li><a href="/statistics/preliminary-estimates/">Preliminary Cancer Incidence Rates and Trends</a>
+			<ul>
+				<li><a href="/statistics/preliminary-estimates/preliminary.html">Preliminary Estimates</a></li>
+				<li><a href="/statistics/preliminary-estimates/methods.html">Methodology</a></li>
+				<li><a href="/statistics/preliminary-estimates/validation.html">Validation</a></li>
+				<li><a href="/statistics/preliminary-estimates/references.html">Historical Background and References</a></li>
+			</ul>
+		</li>
+		<li><a href="/publications/">SEER Publications</a>
+	<ul>	
+		<li><a href="/publications/monographs.html">Monographs</a></li>
+		<li><a href="/publications/apicancer/">Cancer Patterns among Asian and Pacific Islanders in the U.S.</a></li>
+	</ul></li>
+	</ul>
+</nav>			</div>
+        </div>
+        <!-- Main Content Column -->	
+        <main class="col-lg-9" id="content" role="main">          
+            <a name="skipnav" id="skipnav" tabindex="-1"></a>
+            <!--body_content--><div class="factSheet">
+	<div class="superTog">
+		<a class="expandAll" href="#" title="Expand All Stat Fact Sections">Expand All</a>
+		<a class="collapseAll" href="#" title="Collapse All Fact Sheet Sections">Collapse All</a>
+	</div>
+
+	<h2 class="tog-control default-open">Statistics at a Glance</h2>
+	<div class="tog-content">
+        <h3>At a Glance</h3>
+		<p>Breast, lung and bronchus, prostate, and colorectal cancers account for almost 50% of all new cancer cases in the United States. Lung and bronchus, colorectal, pancreatic, and breast cancers are responsible for nearly 50% of all deaths.</p>
+		
+		
+		
+		<div class="glance-factSheet cf">
+
+		  	<!-- Default Display of Data -->
+		  	<div class="defaultData cf">
+		  		<div class="scrapeTable halfSize">
+					<h5>New Cancer Cases, 2025</h5>
+					<table id="scrapeTable_01">
+						<tr>
+							<th scope="row" width="50%">Breast<span class="site_id" style="display: none;" aria-hidden="true">55</span></th>
+							<td>319,750 (16%)</td>
+						</tr>
+						<tr>
+							<th scope="row">Prostate<span class="site_id" style="display: none" aria-hidden="true">66</span></th>
+							<td>313,780 (15%)</td>
+						</tr>
+						<tr>
+							<th scope="row">Lung & Bronchus<span class="site_id" style="display: none" aria-hidden="true">47</span></th>
+							<td>226,650 (11%)</td>
+						</tr>
+						<tr>
+							<th scope="row">Colon and rectum<span class="site_id" style="display: none" aria-hidden="true">20</span></th>
+							<td>154,270 (8%)</td>
+						</tr>
+						<tr>
+							<th scope="row">Other<span class="site_id" style="display: none" aria-hidden="true">999</span></th>
+							<td>1,027,460 (50%)</td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="scrapeTable halfSize">
+					<h5>Cancer Deaths, 2025</h5>
+					<table id="scrapeTable_02">
+						<tr>
+							<th scope="row" width="50%">Lung & Bronchus<span class="site_id" style="display: none" aria-hidden="true">47</span></th>
+							<td>124,730 (20%)</td>
+						</tr>
+						<tr>
+							<th scope="row">Colon and rectum<span class="site_id" style="display: none" aria-hidden="true">20</span></th>
+							<td>52,900 (9%)</td>
+						</tr>
+						<tr>
+							<th scope="row">Pancreas<span class="site_id" style="display: none" aria-hidden="true">40</span></th>
+							<td>51,980 (8%)</td>
+						</tr>
+						<tr>
+							<th scope="row">Breast<span class="site_id" style="display: none" aria-hidden="true">55</span></th>
+							<td>42,680 (7%)</td>
+						</tr>
+						<tr>
+							<th scope="row">Other<span class="site_id" style="display: none" aria-hidden="true">999</span></th>
+							<td>345,830 (56%)</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<!-- Use Default Display Data to Generate... -->
+ 	    	<div class="svgEnhance cf" aria-hidden="true">
+				<div class="row">
+					<div class="pieContainer">
+						<div class="chart_title">New Cancer Cases, 2025</div>
+						<div class="svg-wrap common-pie">
+							<svg id="new_cases_pie" class="nvd3-piechart" viewBox="0 0 350 350" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+						</div>
+						<ul id="new_cases_table"></ul>
+					</div>
+					<div class="pieContainer">
+						<div class="chart_title">Cancer Deaths, 2025</div>
+						<div class="svg-wrap common-pie">
+							<svg id="new_deaths_pie" class="nvd3-piechart" viewBox="0 0 350 350" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+						</div>
+						<ul id="new_deaths_table"></ul>
+					</div>  
+				</div>
+			</div>
+		</div>
+
+		<h4>How Many People Are Diagnosed with Cancer Each Year?</h4>
+		<p>In 2025, roughly 2.0 million people will be diagnosed with cancer in the United States. An estimated 316,950 women and 2,800 men will be diagnosed with breast cancer, which makes it the most common cancer diagnosis. Prostate cancer is the leading cancer diagnosis among men and the second most common diagnosis overall with 313,780 expected cases. Lung and bronchus cancer is the third most common cancer diagnosis with an estimated 226,650 new cases.</p>
+		<p>The top 12 most common cancer sites, shown below, will account for more than three quarters of all new cancer cases. For more cancer sites, see <a href="#comparison" data-toggle="scroll-expand">How Do Cancer Rates Compare?</a></p>
+
+		<!-- Default Display of Data -->
+		<div class="defaultData cf mobileShow">
+			<div class="scrapeTable halfSize">
+				<h5>Male</h5>
+				<table id="scrapeTable_03">
+					<tr>
+						<th scope="row" width="60%">Breast<span class="site_id" style="display: none" aria-hidden="true">55</span></th>
+						<td>2,800</td>
+					</tr>
+					<tr>
+						<th scope="row">Prostate<span class="site_id" style="display: none" aria-hidden="true">66</span></th>
+						<td>313,780</td>
+					</tr>
+					<tr>
+						<th scope="row">Lung & Bronchus<span class="site_id" style="display: none" aria-hidden="true">47</span></th>
+						<td>110,680</td>
+					</tr>
+					<tr>
+						<th scope="row">Colorectal<span class="site_id" style="display: none" aria-hidden="true">20</span></th>
+						<td>82,460</td>
+					</tr>
+					<tr>
+						<th scope="row">Melanoma of the Skin<span class="site_id" style="display: none" aria-hidden="true">53</span></th>
+						<td>60,550</td>
+					</tr>
+					<tr>
+						<th scope="row">Urinary Bladder<span class="site_id" style="display: none" aria-hidden="true">71</span></th>
+						<td>65,080</td>
+					</tr>
+					<tr>
+						<th scope="row">Non-Hodgkin Lymphoma<span class="site_id" style="display: none" aria-hidden="true">86</span></th>
+						<td>45,140</td>
+					</tr>
+					<tr>
+						<th scope="row">Kidney and Renal Pelvis<span class="site_id" style="display: none" aria-hidden="true">72</span></th>
+						<td>52,410</td>
+					</tr>
+					<tr>
+						<th scope="row">Uterus<span class="site_id" style="display: none" aria-hidden="true">58</span></th>
+						<td>0</td>
+					</tr>
+					<tr>
+						<th scope="row">Leukemia<span class="site_id" style="display: none" aria-hidden="true">90</span></th>
+						<td>38,720</td>
+					</tr>
+					<tr>
+						<th scope="row">Pancreas<span class="site_id" style="display: none" aria-hidden="true">40</span></th>
+						<td>34,950</td>
+					</tr>
+					<tr>
+						<th scope="row">Thyroid <span class="site_id" style="display: none" aria-hidden="true">80</span></th>
+						<td>12,670</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="scrapeTable halfSize">
+				<h5>Female</h5>
+				<table id="scrapeTable_04">
+					<tr>
+						<th scope="row" width="60%">Breast <span class="site_id" style="display: none" aria-hidden="true">55</span></th>
+						<td>316,950</td>
+					</tr>
+					<tr>
+						<th scope="row">Prostate <span class="site_id" style="display: none" aria-hidden="true">66</span></th>
+						<td>0</td>
+					</tr>
+					<tr>
+						<th scope="row">Lung & Bronchus <span class="site_id" style="display: none" aria-hidden="true">47</span></th>
+						<td>115,970</td>
+					</tr>
+					<tr>
+						<th scope="row">Colorectal <span class="site_id" style="display: none" aria-hidden="true">20</span></th>
+						<td>71,810</td>
+					</tr>
+					<tr>
+						<th scope="row">Melanoma of the Skin <span class="site_id" style="display: none" aria-hidden="true">53</span></th>
+						<td>44,410</td>
+					</tr>
+					<tr>
+						<th scope="row">Urinary Bladder <span class="site_id" style="display: none" aria-hidden="true">71</span></th>
+						<td>19,790</td>
+					</tr>
+					<tr>
+						<th scope="row">Non-Hodgkin Lymphoma <span class="site_id" style="display: none" aria-hidden="true">86</span></th>
+						<td>35,210</td>
+					</tr>
+					<tr>
+						<th scope="row">Kidney and Renal Pelvis <span class="site_id" style="display: none" aria-hidden="true">72</span></th>
+						<td>28,570</td>
+					</tr>
+					<tr>
+						<th scope="row">Corpus & Uterus, NOS <span class="site_id" style="display: none" aria-hidden="true">58</span></th>
+						<td>69,120</td>
+					</tr>
+					<tr>
+						<th scope="row">Leukemia <span class="site_id" style="display: none" aria-hidden="true">90</span></th>
+						<td>28,170</td>
+					</tr>
+					<tr>
+						<th scope="row">Pancreas <span class="site_id" style="display: none" aria-hidden="true">40</span></th>
+						<td>32,490</td>
+					</tr>
+					<tr>
+						<th scope="row">Thyroid <span class="site_id" style="display: none" aria-hidden="true">80</span></th>
+						<td>31,350</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- Use Default Display Data to Generate... -->
+		<div class="svgEnhance cf mobileHide" aria-hidden="true">
+			<div class="svg-wrap common-glance1">
+				<svg viewbox="0 0 812 330" preserveAspectRatio="xMinYMin meet" focusable="false">
+					<svg id="new_cases_male" class="eagle-plot-bar eagle-plot-left" viewbox="-2 0 300 330" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+					<svg id="new_cases_female" class="eagle-plot-bar eagle-plot-right" viewbox="-300 0 490 330" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+				</svg>
+			</div>
+		</div>
+		<div class="graph_shared_footnotes">
+			<p>Source: Cancer Facts & Figures 2025, American Cancer Society (ACS), Atlanta, Georgia, 2025.</p>
+		</div>
+
+		<h4>How Many People Die of Cancer Each Year?</h4>
+		
+		<p>In 2025, an estimated 618,120 people will die of cancer in the United States. Lung and bronchus cancer is responsible for the most deaths with 124,730 people expected to die from this disease. That is nearly three times the 52,900 deaths due to colorectal cancer, which is the second most common cause of cancer death. Pancreatic cancer is the third deadliest cancer, causing 51,980 deaths.</p>
+		<p>The eight deadliest cancer sites, shown below, will account for almost two-thirds of all expected cancer deaths. For more cancer sites, see <a href="#comparison" data-toggle="scroll-expand">How Do Cancer Rates Compare?</a></p>
+
+		<!-- Default Display of Data -->
+		<div class="defaultData cf mobileShow">
+			<div class="scrapeTable halfSize">
+				<h5>Male</h5>
+				<table id="scrapeTable_05">
+					<tr>
+						<th scope="row" width="60%">Lung and bronchus <span class="site_id" style="display: none" aria-hidden="true">47</span></th>
+						<td>64,190</td>
+					</tr>
+					<tr>
+						<th scope="row">Colon and rectum <span class="site_id" style="display: none" aria-hidden="true">20</span></th>
+						<td>28,900</td>
+					</tr>
+					<tr>
+						<th scope="row">Pancreas <span class="site_id" style="display: none" aria-hidden="true">40</span></th>
+						<td>27,050</td>
+					</tr>
+					<tr>
+						<th scope="row">Breast <span class="site_id" style="display: none" aria-hidden="true">55</span></th>
+						<td>510</td>
+					</tr>
+					<tr>
+						<th scope="row">Prostate <span class="site_id" style="display: none" aria-hidden="true">66</span></th>
+						<td>35,770</td>
+					</tr>
+					<tr>
+						<th scope="row">Liver & Intrahepatic Bile Duct <span class="site_id" style="display: none" aria-hidden="true">35</span></th>
+						<td>19,250</td>
+					</tr>
+					<tr>
+						<th scope="row">Leukemia <span class="site_id" style="display: none" aria-hidden="true">90</span></th>
+						<td>13,500</td>
+					</tr>
+					<tr>
+						<th scope="row">Non-Hodgkin Lymphoma <span class="site_id" style="display: none" aria-hidden="true">86</span></th>
+						<td>11,060</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="scrapeTable halfSize">
+				<h5>Female</h5>
+				<table id="scrapeTable_06">
+					<tr>
+						<th scope="row" width="60%">Lung and bronchus <span class="site_id" style="display: none" aria-hidden="true">47</span></th>
+						<td>60,540</td>
+					</tr>
+					<tr>
+						<th scope="row">Colon and rectum <span class="site_id" style="display: none" aria-hidden="true">20</span></th>
+						<td>24,000</td>
+					</tr>
+					<tr>
+						<th scope="row">Pancreas <span class="site_id" style="display: none" aria-hidden="true">40</span></th>
+						<td>24,930</td>
+					</tr>
+					<tr>
+						<th scope="row">Breast <span class="site_id" style="display: none" aria-hidden="true">55</span></th>
+						<td>42,170</td>
+					</tr>
+					<tr>
+						<th scope="row">Prostate <span class="site_id" style="display: none" aria-hidden="true">66</span></th>
+						<td>0</td>
+					</tr>
+					<tr>
+						<th scope="row">Liver & Intrahepatic Bile Duct <span class="site_id" style="display: none" aria-hidden="true">35</span></th>
+						<td>10,840</td>
+					</tr>
+					<tr>
+						<th scope="row">Leukemia <span class="site_id" style="display: none" aria-hidden="true">90</span></th>
+						<td>10,040</td>
+					</tr>
+					<tr>
+						<th scope="row">Non-Hodgkin Lymphoma <span class="site_id" style="display: none" aria-hidden="true">86</span></th>
+						<td>8,330</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- Use Default Display Data to Generate... -->
+		<div class="svgEnhance cf mobileHide" aria-hidden="true">
+			<div class="svg-wrap common-glance2">
+			<svg  viewBox="0 0 800 240" preserveAspectRatio="xMinYMin meet" focusable="false">
+					<svg id="new_deaths_male" class="eagle-plot-bar eagle-plot-left" viewbox="-2 0 290 240" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+					<svg id="new_deaths_female" class="eagle-plot-bar eagle-plot-right" viewbox="-290 0 500 240" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+			</svg>
+			</div>
+		</div>
+		<div class="graph_shared_footnotes">
+			<p>Source: Cancer Facts & Figures 2025, American Cancer Society (ACS), Atlanta, Georgia, 2025.</p>
+		</div>
+	</div>
+
+	<h2 id="comparison" class="tog-control">New Cases, Deaths, and Survival</h2>
+	<div class="tog-content">
+		<h4>How Do Cancer Rates Compare?</h4>
+		<p>For comparison purposes, new cases and deaths are generally expressed as a rate &mdash; the number per 100,000 in the total population. The rate of new cases is known as cancer <strong><a href="https://www.cancer.gov/publications/dictionaries/cancer-terms?cdrid=46145">incidence</a></strong>, and the death rate as <strong><a href="https://www.cancer.gov/publications/dictionaries/cancer-terms?cdrid=496502">mortality</a></strong>. Note that total population changes depending on what group you are looking at, so, for instance, the rate of new cases for females is the rate per 100,000 females in the U.S.</p>
+
+		<p>The table below gives the predicted number of new cases and deaths in 2025, the age-adjusted rate of new cases and deaths over the most recent five years of data, and the five-year <strong><a href="https://www.cancer.gov/publications/dictionaries/cancer-terms/def/relative-survival-rate">relative survival rate</a></strong>, representing the percent surviving their cancer diagnosis 5-years after diagnosis. </p>
+
+		<p>You can sort on any column by clicking the header.</p>
+
+		<div class="tab-interface">
+			<ul>
+				<li><a href="#both">Both Sexes</a></li>
+				<li><a href="#female">Female</a></li>
+				<li><a href="#male">Male</a></li>
+			</ul>
+
+			<section id="both">
+				<div class="table-responsive">
+					<table class="dataTable tablesorter">
+					<thead>
+						<tr>
+							<th scope="col">Site</th>
+							<th scope="col">Estimated New Cases (2025)</th>
+				   		<th scope="col">Rate of New Cases (2018&ndash;2022)</th>
+				   		<th scope="col">Estimated Deaths (2025)</th>
+				   		<th scope="col">Death Rate (2019&ndash;2023)</th>
+				   		<th scope="col">Relative Survival (%) (2015&ndash;2021)</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<th scope="row">Anus</th>
+							<td>10,930</td>
+							<td>2.0</td>
+							<td>2,030</td>
+							<td>0.4</td>
+							<td>71.3</td>
+						</tr>
+						<tr>
+							<th scope="row">Bladder</th>
+							<td>84,870</td>
+							<td>18.0</td>
+							<td>17,420</td>
+							<td>4.1</td>
+							<td>79.0</td>
+						</tr>
+						<tr>
+							<th scope="row">Bone and Joint</th>
+							<td>3,770</td>
+							<td>1.0</td>
+							<td>2,190</td>
+							<td>0.5</td>
+							<td>68.5</td>
+						</tr>
+						<tr>
+							<th scope="row">Brain and Other Nervous System</th>
+							<td>24,820</td>
+							<td>6.1</td>
+							<td>18,330</td>
+							<td>4.4</td>
+							<td>33.0</td>
+						</tr>
+						<tr>
+							<th scope="row">Breast</th>
+							<td>319,750</td>
+							<td>69.1</td>
+							<td>42,680</td>
+							<td>10.5</td>
+							<td>91.6</td>
+						</tr>
+						<tr>
+							<th scope="row">Cervix Uteri</th>
+							<td>13,360</td>
+							<td>7.7</td>
+							<td>4,320</td>
+							<td>2.2</td>
+							<td>68.0</td>
+						</tr>
+						<tr>
+							<th scope="row">Colon and Rectum</th>
+							<td>154,270</td>
+							<td>37.1</td>
+							<td>52,900</td>
+							<td>12.9</td>
+							<td>65.4</td>
+						</tr>
+						<tr>
+							<th scope="row">Esophagus</th>
+							<td>22,070</td>
+							<td>4.2</td>
+							<td>16,250</td>
+							<td>3.7</td>
+							<td>21.9</td>
+						</tr>
+						<tr>
+							<th scope="row">Hodgkin Lymphoma</th>
+							<td>8,720</td>
+							<td>2.5</td>
+							<td>1,150</td>
+							<td>0.3</td>
+							<td>89.0</td>
+						</tr>
+						<tr>
+							<th scope="row">Kidney and Renal Pelvis</th>
+							<td>80,980</td>
+							<td>17.5</td>
+							<td>14,510</td>
+							<td>3.4</td>
+							<td>78.6</td>
+						</tr>
+						<tr>
+							<th scope="row">Larynx</th>
+							<td>13,020</td>
+							<td>2.5</td>
+							<td>3,910</td>
+							<td>0.9</td>
+							<td>62.1</td>
+						</tr>
+						<tr>
+							<th scope="row">Leukemia</th>
+							<td>66,890</td>
+							<td>14.4</td>
+							<td>23,540</td>
+							<td>5.8</td>
+							<td>67.8</td>
+						</tr>
+						<tr>
+							<th scope="row">Liver and Intrahepatic Bile Duct</th>
+							<td>42,240</td>
+							<td>9.4</td>
+							<td>30,090</td>
+							<td>6.6</td>
+							<td>22.0</td>
+						</tr>
+						<tr>
+							<th scope="row">Lung and Bronchus</th>
+							<td>226,650</td>
+							<td>47.8</td>
+							<td>124,730</td>
+							<td>31.5</td>
+							<td>28.1</td>
+						</tr>
+						<tr>
+							<th scope="row">Melanoma of the Skin</th>
+							<td>104,960</td>
+							<td>21.9</td>
+							<td>8,430</td>
+							<td>2.0</td>
+							<td>94.7</td>
+						</tr>
+						<tr>
+							<th scope="row">Myeloma</th>
+							<td>36,110</td>
+							<td>7.3</td>
+							<td>12,030</td>
+							<td>2.9</td>
+							<td>62.4</td>
+						</tr>
+						<tr>
+							<th scope="row">Non-Hodgkin Lymphoma</th>
+							<td>80,350</td>
+							<td>18.7</td>
+							<td>19,390</td>
+							<td>4.9</td>
+							<td>74.2</td>
+						</tr>
+						<tr>
+							<th scope="row">Oral Cavity and Pharynx</th>
+							<td>59,660</td>
+							<td>11.6</td>
+							<td>12,770</td>
+							<td>2.7</td>
+							<td>69.5</td>
+						</tr>
+						<tr>
+							<th scope="row">Ovary</th>
+							<td>20,890</td>
+							<td>10.3</td>
+							<td>12,730</td>
+							<td>5.9</td>
+							<td>51.6</td>
+						</tr>
+						<tr>
+							<th scope="row">Pancreas</th>
+							<td>67,440</td>
+							<td>13.8</td>
+							<td>51,980</td>
+							<td>11.3</td>
+							<td>13.3</td>
+						</tr>
+						<tr>
+							<th scope="row">Prostate</th>
+							<td>313,780</td>
+							<td>120.2</td>
+							<td>35,770</td>
+							<td>19.2</td>
+							<td>97.9</td>
+						</tr>
+						<tr>
+							<th scope="row">Small Intestine</th>
+							<td>13,920</td>
+							<td>2.6</td>
+							<td>2,060</td>
+							<td>0.4</td>
+							<td>71.1</td>
+						</tr>
+						<tr>
+							<th scope="row">Stomach</th>
+							<td>30,300</td>
+							<td>7.3</td>
+							<td>10,780</td>
+							<td>2.7</td>
+							<td>37.9</td>
+						</tr>
+						<tr>
+							<th scope="row">Testis</th>
+							<td>9,720</td>
+							<td>6.0</td>
+							<td>600</td>
+							<td>0.3</td>
+							<td>94.9</td>
+						</tr>
+						<tr>
+							<th scope="row">Thyroid</th>
+							<td>44,020</td>
+							<td>13.5</td>
+							<td>2,290</td>
+							<td>0.5</td>
+							<td>98.4</td>
+						</tr>
+						<tr>
+							<th scope="row">Uterus</th>
+							<td>69,120</td>
+							<td>28.3</td>
+							<td>13,860</td>
+							<td>5.3</td>
+							<td>81.1</td>
+						</tr>
+						<tr>
+							<th scope="row">Vulva</th>
+							<td>7,480</td>
+							<td>2.6</td>
+							<td>1,770</td>
+							<td>0.6</td>
+							<td>69.8</td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</section>
+
+			<section id="female">
+				<div class="table-responsive">
+					<table class="dataTable tablesorter">
+					<thead>
+						<tr>
+							<th scope="col">Site</th>
+							<th scope="col">Estimated New Cases (2025)</th>
+					   	<th scope="col">Rate of New Cases (2018&ndash;2022)</th>
+				   		<th scope="col">Estimated Deaths (2025)</th>
+				   		<th scope="col">Death Rate (2019&ndash;2023)</th>
+				   		<th scope="col">Relative Survival (%) (2015&ndash;2021)</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<th scope="row">Anus</th>
+							<td>7,370</td>
+							<td>2.4</td>
+							<td>1,250</td>
+							<td>0.4</td>
+							<td>75.0</td>
+						</tr>
+						<tr>
+							<th scope="row">Bladder</th>
+							<td>19,790</td>
+							<td>7.7</td>
+							<td>4,780</td>
+							<td>2.0</td>
+							<td>75.3</td>
+						</tr>
+						<tr>
+							<th scope="row">Bone and Joint</th>
+							<td>1,620</td>
+							<td>0.9</td>
+							<td>950</td>
+							<td>0.4</td>
+							<td>71.2</td>
+						</tr>
+						<tr>
+							<th scope="row">Brain and Other Nervous System</th>
+							<td>10,780</td>
+							<td>5.2</td>
+							<td>8,160</td>
+							<td>3.6</td>
+							<td>35.2</td>
+						</tr>
+						<tr>
+							<th scope="row">Breast</th>
+							<td>316,950</td>
+							<td>130.8</td>
+							<td>42,170</td>
+							<td>19.2</td>
+							<td>91.7</td>
+						</tr>
+						<tr>
+							<th scope="row">Cervix Uteri</th>
+							<td>13,360</td>
+							<td>7.7</td>
+							<td>4,320</td>
+							<td>2.2</td>
+							<td>68.0</td>
+						</tr>
+						<tr>
+							<th scope="row">Colon and Rectum</th>
+							<td>71,810</td>
+							<td>32.6</td>
+							<td>24,000</td>
+							<td>10.8</td>
+							<td>66.4</td>
+						</tr>
+						<tr>
+							<th scope="row">Esophagus</th>
+							<td>4,640</td>
+							<td>1.7</td>
+							<td>3,310</td>
+							<td>1.4</td>
+							<td>23.5</td>
+						</tr>
+						<tr>
+							<th scope="row">Hodgkin Lymphoma</th>
+							<td>3,880</td>
+							<td>2.2</td>
+							<td>430</td>
+							<td>0.2</td>
+							<td>90.5</td>
+						</tr>
+						<tr>
+							<th scope="row">Kidney and Renal Pelvis</th>
+							<td>28,570</td>
+							<td>12.0</td>
+							<td>4,960</td>
+							<td>2.1</td>
+							<td>79.9</td>
+						</tr>
+						<tr>
+							<th scope="row">Larynx</th>
+							<td>2,910</td>
+							<td>1.0</td>
+							<td>770</td>
+							<td>0.3</td>
+							<td>59.2</td>
+						</tr>
+						<tr>
+							<th scope="row">Leukemia</th>
+							<td>28,170</td>
+							<td>11.3</td>
+							<td>10,040</td>
+							<td>4.4</td>
+							<td>68.2</td>
+						</tr>
+						<tr>
+							<th scope="row">Liver and Intrahepatic Bile Duct</th>
+							<td>14,020</td>
+							<td>5.5</td>
+							<td>10,840</td>
+							<td>4.3</td>
+							<td>22.8</td>
+						</tr>
+						<tr>
+							<th scope="row">Lung and Bronchus</th>
+							<td>115,970</td>
+							<td>43.9</td>
+							<td>60,540</td>
+							<td>27.1</td>
+							<td>32.6</td>
+						</tr>
+						<tr>
+							<th scope="row">Melanoma of the Skin</th>
+							<td>44,410</td>
+							<td>17.5</td>
+							<td>2,960</td>
+							<td>1.3</td>
+							<td>96.1</td>
+						</tr>
+						<tr>
+							<th scope="row">Myeloma</th>
+							<td>16,080</td>
+							<td>6.1</td>
+							<td>5,490</td>
+							<td>2.4</td>
+							<td>62.4</td>
+						</tr>
+						<tr>
+							<th scope="row">Non-Hodgkin Lymphoma</th>
+							<td>35,210</td>
+							<td>15.7</td>
+							<td>8,330</td>
+							<td>3.7</td>
+							<td>76.3</td>
+						</tr>
+						<tr>
+							<th scope="row">Oral Cavity and Pharynx</th>
+							<td>17,160</td>
+							<td>6.6</td>
+							<td>3,640</td>
+							<td>1.4</td>
+							<td>70.6</td>
+						</tr>
+						<tr>
+							<th scope="row">Ovary</th>
+							<td>20,890</td>
+							<td>10.3</td>
+							<td>12,730</td>
+							<td>5.9</td>
+							<td>51.6</td>
+						</tr>
+						<tr>
+							<th scope="row">Pancreas</th>
+							<td>32,490</td>
+							<td>12.3</td>
+							<td>24,930</td>
+							<td>9.9</td>
+							<td>13.5</td>
+						</tr>
+						<tr>
+							<th scope="row">Prostate</th>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+						</tr>
+						<tr>
+							<th scope="row">Small Intestine</th>
+							<td>6,730</td>
+							<td>2.3</td>
+							<td>870</td>
+							<td>0.4</td>
+							<td>72.3</td>
+						</tr>
+						<tr>
+							<th scope="row">Stomach</th>
+							<td>12,580</td>
+							<td>5.7</td>
+							<td>4,380</td>
+							<td>2.0</td>
+							<td>43.2</td>
+						</tr>
+						<tr>
+							<th scope="row">Testis</th>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+						</tr>
+						<tr>
+							<th scope="row">Thyroid</th>
+							<td>31,350</td>
+							<td>19.7</td>
+							<td>1,200</td>
+							<td>0.5</td>
+							<td>98.9</td>
+						</tr>
+						<tr>
+							<th scope="row">Uterus</th>
+							<td>69,120</td>
+							<td>28.3</td>
+							<td>13,860</td>
+							<td>5.3</td>
+							<td>81.1</td>
+						</tr>
+						<tr>
+							<th scope="row">Vulva</th>
+							<td>7,480</td>
+							<td>2.6</td>
+							<td>1,770</td>
+							<td>0.6</td>
+							<td>69.8</td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</section>
+
+			<section id="male">
+				<div class="table-responsive">
+					<table class="dataTable tablesorter">
+				<thead>
+					<tr>
+						<th scope="col">Site</th>
+						<th scope="col">Estimated New Cases (2025)</th>
+						<th scope="col">Rate of New Cases (2018&ndash;2022)</th>
+						<th scope="col">Estimated Deaths (2025)</th>
+						<th scope="col">Death Rate (2019&ndash;2023)</th>
+						<th scope="col">Relative Survival (%) (2015&ndash;2021)</th>
+					</tr>
+				</thead>
+
+				<tbody>
+						<tr>
+							<th scope="row">Anus</th>
+							<td>3,560</td>
+							<td>1.6</td>
+							<td>780</td>
+							<td>0.3</td>
+							<td>64.5</td>
+						</tr>
+						<tr>
+							<th scope="row">Bladder</th>
+							<td>65,080</td>
+							<td>31.2</td>
+							<td>12,640</td>
+							<td>7.1</td>
+							<td>80.1</td>
+						</tr>
+						<tr>
+							<th scope="row">Bone and Joint</th>
+							<td>2,150</td>
+							<td>1.2</td>
+							<td>1,240</td>
+							<td>0.6</td>
+							<td>66.5</td>
+						</tr>
+						<tr>
+							<th scope="row">Brain and Other Nervous System</th>
+							<td>14,040</td>
+							<td>7.2</td>
+							<td>10,170</td>
+							<td>5.3</td>
+							<td>31.2</td>
+						</tr>
+						<tr>
+							<th scope="row">Breast</th>
+							<td>2,800</td>
+							<td>1.2</td>
+							<td>510</td>
+							<td>0.3</td>
+							<td>84.3</td>
+						</tr>
+						<tr>
+							<th scope="row">Cervix Uteri</th>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+						</tr>
+						<tr>
+							<th scope="row">Colon and Rectum</th>
+							<td>82,460</td>
+							<td>42.3</td>
+							<td>28,900</td>
+							<td>15.3</td>
+							<td>64.5</td>
+						</tr>
+						<tr>
+							<th scope="row">Esophagus</th>
+							<td>17,430</td>
+							<td>7.1</td>
+							<td>12,940</td>
+							<td>6.5</td>
+							<td>21.5</td>
+						</tr>
+						<tr>
+							<th scope="row">Hodgkin Lymphoma</th>
+							<td>4,840</td>
+							<td>2.8</td>
+							<td>720</td>
+							<td>0.3</td>
+							<td>87.8</td>
+						</tr>
+						<tr>
+							<th scope="row">Kidney and Renal Pelvis</th>
+							<td>52,410</td>
+							<td>23.8</td>
+							<td>9,550</td>
+							<td>5.1</td>
+							<td>77.9</td>
+						</tr>
+						<tr>
+							<th scope="row">Larynx</th>
+							<td>10,110</td>
+							<td>4.4</td>
+							<td>3,140</td>
+							<td>1.6</td>
+							<td>62.8</td>
+						</tr>
+						<tr>
+							<th scope="row">Leukemia</th>
+							<td>38,720</td>
+							<td>18.2</td>
+							<td>13,500</td>
+							<td>7.8</td>
+							<td>67.5</td>
+						</tr>
+						<tr>
+							<th scope="row">Liver and Intrahepatic Bile Duct</th>
+							<td>28,220</td>
+							<td>13.9</td>
+							<td>19,250</td>
+							<td>9.4</td>
+							<td>21.7</td>
+						</tr>
+						<tr>
+							<th scope="row">Lung and Bronchus</th>
+							<td>110,680</td>
+							<td>53.1</td>
+							<td>64,190</td>
+							<td>37.2</td>
+							<td>23.8</td>
+						</tr>
+						<tr>
+							<th scope="row">Melanoma of the Skin</th>
+							<td>60,550</td>
+							<td>27.8</td>
+							<td>5,470</td>
+							<td>3.0</td>
+							<td>93.7</td>
+						</tr>
+						<tr>
+							<th scope="row">Myeloma</th>
+							<td>20,030</td>
+							<td>8.8</td>
+							<td>6,540</td>
+							<td>3.7</td>
+							<td>62.3</td>
+						</tr>
+						<tr>
+							<th scope="row">Non-Hodgkin Lymphoma</th>
+							<td>45,140</td>
+							<td>22.4</td>
+							<td>11,060</td>
+							<td>6.4</td>
+							<td>72.5</td>
+						</tr>
+						<tr>
+							<th scope="row">Oral Cavity and Pharynx</th>
+							<td>42,500</td>
+							<td>17.4</td>
+							<td>9,130</td>
+							<td>4.1</td>
+							<td>69.1</td>
+						</tr>
+						<tr>
+							<th scope="row">Ovary</th>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+						</tr>
+						<tr>
+							<th scope="row">Pancreas</th>
+							<td>34,950</td>
+							<td>15.5</td>
+							<td>27,050</td>
+							<td>12.9</td>
+							<td>13.1</td>
+						</tr>
+						<tr>
+							<th scope="row">Prostate</th>
+							<td>313,780</td>
+							<td>120.2</td>
+							<td>35,770</td>
+							<td>19.2</td>
+							<td>97.9</td>
+						</tr>
+						<tr>
+							<th scope="row">Small Intestine</th>
+							<td>7,190</td>
+							<td>3.0</td>
+							<td>1,190</td>
+							<td>0.5</td>
+							<td>70.0</td>
+						</tr>
+						<tr>
+							<th scope="row">Stomach</th>
+							<td>17,720</td>
+							<td>9.2</td>
+							<td>6,400</td>
+							<td>3.5</td>
+							<td>34.2</td>
+						</tr>
+						<tr>
+							<th scope="row">Testis</th>
+							<td>9,720</td>
+							<td>6.0</td>
+							<td>600</td>
+							<td>0.3</td>
+							<td>94.9</td>
+						</tr>
+						<tr>
+							<th scope="row">Thyroid</th>
+							<td>12,670</td>
+							<td>7.3</td>
+							<td>1,090</td>
+							<td>0.5</td>
+							<td>96.5</td>
+						</tr>
+						<tr>
+							<th scope="row">Uterus</th>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+						</tr>
+						<tr>
+							<th scope="row">Vulva</th>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+						</tr>
+				</tbody>
+			</table>
+			</div>
+		</section>
+		</div>
+		<!--close tabs-->
+
+		<h4>How Do the Most Common Cancers Compare by Race/Ethnicity?</h4>
+		<p>The rate and type of cancer diagnosis varies significantly by race and ethnicity. The graph below shows the age-adjusted rate of new cases, by race and ethnicity, for the four most commonly diagnosed cancers.</p>
+
+		<!-- Default Display of Data -->
+		<div class="defaultData">
+			<div class="scrapeTable showData-table-1">
+				<div class="table-responsive" tabindex="-1">
+					<table id="scrapeTable_07">
+					<thead>
+						<tr>
+							<th scope="col">Site</th>
+							<th scope="col">All Races</th>
+							<th scope="col">Hispanic</th>
+							<th scope="col">NH AI/AN</th>
+							<th scope="col">NH API</th>
+							<th scope="col">NH Black</th>
+							<th scope="col">NH White</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">Female Breast <span class="site_id" style="display: none" aria-hidden="true">55</span></th>
+							<td>130.8</td>
+							<td>104.0</td>
+							<td>116.7</td>
+							<td>114.3</td>
+							<td>131.0</td>
+							<td>140.0</td>
+						</tr>
+						<tr>
+							<th scope="row">Colon and rectum <span class="site_id" style="display: none" aria-hidden="true">20</span></th>
+							<td>37.1</td>
+							<td>34.2</td>
+							<td>50.4</td>
+							<td>30.0</td>
+							<td>42.5</td>
+							<td>37.6</td>
+						</tr>
+						<tr>
+							<th scope="row">Lung & Bronchus <span class="site_id" style="display: none" aria-hidden="true">47</span></th>
+							<td>47.8</td>
+							<td>26.0</td>
+							<td>48.8</td>
+							<td>33.4</td>
+							<td>52.0</td>
+							<td>54.2</td>
+						</tr>
+						<tr>
+							<th scope="row">Prostate <span class="site_id" style="display: none" aria-hidden="true">66</span></th>
+							<td>120.2</td>
+							<td>90.2</td>
+							<td>82.2</td>
+							<td>64.5</td>
+							<td>194.8</td>
+							<td>118.9</td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</div>
+
+		<!-- Use Default Display Data to Generate... -->
+		<div class="svgEnhance cf" aria-hidden="true">
+			<div class="row g-0">
+				<div class="col-md-9">
+					<div class="svg-wrap common-compare">
+						<svg id="incd_top_sites_by_race" class="svg-font" viewBox="0 0 650 350" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div id="legend_incd_top_sites_by_race" class="nvd3-wide-graph-legend"></div>
+					<button type="button" class="showData-btn-1 mb-3" data-bs-toggle="modal" data-bs-target="#showData1">View Data Table</button>
+				</div>
+			</div>
+		</div>
+		<div class="graph_shared_footnotes">
+			<p>Age-adjusted rates of new cases, SEER 21, 2018&ndash;2022<br/><sup>a</sup>Non-Hispanic, <sup>b</sup> Asian & Pacific Islander, <sup>c</sup> American Indian/Alaska Native</p>
+		</div>
+		<p>Cancer death rates, or mortality rates, also vary significantly by race and ethnicity. The graph below shows the age-adjusted death rate, by race and ethnicity, for the five most deadly cancers.</p>
+
+		<!-- Default Display of Data -->
+		<div class="defaultData">
+			<div class="scrapeTable showData-table-2">
+				<div class="table-responsive" tabindex="-1">
+					<table id="scrapeTable_08">
+					<thead>
+						<tr>
+							<th scope="col">Site</th>
+							<th scope="col">All Races</th>
+							<th scope="col">Hispanic</th>
+							<th scope="col">NH AI/AN</th>
+							<th scope="col">NH API</th>
+							<th scope="col">NH Black</th>
+							<th scope="col">NH White</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">Female Breast <span class="site_id" style="display: none" aria-hidden="true">55</span></th>
+							<td>19.2</td>
+							<td>13.6</td>
+							<td>17.7</td>
+							<td>11.8</td>
+							<td>26.5</td>
+							<td>19.3</td>
+						</tr>
+						<tr>
+							<th scope="row">Colon and rectum <span class="site_id" style="display: none" aria-hidden="true">20</span></th>
+							<td>12.9</td>
+							<td>10.6</td>
+							<td>17.6</td>
+							<td>9.2</td>
+							<td>16.6</td>
+							<td>12.9</td>
+						</tr>
+						<tr>
+							<th scope="row">Lung & Bronchus <span class="site_id" style="display: none" aria-hidden="true">47</span></th>
+							<td>31.5</td>
+							<td>14.2</td>
+							<td>32.2</td>
+							<td>18.6</td>
+							<td>33.1</td>
+							<td>34.5</td>
+						</tr>
+						<tr>
+							<th scope="row">Pancreas <span class="site_id" style="display: none" aria-hidden="true">40</span></th>
+							<td>11.3</td>
+							<td>8.9</td>
+							<td>10.5</td>
+							<td>7.8</td>
+							<td>13.6</td>
+							<td>11.5</td>
+						</tr>
+						<tr>
+							<th scope="row">Prostate <span class="site_id" style="display: none" aria-hidden="true">66</span></th>
+							<td>19.2</td>
+							<td>15.4</td>
+							<td>18.9</td>
+							<td>8.8</td>
+							<td>36.9</td>
+							<td>18.4</td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</div>
+
+		<!-- Use Default Display Data to Generate... -->
+		<div class="svgEnhance cf" aria-hidden="true">
+			<div class="row g-0">
+				<div class="col-md-9">
+					<div class="svg-wrap common-compare">
+						<svg id="mort_top_sites_by_race" class="svg-font" viewBox="0 0 650 350" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div id="legend_mort_top_sites_by_race" class="nvd3-wide-graph-legend"></div>
+					<button type="button" class="showData-btn-2 mb-3" data-bs-toggle="modal" data-bs-target="#showData2">View Data Table</button>
+				</div>
+			</div>
+		</div>
+		<div class="graph_shared_footnotes">
+			<p>Age-adjusted death rates, U.S., 2019&ndash;2023<br/><sup>a</sup>Non-Hispanic, <sup>b</sup> Asian & Pacific Islander, <sup>c</sup> American Indian/Alaska Native</p>
+		</div>
+	</div>
+
+	<h2 class="tog-control">Trends in Rates</h2>
+	<div class="tog-content">
+		<h4>What Are the Recent Trends in Rates of New Cancer Cases?</h4>
+		<p>Between 2018 and 2022, the overall age-adjusted <strong><a href="https://seer.cancer.gov/statistics/types/incidence.html">rate of new cancers</a></strong> remained stable among men and increased among women. During this period, eight of the 19 most common cancers in men and six of the 21 most common cancers in women showed statistically significant decreases in new cases. For men, lung and bronchus cancer showed the greatest decrease. For women, laryngeal cancer showed the greatest decrease.</p>
+
+		<h5>Trends In New Cases</h5>
+		<!-- Default Display of Data -->
+		<!-- 5-year AAPC from SEER 21 2000+ JP analysis (Delay-adjusted)-->
+		<div class="defaultData cf">
+			<div class="scrapeTable halfSize">
+				<h5>Male</h5>
+				<table id="scrapeTable_09">
+					<tr>
+						<th scope="row" width="60%">Prostate<span class="site_id" style="display: none" aria-hidden="true">66</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>3.3*</td>
+					</tr>
+					<tr>
+						<th scope="row">Melanoma of the Skin<span class="site_id" style="display: none" aria-hidden="true">53</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>1.3*</td>
+					</tr>
+					<tr>
+						<th scope="row">Stomach<span class="site_id" style="display: none" aria-hidden="true">18</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>1.1</td>
+					</tr>
+					<tr>
+						<th scope="row">Pancreas<span class="site_id" style="display: none" aria-hidden="true">40</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>0.9*</td>
+					</tr>
+					<tr>
+						<th scope="row">Testis<span class="site_id" style="display: none" aria-hidden="true">67</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>0.8*</td>
+					</tr>
+					<tr>
+						<th scope="row">Oral Cavity and Pharynx<span class="site_id" style="display: none" aria-hidden="true">3</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>0.7*</td>
+					</tr>
+					<tr>
+						<th scope="row">Leukemia<span class="site_id" style="display: none" aria-hidden="true">90</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>0.3</td>
+					</tr>
+					<tr>
+						<th scope="row">All Sites<span class="site_id" style="display: none" aria-hidden="true">1</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>0.1</td>
+					</tr>
+					<tr>
+						<th scope="row">Kidney and Renal Pelvis<span class="site_id" style="display: none" aria-hidden="true">72</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>0.0</td>
+					</tr>
+					<tr>
+						<th scope="row">Esophagus<span class="site_id" style="display: none" aria-hidden="true">17</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>-0.1</td>
+					</tr>
+					<tr>
+						<th scope="row">Myeloma<span class="site_id" style="display: none" aria-hidden="true">89</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>-0.1</td>
+					</tr>
+					<tr>
+						<th scope="row">Thyroid<span class="site_id" style="display: none" aria-hidden="true">80</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>-0.4</td>
+					</tr>
+					<tr>
+						<th scope="row">Non-Hodgkin Lymphoma<span class="site_id" style="display: none" aria-hidden="true">86</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-0.4*</td>
+					</tr>
+					<tr>
+						<th scope="row">Colon and Rectum<span class="site_id" style="display: none" aria-hidden="true">20</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-0.6*</td>
+					</tr>
+					<tr>
+						<th scope="row">Brain and Other Nervous System<span class="site_id" style="display: none" aria-hidden="true">76</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-0.6*</td>
+					</tr>
+					<tr>
+						<th scope="row">Liver and Intrahepatic Bile Duct<span class="site_id" style="display: none" aria-hidden="true">35</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-0.6*</td>
+					</tr>
+					<tr>
+						<th scope="row">Hodgkin Lymphoma<span class="site_id" style="display: none" aria-hidden="true">83</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.0*</td>
+					</tr>
+					<tr>
+						<th scope="row">Bladder<span class="site_id" style="display: none" aria-hidden="true">71</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.1*</td>
+					</tr>
+					<tr>
+						<th scope="row">Larynx<span class="site_id" style="display: none" aria-hidden="true">46</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-2.8*</td>
+					</tr>
+					<tr>
+						<th scope="row">Lung and Bronchus<span class="site_id" style="display: none" aria-hidden="true">47</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-3.4*</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="scrapeTable halfSize">
+				<h5>Female</h5>
+				<table id="scrapeTable_10">
+					<tr>
+						<th scope="row" width="60%">Stomach<span class="site_id" style="display: none" aria-hidden="true">18</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>4.8*</td>
+					</tr>
+					<tr>
+						<th scope="row">Melanoma of the Skin<span class="site_id" style="display: none" aria-hidden="true">53</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>1.9*</td>
+					</tr>
+					<tr>
+						<th scope="row">Liver and Intrahepatic Bile Duct<span class="site_id" style="display: none" aria-hidden="true">35</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>1.8*</td>
+					</tr>
+					<tr>
+						<th scope="row">Uterus<span class="site_id" style="display: none" aria-hidden="true">58</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>1.4*</td>
+					</tr>
+					<tr>
+						<th scope="row">Pancreas<span class="site_id" style="display: none" aria-hidden="true">40</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>1.3*</td>
+					</tr>
+					<tr>
+						<th scope="row">Breast<span class="site_id" style="display: none" aria-hidden="true">55</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>1.3*</td>
+					</tr>
+					<tr>
+						<th scope="row">Oral Cavity and Pharynx<span class="site_id" style="display: none" aria-hidden="true">3</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>0.8*</td>
+					</tr>
+					<tr>
+						<th scope="row">Leukemia<span class="site_id" style="display: none" aria-hidden="true">90</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>0.7*</td>
+					</tr>
+					<tr>
+						<th scope="row">All Sites<span class="site_id" style="display: none" aria-hidden="true">1</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>0.5*</td>
+					</tr>
+					<tr>
+						<th scope="row">Colon and Rectum<span class="site_id" style="display: none" aria-hidden="true">20</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>0.3</td>
+					</tr>
+					<tr>
+						<th scope="row">Esophagus<span class="site_id" style="display: none" aria-hidden="true">17</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>0.3</td>
+					</tr>
+					<tr>
+						<th scope="row">Kidney and Renal Pelvis<span class="site_id" style="display: none" aria-hidden="true">72</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>0.1</td>
+					</tr>
+					<tr>
+						<th scope="row">Ovary<span class="site_id" style="display: none" aria-hidden="true">61</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>0.0</td>
+					</tr>
+					<tr>
+						<th scope="row">Myeloma<span class="site_id" style="display: none" aria-hidden="true">89</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>0.0</td>
+					</tr>
+					<tr>
+						<th scope="row">Non-Hodgkin Lymphoma<span class="site_id" style="display: none" aria-hidden="true">86</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-0.3*</td>
+					</tr>
+					<tr>
+						<th scope="row">Brain and Other Nervous System<span class="site_id" style="display: none" aria-hidden="true">76</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-0.5*</td>
+					</tr>
+					<tr>
+						<th scope="row">Thyroid<span class="site_id" style="display: none" aria-hidden="true">80</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>-0.7</td>
+					</tr>
+					<tr>
+						<th scope="row">Cervix Uteri<span class="site_id" style="display: none" aria-hidden="true">57</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>-0.7</td>
+					</tr>
+					<tr>
+						<th scope="row">Hodgkin Lymphoma<span class="site_id" style="display: none" aria-hidden="true">83</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-0.8*</td>
+					</tr>
+					<tr>
+						<th scope="row">Bladder<span class="site_id" style="display: none" aria-hidden="true">71</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.0*</td>
+					</tr>
+					<tr>
+						<th scope="row">Lung and Bronchus<span class="site_id" style="display: none" aria-hidden="true">47</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-2.1*</td>
+					</tr>
+					<tr>
+						<th scope="row">Larynx<span class="site_id" style="display: none" aria-hidden="true">46</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-2.3*</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- Use Default Display Data to Generate... -->
+		<div class="svgEnhance cf" aria-hidden="true">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="barChartContainer">
+						<div class="bar_chart_title">Male</div>
+						<div class="svg-wrap common-trends">
+							<svg id="aapc_incd_male" class="apc-bar" viewBox="0 0 350 400" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="barChartContainer">
+						<div class="bar_chart_title">Female</div>
+						<div class="svg-wrap common-trends">
+							<svg id="aapc_incd_female" class="apc-bar" viewBox="0 0 350 400" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<p class="graph_shared_axis_label">AVERAGE ANNUAL PERCENT CHANGE (AAPC) 2018&ndash;2022</p>
+			<div class="graph_shared_footnotes">
+				<p>*AAPC is significantly different from zero (p<.05)<br>
+				Rates are age-adjusted and adjusted for reporting delay in the registry
+				<br>The 2020 incidence rate is not used in the calculation of trends. <a href="/data/covid-impact.html">Impact of COVID on SEER Cancer Incidence 2020 data</a></p>
+			</div>
+		</div>
+
+		<h4>What Are the Recent Trends in Cancer Death Rates?</h4>
+		<p>Between 2019 and 2023, overall age-adjusted <strong><a href="https://seer.cancer.gov/statistics/types/mortality.html">death rate</a></strong> decreased on average 1.8 percent per year for men and 1.1 percent for women. During this period, thirteen of the 19 most common cancers in men and thirteen of the 21 most common cancers in women showed statistically significant decreases in death rates. Testicular cancer showed the greatest increase in death rates among men. Uterine cancer showed the greatest increase in death rates among women.</p>
+
+		<h5>Trends In Death Rates</h5>
+		<!-- Default Display of Data -->
+		<!-- 5-year AAPC from US Mort 2000+ JP analysis -->
+		<div class="defaultData cf">
+			<div class="scrapeTable halfSize">
+				<h5>Male</h5>
+				<table id="scrapeTable_11">
+					<tr>
+						<th scope="row">Testis<span class="site_id" style="display: none" aria-hidden="true">67</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>4.7*</td>
+					</tr>
+					<tr>
+						<th scope="row">Oral Cavity and Pharynx<span class="site_id" style="display: none" aria-hidden="true">3</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>0.8*</td>
+					</tr>
+					<tr>
+						<th scope="row">Pancreas<span class="site_id" style="display: none" aria-hidden="true">40</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>-0.3</td>
+					</tr>
+					<tr>
+						<th scope="row">Kidney and Renal Pelvis<span class="site_id" style="display: none" aria-hidden="true">72</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>-0.6</td>
+					</tr>
+					<tr>
+						<th scope="row">Thyroid<span class="site_id" style="display: none" aria-hidden="true">80</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>-0.6</td>
+					</tr>
+					<tr>
+						<th scope="row">Prostate<span class="site_id" style="display: none" aria-hidden="true">66</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-0.6*</td>
+					</tr>
+					<tr>
+						<th scope="row">Larynx<span class="site_id" style="display: none" aria-hidden="true">46</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>-0.8</td>
+					</tr>
+					<tr>
+						<th scope="row">Liver and Intrahepatic Bile Duct<span class="site_id" style="display: none" aria-hidden="true">35</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.0*</td>
+					</tr>
+					<tr>
+						<th scope="row">Colon and Rectum<span class="site_id" style="display: none" aria-hidden="true">20</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.0*</td>
+					</tr>
+					<tr>
+						<th scope="row">Esophagus<span class="site_id" style="display: none" aria-hidden="true">17</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.3*</td>
+					</tr>
+					<tr>
+						<th scope="row">Brain and Other Nervous System<span class="site_id" style="display: none" aria-hidden="true">76</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.3*</td>
+					</tr>
+					<tr>
+						<th scope="row">Melanoma of the Skin<span class="site_id" style="display: none" aria-hidden="true">53</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.4*</td>
+					</tr>
+					<tr>
+						<th scope="row">Bladder<span class="site_id" style="display: none" aria-hidden="true">71</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.5*</td>
+					</tr>
+					<tr>
+						<th scope="row">Non-Hodgkin Lymphoma<span class="site_id" style="display: none" aria-hidden="true">86</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.8*</td>
+					</tr>
+					<tr>
+						<th scope="row">All Sites<span class="site_id" style="display: none" aria-hidden="true">1</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.8*</td>
+					</tr>
+					<tr>
+						<th scope="row">Leukemia<span class="site_id" style="display: none" aria-hidden="true">90</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-2.0*</td>
+					</tr>
+					<tr>
+						<th scope="row">Stomach<span class="site_id" style="display: none" aria-hidden="true">18</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-2.4*</td>
+					</tr>
+					<tr>
+						<th scope="row">Hodgkin Lymphoma<span class="site_id" style="display: none" aria-hidden="true">83</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-2.8*</td>
+					</tr>
+					<tr>
+						<th scope="row">Myeloma<span class="site_id" style="display: none" aria-hidden="true">89</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-4.3*</td>
+					</tr>
+					<tr>
+						<th scope="row">Lung and Bronchus<span class="site_id" style="display: none" aria-hidden="true">47</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-4.4*</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="scrapeTable halfSize">
+				<h5>Female</h5>
+				<table id="scrapeTable_12">
+					<tr>
+						<th scope="row">Uterus<span class="site_id" style="display: none" aria-hidden="true">58</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>1.4*</td>
+					</tr>
+					<tr>
+						<th scope="row">Liver and Intrahepatic Bile Duct<span class="site_id" style="display: none" aria-hidden="true">35</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>0.9*</td>
+					</tr>
+					<tr>
+						<th scope="row">Oral Cavity and Pharynx<span class="site_id" style="display: none" aria-hidden="true">3</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>0.8*</td>
+					</tr>
+					<tr>
+						<th scope="row">Thyroid<span class="site_id" style="display: none" aria-hidden="true">80</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>0.1</td>
+					</tr>
+					<tr>
+						<th scope="row">Pancreas<span class="site_id" style="display: none" aria-hidden="true">40</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>-0.2</td>
+					</tr>
+					<tr>
+						<th scope="row">Brain and Other Nervous System<span class="site_id" style="display: none" aria-hidden="true">76</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>-0.2</td>
+					</tr>
+					<tr>
+						<th scope="row">Esophagus<span class="site_id" style="display: none" aria-hidden="true">17</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>-0.7</td>
+					</tr>
+					<tr>
+						<th scope="row">Melanoma of the Skin<span class="site_id" style="display: none" aria-hidden="true">53</span><span class="significance" style="display: none" aria-hidden="true">0</span></th>
+						<td>-0.7</td>
+					</tr>
+					<tr>
+						<th scope="row">Cervix Uteri<span class="site_id" style="display: none" aria-hidden="true">57</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-0.7*</td>
+					</tr>
+					<tr>
+						<th scope="row">Colon and Rectum<span class="site_id" style="display: none" aria-hidden="true">20</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-0.9*</td>
+					</tr>
+					<tr>
+						<th scope="row">All Sites<span class="site_id" style="display: none" aria-hidden="true">1</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.1*</td>
+					</tr>
+					<tr>
+						<th scope="row">Bladder<span class="site_id" style="display: none" aria-hidden="true">71</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.2*</td>
+					</tr>
+					<tr>
+						<th scope="row">Breast<span class="site_id" style="display: none" aria-hidden="true">55</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.5*</td>
+					</tr>
+					<tr>
+						<th scope="row">Kidney and Renal Pelvis<span class="site_id" style="display: none" aria-hidden="true">72</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.5*</td>
+					</tr>
+					<tr>
+						<th scope="row">Leukemia<span class="site_id" style="display: none" aria-hidden="true">90</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.7*</td>
+					</tr>
+					<tr>
+						<th scope="row">Stomach<span class="site_id" style="display: none" aria-hidden="true">18</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-1.7*</td>
+					</tr>
+					<tr>
+						<th scope="row">Larynx<span class="site_id" style="display: none" aria-hidden="true">46</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-2.1*</td>
+					</tr>
+					<tr>
+						<th scope="row">Non-Hodgkin Lymphoma<span class="site_id" style="display: none" aria-hidden="true">86</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-2.4*</td>
+					</tr>
+					<tr>
+						<th scope="row">Lung and Bronchus<span class="site_id" style="display: none" aria-hidden="true">47</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-3.0*</td>
+					</tr>
+					<tr>
+						<th scope="row">Ovary<span class="site_id" style="display: none" aria-hidden="true">61</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-3.0*</td>
+					</tr>
+					<tr>
+						<th scope="row">Myeloma<span class="site_id" style="display: none" aria-hidden="true">89</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-3.2*</td>
+					</tr>
+					<tr>
+						<th scope="row">Hodgkin Lymphoma<span class="site_id" style="display: none" aria-hidden="true">83</span><span class="significance" style="display: none" aria-hidden="true">1</span></th>
+						<td>-3.7*</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- Use Default Display Data to Generate... -->
+		<div class="svgEnhance cf" aria-hidden="true">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="barChartContainer">
+						<div class="bar_chart_title">Male</div>
+						<div class="svg-wrap common-trends">
+							<svg id="aapc_mort_male" class="apc-bar svg-font" viewBox="0 0 350 400" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="barChartContainer">
+						<div class="bar_chart_title">Female</div>
+						<div class="svg-wrap common-trends">
+							<svg id="aapc_mort_female" class="apc-bar" viewBox="0 0 350 400" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<p class="graph_shared_axis_label">AVERAGE ANNUAL PERCENT CHANGE (AAPC) 2019&ndash;2023</p>
+			<div class="graph_shared_footnotes">
+				<p>*AAPC is significantly different from zero (p<.05)<br>
+				Rates are age-adjusted</p>
+			</div>
+		</div>
+
+		<h4>Additional Information</h4>
+		<p><strong><a href="https://surveillance.cancer.gov/help/joinpoint/setting-parameters/method-and-parameters-tab/apc-aapc-tau-confidence-intervals/average-annual-percent-change-aapc">Average annual percent change (AAPC)</a></strong> is the year-to-year change averaged over a period of time, in this case, 5 years. Positive AAPC describes an increasing trend and a negative AAPC a decreasing one. </p>
+	</div>
+
+	<h2 class="tog-control">Cancer in Context</h2>
+	<div class="tog-content">
+		<h4>How Does Cancer Compare to Other Causes of Death?</h4>
+		<p>Cancer caused 19.8% of all deaths in the United States in 2023. Deaths due to heart disease and cancer caused nearly half of all deaths in the United States. Cancer is the leading cause of death for those under 65 years of age.</p>
+
+		<!-- Default Display of Data -->
+		<div class="defaultData mobileShow">
+			<div class="scrapeTable">
+				<h5>Leading Causes of Death in the U.S., 2023</h5>
+				<table id="scrapeTable_13">
+					<tr>
+						<th scope="row" width="50%">Heart Disease <span class="site_id" style="display: none" aria-hidden="true">250</span></th>
+						<td>680,966</td>
+					</tr>
+					<tr>
+						<th scope="row">Cancer <span class="site_id" style="display: none" aria-hidden="true">201</span></th>
+						<td>613,349</td>
+					</tr>
+					<tr>
+						<th scope="row">Accidents (Unintentional Injury) <span class="site_id" style="display: none" aria-hidden="true">251</span></th>
+						<td>222,685</td>
+					</tr>
+					<tr>
+						<th scope="row">Chronic Lower Respiratory <span class="site_id" style="display: none" aria-hidden="true">253</span></th>
+						<td>145,355</td>
+					</tr>
+					<tr>
+						<th scope="row">Stroke (Cerebrovascular) <span class="site_id" style="display: none" aria-hidden="true">249</span></th>
+						<td>162,636</td>
+					</tr>
+					<tr>
+						<th scope="row">Alzheimer's <span class="site_id" style="display: none" aria-hidden="true">263</span></th>
+						<td>114,034</td>
+					</tr>
+					<tr>
+						<th scope="row">Diabetes <span class="site_id" style="display: none" aria-hidden="true">254</span></th>
+						<td>95,187</td>
+					</tr>
+					<tr>
+						<th scope="row">Nephritis & Nephrosis <span class="site_id" style="display: none" aria-hidden="true">258</span></th>
+						<td>55,253</td>
+					</tr>
+					<tr>
+						<th scope="row">Pneumonia & Influenze <span class="site_id" style="display: none" aria-hidden="true">252</span></th>
+						<td>45,185</td>
+					</tr>
+					<tr>
+						<th scope="row">Intentional Self-Harm (Suicide) <span class="site_id" style="display: none" aria-hidden="true">256</span></th>
+						<td>49,315</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- Use Default Display Data to Generate... -->
+		<div class="svgEnhance cf mobileHide" aria-hidden="true">
+			<div class="bar_chart_title">Leading Causes of Death in the U.S., 2023</div>
+			<div class="svg-wrap common-other">
+				<svg id="leading_cod" class="svg-font counts-horiz-bar" viewBox="0 0 800 400" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+			</div>
+		</div>
+
+		<h4>What Are the U.S. Death Rates?</h4>
+		<p>In the United States, heart disease death rates have decreased for people of all ages. In 1975, heart disease among those less than 65 caused 26% of deaths, compared to 16% in 2023. In those over 65, heart disease caused 44% of deaths in 1975, compared to 24% in 2023.</p>
+		<p><strong><a href="https://www.cancer.gov/publications/dictionaries/cancer-terms?cdrid=46264">Neoplasms</a></strong> have slightly decreased for people of all ages. In 1975, neoplasms for those less than 65 accounted for 22% of deaths in the United States, compared to 19% in 2023. In those over 65, neoplasms caused 18% of deaths in 1975, compared to 20% in 2023.</p>
+
+		<!-- Default Display of Data -->
+		<div class="defaultData">
+			<div class="scrapeTable showData-table-3">
+				<h5>Ages &lt;65</h5>
+				<table id="scrapeTable_14">
+					<thead>
+						<tr>
+							<th rowspan="2" id="yr1">Year</th>
+							<th colspan="2" id="d1">Heart Disease</th>
+							<th colspan="2" id="c1">Cancer</th>
+						</tr>
+						<tr>
+							<th id="rp1a">Rate Per 100,000</th>
+							<th id="td1a">% of Total Deaths</th>
+							<th id="rp1b">Rate Per 100,000</th>
+							<th id="td1b">% of Total Deaths</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th id="1975-1" headers="yr1">1975</th>
+							<td headers="1975-1 d1 rp1a">98.6</td>
+							<td headers="1975-1 d1 td1a">26</td>
+							<td headers="1975-1 c1 rp1b">84.0</td>
+							<td headers="1975-1 c1 td1b">22</td>
+						</tr>
+						<tr>
+							<th id="1976-1" headers="yr1">1976</th>
+							<td headers="1976-1 d1 rp1a">95.9</td>
+							<td headers="1976-1 d1 td1a">26</td>
+							<td headers="1976-1 c1 rp1b">84.3</td>
+							<td headers="1976-1 c1 td1b">23</td>
+						</tr>
+						<tr>
+							<th id="1977-1" headers="yr1">1977</th>
+							<td headers="1977-1 d1 rp1a">92.6</td>
+							<td headers="1977-1 d1 td1a">26</td>
+							<td headers="1977-1 c1 rp1b">84.3</td>
+							<td headers="1977-1 c1 td1b">23</td>
+						</tr>
+						<tr>
+							<th id="1978-1" headers="yr1">1978</th>
+							<td headers="1978-1 d1 rp1a">90.4</td>
+							<td headers="1978-1 d1 td1a">26</td>
+							<td headers="1978-1 c1 rp1b">84.2</td>
+							<td headers="1978-1 c1 td1b">24</td>
+						</tr>
+						<tr>
+							<th id="1979-1" headers="yr1">1979</th>
+							<td headers="1979-1 d1 rp1a">88.3</td>
+							<td headers="1979-1 d1 td1a">26</td>
+							<td headers="1979-1 c1 rp1b">83.3</td>
+							<td headers="1979-1 c1 td1b">24</td>
+						</tr>
+						<tr>
+							<th id="1980-1" headers="yr1">1980</th>
+							<td headers="1980-1 d1 rp1a">86.9</td>
+							<td headers="1980-1 d1 td1a">26</td>
+							<td headers="1980-1 c1 rp1b">83.7</td>
+							<td headers="1980-1 c1 td1b">24</td>
+						</tr>
+						<tr>
+							<th id="1981-1" headers="yr1">1981</th>
+							<td headers="1981-1 d1 rp1a">84.9</td>
+							<td headers="1981-1 d1 td1a">26</td>
+							<td headers="1981-1 c1 rp1b">82.8</td>
+							<td headers="1981-1 c1 td1b">25</td>
+						</tr>
+						<tr>
+							<th id="1982-1" headers="yr1">1982</th>
+							<td headers="1982-1 d1 rp1a">82.0</td>
+							<td headers="1982-1 d1 td1a">26</td>
+							<td headers="1982-1 c1 rp1b">83.0</td>
+							<td headers="1982-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="1983-1" headers="yr1">1983</th>
+							<td headers="1983-1 d1 rp1a">80.7</td>
+							<td headers="1983-1 d1 td1a">26</td>
+							<td headers="1983-1 c1 rp1b">82.7</td>
+							<td headers="1983-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="1984-1" headers="yr1">1984</th>
+							<td headers="1984-1 d1 rp1a">78.3</td>
+							<td headers="1984-1 d1 td1a">25</td>
+							<td headers="1984-1 c1 rp1b">83.3</td>
+							<td headers="1984-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="1985-1" headers="yr1">1985</th>
+							<td headers="1985-1 d1 rp1a">76.6</td>
+							<td headers="1985-1 d1 td1a">25</td>
+							<td headers="1985-1 c1 rp1b">83.2</td>
+							<td headers="1985-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="1986-1" headers="yr1">1986</th>
+							<td headers="1986-1 d1 rp1a">74.0</td>
+							<td headers="1986-1 d1 td1a">24</td>
+							<td headers="1986-1 c1 rp1b">82.2</td>
+							<td headers="1986-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="1987-1" headers="yr1">1987</th>
+							<td headers="1987-1 d1 rp1a">71.5</td>
+							<td headers="1987-1 d1 td1a">23</td>
+							<td headers="1987-1 c1 rp1b">81.7</td>
+							<td headers="1987-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="1988-1" headers="yr1">1988</th>
+							<td headers="1988-1 d1 rp1a">69.1</td>
+							<td headers="1988-1 d1 td1a">22</td>
+							<td headers="1988-1 c1 rp1b">81.3</td>
+							<td headers="1988-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="1989-1" headers="yr1">1989</th>
+							<td headers="1989-1 d1 rp1a">65.1</td>
+							<td headers="1989-1 d1 td1a">21</td>
+							<td headers="1989-1 c1 rp1b">80.5</td>
+							<td headers="1989-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="1990-1" headers="yr1">1990</th>
+							<td headers="1990-1 d1 rp1a">62.4</td>
+							<td headers="1990-1 d1 td1a">21</td>
+							<td headers="1990-1 c1 rp1b">80.1</td>
+							<td headers="1990-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="1991-1" headers="yr1">1991</th>
+							<td headers="1991-1 d1 rp1a">61.0</td>
+							<td headers="1991-1 d1 td1a">20</td>
+							<td headers="1991-1 c1 rp1b">79.2</td>
+							<td headers="1991-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="1992-1" headers="yr1">1992</th>
+							<td headers="1992-1 d1 rp1a">59.7</td>
+							<td headers="1992-1 d1 td1a">20</td>
+							<td headers="1992-1 c1 rp1b">77.4</td>
+							<td headers="1992-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="1993-1" headers="yr1">1993</th>
+							<td headers="1993-1 d1 rp1a">59.5</td>
+							<td headers="1993-1 d1 td1a">20</td>
+							<td headers="1993-1 c1 rp1b">76.2</td>
+							<td headers="1993-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="1994-1" headers="yr1">1994</th>
+							<td headers="1994-1 d1 rp1a">57.8</td>
+							<td headers="1994-1 d1 td1a">20</td>
+							<td headers="1994-1 c1 rp1b">75.0</td>
+							<td headers="1994-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="1995-1" headers="yr1">1995</th>
+							<td headers="1995-1 d1 rp1a">56.9</td>
+							<td headers="1995-1 d1 td1a">20</td>
+							<td headers="1995-1 c1 rp1b">73.4</td>
+							<td headers="1995-1 c1 td1b">25</td>
+						</tr>
+						<tr>
+							<th id="1996-1" headers="yr1">1996</th>
+							<td headers="1996-1 d1 rp1a">55.5</td>
+							<td headers="1996-1 d1 td1a">20</td>
+							<td headers="1996-1 c1 rp1b">71.7</td>
+							<td headers="1996-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="1997-1" headers="yr1">1997</th>
+							<td headers="1997-1 d1 rp1a">53.4</td>
+							<td headers="1997-1 d1 td1a">21</td>
+							<td headers="1997-1 c1 rp1b">69.7</td>
+							<td headers="1997-1 c1 td1b">27</td>
+						</tr>
+						<tr>
+							<th id="1998-1" headers="yr1">1998</th>
+							<td headers="1998-1 d1 rp1a">51.4</td>
+							<td headers="1998-1 d1 td1a">20</td>
+							<td headers="1998-1 c1 rp1b">67.9</td>
+							<td headers="1998-1 c1 td1b">27</td>
+						</tr>
+						<tr>
+							<th id="1999-1" headers="yr1">1999</th>
+							<td headers="1999-1 d1 rp1a">49.4</td>
+							<td headers="1999-1 d1 td1a">20</td>
+							<td headers="1999-1 c1 rp1b">66.9</td>
+							<td headers="1999-1 c1 td1b">27</td>
+						</tr>
+						<tr>
+							<th id="2000-1" headers="yr1">2000</th>
+							<td headers="2000-1 d1 rp1a">47.7</td>
+							<td headers="2000-1 d1 td1a">19</td>
+							<td headers="2000-1 c1 rp1b">65.5</td>
+							<td headers="2000-1 c1 td1b">27</td>
+						</tr>
+						<tr>
+							<th id="2001-1" headers="yr1">2001</th>
+							<td headers="2001-1 d1 rp1a">46.6</td>
+							<td headers="2001-1 d1 td1a">19</td>
+							<td headers="2001-1 c1 rp1b">64.9</td>
+							<td headers="2001-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="2002-1" headers="yr1">2002</th>
+							<td headers="2002-1 d1 rp1a">46.3</td>
+							<td headers="2002-1 d1 td1a">19</td>
+							<td headers="2002-1 c1 rp1b">63.7</td>
+							<td headers="2002-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="2003-1" headers="yr1">2003</th>
+							<td headers="2003-1 d1 rp1a">45.3</td>
+							<td headers="2003-1 d1 td1a">19</td>
+							<td headers="2003-1 c1 rp1b">62.3</td>
+							<td headers="2003-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="2004-1" headers="yr1">2004</th>
+							<td headers="2004-1 d1 rp1a">43.1</td>
+							<td headers="2004-1 d1 td1a">19</td>
+							<td headers="2004-1 c1 rp1b">60.4</td>
+							<td headers="2004-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="2005-1" headers="yr1">2005</th>
+							<td headers="2005-1 d1 rp1a">42.6</td>
+							<td headers="2005-1 d1 td1a">18</td>
+							<td headers="2005-1 c1 rp1b">59.7</td>
+							<td headers="2005-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="2006-1" headers="yr1">2006</th>
+							<td headers="2006-1 d1 rp1a">41.5</td>
+							<td headers="2006-1 d1 td1a">18</td>
+							<td headers="2006-1 c1 rp1b">58.5</td>
+							<td headers="2006-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="2007-1" headers="yr1">2007</th>
+							<td headers="2007-1 d1 rp1a">40.0</td>
+							<td headers="2007-1 d1 td1a">18</td>
+							<td headers="2007-1 c1 rp1b">56.9</td>
+							<td headers="2007-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="2008-1" headers="yr1">2008</th>
+							<td headers="2008-1 d1 rp1a">39.5</td>
+							<td headers="2008-1 d1 td1a">18</td>
+							<td headers="2008-1 c1 rp1b">55.8</td>
+							<td headers="2008-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="2009-1" headers="yr1">2009</th>
+							<td headers="2009-1 d1 rp1a">38.3</td>
+							<td headers="2009-1 d1 td1a">18</td>
+							<td headers="2009-1 c1 rp1b">55.3</td>
+							<td headers="2009-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="2010-1" headers="yr1">2010</th>
+							<td headers="2010-1 d1 rp1a">37.4</td>
+							<td headers="2010-1 d1 td1a">18</td>
+							<td headers="2010-1 c1 rp1b">54.2</td>
+							<td headers="2010-1 c1 td1b">27</td>
+						</tr>
+						<tr>
+							<th id="2011-1" headers="yr1">2011</th>
+							<td headers="2011-1 d1 rp1a">37.0</td>
+							<td headers="2011-1 d1 td1a">18</td>
+							<td headers="2011-1 c1 rp1b">53.3</td>
+							<td headers="2011-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="2012-1" headers="yr1">2012</th>
+							<td headers="2012-1 d1 rp1a">36.8</td>
+							<td headers="2012-1 d1 td1a">18</td>
+							<td headers="2012-1 c1 rp1b">52.8</td>
+							<td headers="2012-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="2013-1" headers="yr1">2013</th>
+							<td headers="2013-1 d1 rp1a">36.8</td>
+							<td headers="2013-1 d1 td1a">18</td>
+							<td headers="2013-1 c1 rp1b">51.7</td>
+							<td headers="2013-1 c1 td1b">26</td>
+						</tr>
+						<tr>
+							<th id="2014-1" headers="yr1">2014</th>
+							<td headers="2014-1 d1 rp1a">36.9</td>
+							<td headers="2014-1 d1 td1a">18</td>
+							<td headers="2014-1 c1 rp1b">51.2</td>
+							<td headers="2014-1 c1 td1b">25</td>
+						</tr>
+						<tr>
+							<th id="2015-1" headers="yr1">2015</th>
+							<td headers="2015-1 d1 rp1a">37.0</td>
+							<td headers="2015-1 d1 td1a">18</td>
+							<td headers="2015-1 c1 rp1b">50.1</td>
+							<td headers="2015-1 c1 td1b">25</td>
+						</tr>
+						<tr>
+							<th id="2016-1" headers="yr1">2016</th>
+							<td headers="2016-1 d1 rp1a">37.1</td>
+							<td headers="2016-1 d1 td1a">17</td>
+							<td headers="2016-1 c1 rp1b">49.3</td>
+							<td headers="2016-1 c1 td1b">24</td>
+						</tr>
+						<tr>
+							<th id="2017-1" headers="yr1">2017</th>
+							<td headers="2017-1 d1 rp1a">36.8</td>
+							<td headers="2017-1 d1 td1a">17</td>
+							<td headers="2017-1 c1 rp1b">47.8</td>
+							<td headers="2017-1 c1 td1b">23</td>
+						</tr>
+						<tr>
+							<th id="2018-1" headers="yr1">2018</th>
+							<td headers="2018-1 d1 rp1a">36.8</td>
+							<td headers="2018-1 d1 td1a">17</td>
+							<td headers="2018-1 c1 rp1b">46.6</td>
+							<td headers="2018-1 c1 td1b">23</td>
+						</tr>
+						<tr>
+							<th id="2019-1" headers="yr1">2019</th>
+							<td headers="2019-1 d1 rp1a">36.3</td>
+							<td headers="2019-1 d1 td1a">17</td>
+							<td headers="2019-1 c1 rp1b">45.4</td>
+							<td headers="2019-1 c1 td1b">22</td>
+						</tr>
+						<tr>
+							<th id="2020-1" headers="yr1">2020</th>
+							<td headers="2020-1 d1 rp1a">40.0</td>
+							<td headers="2020-1 d1 td1a">16</td>
+							<td headers="2020-1 c1 rp1b">44.6</td>
+							<td headers="2020-1 c1 td1b">18</td>
+						</tr>
+						<tr>
+							<th id="2021-1" headers="yr1">2021</th>
+							<td headers="2021-1 d1 rp1a">40.7</td>
+							<td headers="2021-1 d1 td1a">15</td>
+							<td headers="2021-1 c1 rp1b">44.0</td>
+							<td headers="2021-1 c1 td1b">16</td>
+						</tr>
+						<tr>
+							<th id="2022-1" headers="yr1">2022</th>
+							<td headers="2022-1 d1 rp1a">38.8</td>
+							<td headers="2022-1 d1 td1a">16</td>
+							<td headers="2022-1 c1 rp1b">43.5</td>
+							<td headers="2022-1 c1 td1b">18</td>
+						</tr>
+						<tr>
+							<th id="2023-1" headers="yr1">2023</th>
+							<td headers="2023-1 d1 rp1a">36.4</td>
+							<td headers="2023-1 d1 td1a">16</td>
+							<td headers="2023-1 c1 rp1b">42.7</td>
+							<td headers="2023-1 c1 td1b">19</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="scrapeTable showData-table-4">
+				<h5>Ages 65+</h5>
+				<table id="scrapeTable_15">
+					<thead>
+						<tr>
+							<th rowspan="2" id="y2">Year</th>
+							<th colspan="2" id="d2">Heart Disease</th>
+							<th colspan="2" id="c2">Cancer</th>
+						</tr>
+						<tr>
+							<th id="rp2a">Rate Per 100,000</th>
+							<th id="td2a">% of Total Deaths</th>
+							<th id="rp2b">Rate Per 100,000</th>
+							<th id="td2b">% of Total Deaths</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th id="1975-2" headers="y2">1975</th>
+							<td headers="1975-2 d2 rp2a">2767.9</td>
+							<td headers="1975-2 d2 td2a">44</td>
+							<td headers="1975-2 c2 rp2b">994.3</td>
+							<td headers="1975-2 c2 td2b">18</td>
+						</tr>
+						<tr>
+							<th id="1976-2" headers="y2">1976</th>
+							<td headers="1976-2 d2 rp2a">2781.1</td>
+							<td headers="1976-2 d2 td2a">44</td>
+							<td headers="1976-2 c2 rp2b">1017.9</td>
+							<td headers="1976-2 c2 td2b">18</td>
+						</tr>
+						<tr>
+							<th id="1977-2" headers="y2">1977</th>
+							<td headers="1977-2 d2 rp2a">2687.4</td>
+							<td headers="1977-2 d2 td2a">44</td>
+							<td headers="1977-2 c2 rp2b">1022.8</td>
+							<td headers="1977-2 c2 td2b">19</td>
+						</tr>
+						<tr>
+							<th id="1978-2" headers="y2">1978</th>
+							<td headers="1978-2 d2 rp2a">2675.6</td>
+							<td headers="1978-2 d2 td2a">44</td>
+							<td headers="1978-2 c2 rp2b">1035.0</td>
+							<td headers="1978-2 c2 td2b">19</td>
+						</tr>
+						<tr>
+							<th id="1979-2" headers="y2">1979</th>
+							<td headers="1979-2 d2 rp2a">2623.4</td>
+							<td headers="1979-2 d2 td2a">45</td>
+							<td headers="1979-2 c2 rp2b">1042.4</td>
+							<td headers="1979-2 c2 td2b">19</td>
+						</tr>
+						<tr>
+							<th id="1980-2" headers="y2">1980</th>
+							<td headers="1980-2 d2 rp2a">2678.6</td>
+							<td headers="1980-2 d2 td2a">44</td>
+							<td headers="1980-2 c2 rp2b">1058.9</td>
+							<td headers="1980-2 c2 td2b">19</td>
+						</tr>
+						<tr>
+							<th id="1981-2" headers="y2">1981</th>
+							<td headers="1981-2 d2 rp2a">2599.6</td>
+							<td headers="1981-2 d2 td2a">44</td>
+							<td headers="1981-2 c2 rp2b">1061.1</td>
+							<td headers="1981-2 c2 td2b">20</td>
+						</tr>
+						<tr>
+							<th id="1982-2" headers="y2">1982</th>
+							<td headers="1982-2 d2 rp2a">2550.0</td>
+							<td headers="1982-2 d2 td2a">44</td>
+							<td headers="1982-2 c2 rp2b">1074.7</td>
+							<td headers="1982-2 c2 td2b">20</td>
+						</tr>
+						<tr>
+							<th id="1983-2" headers="y2">1983</th>
+							<td headers="1983-2 d2 rp2a">2554.7</td>
+							<td headers="1983-2 d2 td2a">44</td>
+							<td headers="1983-2 c2 rp2b">1083.9</td>
+							<td headers="1983-2 c2 td2b">20</td>
+						</tr>
+						<tr>
+							<th id="1984-2" headers="y2">1984</th>
+							<td headers="1984-2 d2 rp2a">2488.2</td>
+							<td headers="1984-2 d2 td2a">43</td>
+							<td headers="1984-2 c2 rp2b">1093.2</td>
+							<td headers="1984-2 c2 td2b">20</td>
+						</tr>
+						<tr>
+							<th id="1985-2" headers="y2">1985</th>
+							<td headers="1985-2 d2 rp2a">2469.1</td>
+							<td headers="1985-2 d2 td2a">42</td>
+							<td headers="1985-2 c2 rp2b">1097.5</td>
+							<td headers="1985-2 c2 td2b">20</td>
+						</tr>
+						<tr>
+							<th id="1986-2" headers="y2">1986</th>
+							<td headers="1986-2 d2 rp2a">2411.7</td>
+							<td headers="1986-2 d2 td2a">42</td>
+							<td headers="1986-2 c2 rp2b">1108.1</td>
+							<td headers="1986-2 c2 td2b">21</td>
+						</tr>
+						<tr>
+							<th id="1987-2" headers="y2">1987</th>
+							<td headers="1987-2 d2 rp2a">2357.8</td>
+							<td headers="1987-2 d2 td2a">41</td>
+							<td headers="1987-2 c2 rp2b">1112.7</td>
+							<td headers="1987-2 c2 td2b">21</td>
+						</tr>
+						<tr>
+							<th id="1988-2" headers="y2">1988</th>
+							<td headers="1988-2 d2 rp2a">2348.5</td>
+							<td headers="1988-2 d2 td2a">40</td>
+							<td headers="1988-2 c2 rp2b">1121.2</td>
+							<td headers="1988-2 c2 td2b">21</td>
+						</tr>
+						<tr>
+							<th id="1989-2" headers="y2">1989</th>
+							<td headers="1989-2 d2 rp2a">2211.3</td>
+							<td headers="1989-2 d2 td2a">39</td>
+							<td headers="1989-2 c2 rp2b">1140.0</td>
+							<td headers="1989-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="1990-2" headers="y2">1990</th>
+							<td headers="1990-2 d2 rp2a">2131.2</td>
+							<td headers="1990-2 d2 td2a">39</td>
+							<td headers="1990-2 c2 rp2b">1148.5</td>
+							<td headers="1990-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="1991-2" headers="y2">1991</th>
+							<td headers="1991-2 d2 rp2a">2079.0</td>
+							<td headers="1991-2 d2 td2a">38</td>
+							<td headers="1991-2 c2 rp2b">1154.8</td>
+							<td headers="1991-2 c2 td2b">23</td>
+						</tr>
+						<tr>
+							<th id="1992-2" headers="y2">1992</th>
+							<td headers="1992-2 d2 rp2a">2024.5</td>
+							<td headers="1992-2 d2 td2a">38</td>
+							<td headers="1992-2 c2 rp2b">1154.9</td>
+							<td headers="1992-2 c2 td2b">23</td>
+						</tr>
+						<tr>
+							<th id="1993-2" headers="y2">1993</th>
+							<td headers="1993-2 d2 rp2a">2058.8</td>
+							<td headers="1993-2 d2 td2a">37</td>
+							<td headers="1993-2 c2 rp2b">1163.3</td>
+							<td headers="1993-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="1994-2" headers="y2">1994</th>
+							<td headers="1994-2 d2 rp2a">1983.5</td>
+							<td headers="1994-2 d2 td2a">37</td>
+							<td headers="1994-2 c2 rp2b">1158.1</td>
+							<td headers="1994-2 c2 td2b">23</td>
+						</tr>
+						<tr>
+							<th id="1995-2" headers="y2">1995</th>
+							<td headers="1995-2 d2 rp2a">1952.5</td>
+							<td headers="1995-2 d2 td2a">36</td>
+							<td headers="1995-2 c2 rp2b">1154.5</td>
+							<td headers="1995-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="1996-2" headers="y2">1996</th>
+							<td headers="1996-2 d2 rp2a">1899.6</td>
+							<td headers="1996-2 d2 td2a">36</td>
+							<td headers="1996-2 c2 rp2b">1143.0</td>
+							<td headers="1996-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="1997-2" headers="y2">1997</th>
+							<td headers="1997-2 d2 rp2a">1847.1</td>
+							<td headers="1997-2 d2 td2a">35</td>
+							<td headers="1997-2 c2 rp2b">1129.1</td>
+							<td headers="1997-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="1998-2" headers="y2">1998</th>
+							<td headers="1998-2 d2 rp2a">1808.7</td>
+							<td headers="1998-2 d2 td2a">35</td>
+							<td headers="1998-2 c2 rp2b">1120.1</td>
+							<td headers="1998-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="1999-2" headers="y2">1999</th>
+							<td headers="1999-2 d2 rp2a">1782.9</td>
+							<td headers="1999-2 d2 td2a">34</td>
+							<td headers="1999-2 c2 rp2b">1126.4</td>
+							<td headers="1999-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2000-2" headers="y2">2000</th>
+							<td headers="2000-2 d2 rp2a">1714.8</td>
+							<td headers="2000-2 d2 td2a">33</td>
+							<td headers="2000-2 c2 rp2b">1120.4</td>
+							<td headers="2000-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2001-2" headers="y2">2001</th>
+							<td headers="2001-2 d2 rp2a">1664.5</td>
+							<td headers="2001-2 d2 td2a">32</td>
+							<td headers="2001-2 c2 rp2b">1105.0</td>
+							<td headers="2001-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2002-2" headers="y2">2002</th>
+							<td headers="2002-2 d2 rp2a">1627.5</td>
+							<td headers="2002-2 d2 td2a">32</td>
+							<td headers="2002-2 c2 rp2b">1097.9</td>
+							<td headers="2002-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2003-2" headers="y2">2003</th>
+							<td headers="2003-2 d2 rp2a">1568.1</td>
+							<td headers="2003-2 d2 td2a">31</td>
+							<td headers="2003-2 c2 rp2b">1080.4</td>
+							<td headers="2003-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2004-2" headers="y2">2004</th>
+							<td headers="2004-2 d2 rp2a">1464.8</td>
+							<td headers="2004-2 d2 td2a">30</td>
+							<td headers="2004-2 c2 rp2b">1061.5</td>
+							<td headers="2004-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2005-2" headers="y2">2005</th>
+							<td headers="2005-2 d2 rp2a">1431.0</td>
+							<td headers="2005-2 d2 td2a">30</td>
+							<td headers="2005-2 c2 rp2b">1053.9</td>
+							<td headers="2005-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2006-2" headers="y2">2006</th>
+							<td headers="2006-2 d2 rp2a">1348.4</td>
+							<td headers="2006-2 d2 td2a">29</td>
+							<td headers="2006-2 c2 rp2b">1036.8</td>
+							<td headers="2006-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2007-2" headers="y2">2007</th>
+							<td headers="2007-2 d2 rp2a">1283.1</td>
+							<td headers="2007-2 d2 td2a">28</td>
+							<td headers="2007-2 c2 rp2b">1025.7</td>
+							<td headers="2007-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2008-2" headers="y2">2008</th>
+							<td headers="2008-2 d2 rp2a">1254.9</td>
+							<td headers="2008-2 d2 td2a">28</td>
+							<td headers="2008-2 c2 rp2b">1010.2</td>
+							<td headers="2008-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2009-2" headers="y2">2009</th>
+							<td headers="2009-2 d2 rp2a">1188.0</td>
+							<td headers="2009-2 d2 td2a">27</td>
+							<td headers="2009-2 c2 rp2b">990.3</td>
+							<td headers="2009-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2010-2" headers="y2">2010</th>
+							<td headers="2010-2 d2 rp2a">1157.2</td>
+							<td headers="2010-2 d2 td2a">27</td>
+							<td headers="2010-2 c2 rp2b">985.6</td>
+							<td headers="2010-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2011-2" headers="y2">2011</th>
+							<td headers="2011-2 d2 rp2a">1129.5</td>
+							<td headers="2011-2 d2 td2a">26</td>
+							<td headers="2011-2 c2 rp2b">971.2</td>
+							<td headers="2011-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2012-2" headers="y2">2012</th>
+							<td headers="2012-2 d2 rp2a">1107.3</td>
+							<td headers="2012-2 d2 td2a">26</td>
+							<td headers="2012-2 c2 rp2b">959.1</td>
+							<td headers="2012-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2013-2" headers="y2">2013</th>
+							<td headers="2013-2 d2 rp2a">1108.6</td>
+							<td headers="2013-2 d2 td2a">26</td>
+							<td headers="2013-2 c2 rp2b">945.0</td>
+							<td headers="2013-2 c2 td2b">21</td>
+						</tr>
+						<tr>
+							<th id="2014-2" headers="y2">2014</th>
+							<td headers="2014-2 d2 rp2a">1088.6</td>
+							<td headers="2014-2 d2 td2a">25</td>
+							<td headers="2014-2 c2 rp2b">936.8</td>
+							<td headers="2014-2 c2 td2b">22</td>
+						</tr>
+						<tr>
+							<th id="2015-2" headers="y2">2015</th>
+							<td headers="2015-2 d2 rp2a">1105.0</td>
+							<td headers="2015-2 d2 td2a">25</td>
+							<td headers="2015-2 c2 rp2b">926.8</td>
+							<td headers="2015-2 c2 td2b">21</td>
+						</tr>
+						<tr>
+							<th id="2016-2" headers="y2">2016</th>
+							<td headers="2016-2 d2 rp2a">1082.5</td>
+							<td headers="2016-2 d2 td2a">25</td>
+							<td headers="2016-2 c2 rp2b">913.0</td>
+							<td headers="2016-2 c2 td2b">21</td>
+						</tr>
+						<tr>
+							<th id="2017-2" headers="y2">2017</th>
+							<td headers="2017-2 d2 rp2a">1085.4</td>
+							<td headers="2017-2 d2 td2a">25</td>
+							<td headers="2017-2 c2 rp2b">899.5</td>
+							<td headers="2017-2 c2 td2b">21</td>
+						</tr>
+						<tr>
+							<th id="2018-2" headers="y2">2018</th>
+							<td headers="2018-2 d2 rp2a">1078.6</td>
+							<td headers="2018-2 d2 td2a">25</td>
+							<td headers="2018-2 c2 rp2b">882.5</td>
+							<td headers="2018-2 c2 td2b">21</td>
+						</tr>
+						<tr>
+							<th id="2019-2" headers="y2">2019</th>
+							<td headers="2019-2 d2 rp2a">1069.1</td>
+							<td headers="2019-2 d2 td2a">25</td>
+							<td headers="2019-2 c2 rp2b">868.4</td>
+							<td headers="2019-2 c2 td2b">21</td>
+						</tr>
+						<tr>
+							<th id="2020-2" headers="y2">2020</th>
+							<td headers="2020-2 d2 rp2a">1101.1</td>
+							<td headers="2020-2 d2 td2a">22</td>
+							<td headers="2020-2 c2 rp2b">857.4</td>
+							<td headers="2020-2 c2 td2b">18</td>
+						</tr>
+						<tr>
+							<th id="2021-2" headers="y2">2021</th>
+							<td headers="2021-2 d2 rp2a">1078.1</td>
+							<td headers="2021-2 d2 td2a">22</td>
+							<td headers="2021-2 c2 rp2b">849.7</td>
+							<td headers="2021-2 c2 td2b">18</td>
+						</tr>
+						<tr>
+							<th id="2022-2" headers="y2">2022</th>
+							<td headers="2022-2 d2 rp2a">1081.6</td>
+							<td headers="2022-2 d2 td2a">23</td>
+							<td headers="2022-2 c2 rp2b">835.8</td>
+							<td headers="2022-2 c2 td2b">19</td>
+						</tr>
+						<tr>
+							<th id="2023-2" headers="y2">2023</th>
+							<td headers="2023-2 d2 rp2a">1025.4</td>
+							<td headers="2023-2 d2 td2a">24</td>
+							<td headers="2023-2 c2 rp2b">823.7</td>
+							<td headers="2023-2 c2 td2b">20</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!-- Use Default Display Data to Generate... -->
+		<div class="svgEnhance cf" aria-hidden="true">
+			<div>
+				<h5>Ages &lt;65 </h5>
+				<div class="row g-0">
+					<div class="col-md-9">
+						<div class="svg-wrap common-death">
+							<svg id="heart_vs_cancer_lt65" class="nvd3-graph thick-lines svg-font"  viewBox="0 0 750 400" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div id="legend_heart_vs_cancer_lt65" class="nvd3-wide-graph-legend"></div>
+						<button type="button" class="showData-btn-3 mb-3" data-bs-toggle="modal" data-bs-target="#showData3">View Data Table</button>
+					</div>
+				</div>
+				<p class="graph_footnote">Source: U.S. Mortality Files, National Center for Health Statistics, Centers for Disease Control and Prevention.<br>
+				Rates are age-adjusted.</p>
+			</div>
+		</div>
+
+		<div class="svgEnhance cf" aria-hidden="true">
+			<div>
+				<h5>Ages 65+</h5>
+				<div class="row g-0">
+					<div class="col-md-9">
+						<div class="svg-wrap common-death">
+							<svg id="heart_vs_cancer_ge65" class="nvd3-graph thick-lines svg-font"  viewBox="0 0 750 400" preserveAspectRatio="xMinYMin meet" focusable="false"></svg>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div id="legend_heart_vs_cancer_ge65" class="nvd3-wide-graph-legend" ></div>
+						<button type="button" class="showData-btn-4 mb-3" data-bs-toggle="modal" data-bs-target="#showData4">View Data Table</button>
+					</div>
+				</div>
+				<p class="graph_footnote">Source: U.S. Mortality Files, National Center for Health Statistics, Centers for Disease Control and Prevention.<br>
+				Rates are age-adjusted.</p>
+			</div>
+		</div>
+	</div>
+	
+	<h2 class="tog-control">Interactive Statistics with SEER*Explorer</h2>
+	<div class="tog-content">
+		<div class="row">
+			<div class="col-md-5 offset-md-1 order-1">
+				<div class="listCard">
+					<strong class="listCard-title">With SEER*Explorer, you can...</strong>
+					<ul class="listCard-explorer">
+						<li>
+							<svg aria-hidden="true" width="1.25em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+								<path d="M0 0h1v16H0V0zm1 15h15v1H1v-1z"></path>
+								<path fill-rule="evenodd" d="M14.39 9.041l-4.349-5.436L7 6.646 3.354 3l-.708.707L7 8.061l2.959-2.959 3.65 4.564.781-.625z" clip-rule="evenodd"></path>
+								<path fill-rule="evenodd" d="M10 9.854a.5.5 0 00.5.5h4a.5.5 0 00.5-.5v-4a.5.5 0 00-1 0v3.5h-3.5a.5.5 0 00-.5.5z" clip-rule="evenodd"></path>
+							</svg>
+							Create custom graphs and tables
+						</li>
+						<li>
+							<svg aria-hidden="true" width="1.25em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd" d="M12.002 4h-10a1 1 0 00-1 1v8a1 1 0 001 1h10a1 1 0 001-1V5a1 1 0 00-1-1zm-10-1a2 2 0 00-2 2v8a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2h-10z" clip-rule="evenodd"></path>
+								<path d="M10.648 8.646a.5.5 0 01.577-.093l1.777 1.947V14h-12v-1l2.646-2.354a.5.5 0 01.63-.062l2.66 1.773 3.71-3.71z"></path>
+								<path fill-rule="evenodd" d="M4.502 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM4 2h10a1 1 0 011 1v8a1 1 0 01-1 1v1a2 2 0 002-2V3a2 2 0 00-2-2H4a2 2 0 00-2 2h1a1 1 0 011-1z" clip-rule="evenodd"></path>
+							</svg>
+							Download data and images
+						</li>
+						<li>
+							<svg aria-hidden="true" width="1.25em" height="1.25em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+								<path d="M4.715 6.542L3.343 7.914a3 3 0 104.243 4.243l1.828-1.829A3 3 0 008.586 5.5L8 6.086a1.001 1.001 0 00-.154.199 2 2 0 01.861 3.337L6.88 11.45a2 2 0 11-2.83-2.83l.793-.792a4.018 4.018 0 01-.128-1.287z"></path>
+								<path d="M5.712 6.96l.167-.167a1.99 1.99 0 01.896-.518 1.99 1.99 0 01.518-.896l.167-.167A3.004 3.004 0 006 5.499c-.22.46-.316.963-.288 1.46z"></path>
+								<path d="M6.586 4.672A3 3 0 007.414 9.5l.775-.776a2 2 0 01-.896-3.346L9.12 3.55a2 2 0 012.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 00-4.243-4.243L6.586 4.672z"></path>
+								<path d="M10 9.5a2.99 2.99 0 00.288-1.46l-.167.167a1.99 1.99 0 01-.896.518 1.99 1.99 0 01-.518.896l-.167.167A3.004 3.004 0 0010 9.501z"></path>
+							</svg>
+							Share links to results
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<p>SEER*Explorer is an interactive website that provides easy access to a wide range of SEER cancer statistics. It provides detailed statistics for a cancer site by sex, race, calendar year, age, and for a selected number of cancer sites, by stage and histology.</p>
+				<a class="button greenBtn" href="https://seer.cancer.gov/statistics-network/explorer/application.html">Explore Additional Cancer Statistics</a>
+			</div>
+		</div>
+	</div>
+
+	<h2 class="tog-control">More About Cancer Surveillance</h2>
+	<div class="tog-content">
+		<h4>More Information</h4>
+		<p>Here are some resources for learning more about cancer surveillance:</p>
+		<ul class="spaced">
+            <li>The <a href="/">SEER website</a> provides information about the Surveillance, Epidemiology, and End Results (SEER) Program. </li>
+            <li>The <a href="https://statecancerprofiles.cancer.gov/">State Cancer Profiles</a> website provides dynamic views of cancer statistics for prioritizing cancer control efforts in the nation, states, and counties.</li>
+            <li>The <a href="https://knowyourchances.cancer.gov/">Know Your Chances</a> website presents interactive risk charts to put probabilities (risk) of dying from cancer and other diseases in context.</li>
+            <li>The <a href="https://costprojections.cancer.gov/">Cancer Prevalence and Cost of Care Projections</a> website shows data for cancer prevalence estimated and projected by tumor site through 2020.</li>
+            <li>See <a href="/statistics/interactive.html">Interactive Tools, Maps, & Graphs</a> for more information about SEER's interactive tools.</li>
+            <li>The <a href="https://cancerstatisticscenter.cancer.org/">American Cancer Society's Cancer Statistics Center</a><a class="extlink" href="https://www.cancer.gov/policies/linking"><img src="/images/exit.png" alt="External Web Site Policy" title="External Web Site Policy"></a> website is a comprehensive interactive resource for learning about the cancer burden in the United States. </li>
+            <li>The <a href="https://www.cdc.gov/national-program-cancer-registries/">National Program of Cancer Registries</a> provides information about from the CDC about the National Program of Cancer Registries.</li>
+            <li>The CDC <a href="https://www.cdc.gov/cancer/data/">Cancer Data and Statistics</a> page describes U.S. Cancer Statistics and lists tools and databases that present these data.</li>
+            <li>The <a href="https://www.cancer.org/cancer/cancer-basics/cancer-surveillance-programs-and-registries-in-the-united-states.html">Cancer Surveillance Programs</a><a class="extlink" href="https://www.cancer.gov/policies/linking"><img src="/images/exit.png" alt="External Web Site Policy" title="External Web Site Policy"></a> page on the American Cancer Society website provides information about cancer surveillance programs in the United States.</li>
+		</ul>
+
+		<h4>References</h4>
+		<p>All statistics in this report are based on statistics from SEER and the Centers for Disease Control and Prevention's National Center for Health Statistics. Most can be found within <a href="https://seer.cancer.gov/statistics-network/explorer/application.html">SEER*Explorer</a>.</p>
+		<p>Estimates of new cases and deaths for 2025 are projections made by the American Cancer Society (ACS), based on earlier reported data.</p>
+
+		<h4>Suggested Citation</h4>
+		<p>All material in this report is in the public domain and may be reproduced or copied without permission; citation as to source, however, is appreciated.</p>
+		<p>SEER Cancer Statistics Factsheets: Common Cancer Sites. National Cancer Institute. Bethesda, MD, https://seer.cancer.gov/statfacts/html/common.html</p>
+	</div>
+</div><!--/body_content-->        </main>
+        </div><!--close row-->
+    <img src="/i/right-body.png" alt="" class="bg-back"></div>
+
+    <div class="wrapper">
+        <meta http-equiv="last_modified" content="Mon, 12 Jan 2026 13:53:35 -0500" />
+    </div>
+</div>
+
+
+<!-- Blue Footer -->
+<footer class="footer" role="contentinfo">
+	<a class="returntop" href="#content" style="display: inline;"><span>Return to Top</span></a>
+	<div class="container-lg">
+    	<div class="row justify-content-around">
+    		<div class="col-lg-9">
+				<p class="seer-logo">SEER is supported by the <a href="https://surveillance.cancer.gov/">Surveillance Research Program (SRP)</a> in NCI's <a href="https://cancercontrol.cancer.gov/">Division of Cancer Control and Population Sciences (DCCPS)</a>. SRP provides national leadership in the science of cancer surveillance as well as analytical tools and methodological expertise in collecting, analyzing, interpreting, and disseminating reliable population-based statistics.</p>
+			</div>
+        </div>
+	</div>
+	
+	<div class="footer-links">
+    	<div class="container-lg"> 
+			<div class="row links-col">
+				<div class="col-md-3">
+					<h2>Follow SEER</h2>
+					<ul class="social">
+						<li><a href="https://surveillance.cancer.gov/blog"><img loading="lazy" src="/i/blog-icon.png" alt="SRP Blog" width="40" height="32"></a></li>
+						<li><a href="https://www.linkedin.com/showcase/nci-cancer-control-and-population-sciences/"><img loading="lazy" src="/i/linkedin-icon.png" alt="DCCPS LinkedIn" width="32" height="32"></a></li>
+					</ul>
+					<h2>Sign up for email updates</h2>
+					<a class="button-gray fw-bold" href="https://public.govdelivery.com/accounts/USNIHNCI/subscriber/new?topic_id=USNIHNCI_396">Sign Up</a>
+				</div>
+				
+				<div class="col-md-3">
+					<h2>Contact Information</h2>
+					<ul>        	
+						<li><a href="/about/contact.html">Contact SEER</a></li>
+						<li><a href="https://livehelp.cancer.gov/">NCI LiveHelp Online Chat</a></li>
+					</ul>
+				</div>
+				
+				<div class="col-md-3">
+					<h2>More Information</h2>
+					<ul>    
+						<li><a href="https://surveillance.cancer.gov/jobs/">Careers</a></li>	
+						<li><a href="/sitemap.html">Sitemap</a></li>
+						<li><a href="/about/using-website.html">Using This Website</a></li>
+					</ul>
+				</div>	
+				
+				<div class="col-md-3">
+					<h2>Policies</h2>
+					<ul>        						
+						<li><a href="https://www.cancer.gov/policies/accessibility">Accessibility</a></li>
+						<li><a href="https://www.cancer.gov/policies/disclaimer">Disclaimer</a></li>
+						<li><a href="https://www.cancer.gov/policies/foia">FOIA</a></li>
+						<li><a href="https://www.hhs.gov/vulnerability-disclosure-policy">HHS Vulnerability Disclosure</a></li>
+						<li><a href="https://www.cancer.gov/policies/privacy-security">Privacy &amp; Security</a></li>
+						<li><a href="https://www.cancer.gov/policies/copyright-reuse">Reuse of Graphics and Text</a></li>
+						<li><a href="https://www.cancer.gov/policies/linking">Website Linking</a></li>
+					</ul>
+				</div>	
+			</div>
+
+			<ul class="linkList ps-0 p-md-2">
+				<li><a href="https://www.hhs.gov/">U.S. Department of Health and Human Services</a></li>
+				<li><a href="https://www.nih.gov/">National Institutes of Health</a></li>
+				<li><a href="https://www.cancer.gov/">National Cancer Institute</a></li>
+				<li class="last"><a href="https://www.usa.gov/">USA.gov</a></li>
+			</ul>
+			<p class="text-center">NIH... Turning Discovery Into Health<sup>&reg;</sup></p>
+    	</div>
+	</div>
+</footer>
+
+
+<script type="text/javascript" src="/j/general.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Do not defer jquery-ui, it needs to be available for mnav -->
+<script src="/j/jquery-ui.min.js" type="text/javascript"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125238734-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-125238734-1');
+</script>
+
+<!-- NCI WEB ANALYTICS CODE -->
+<script src="//static.cancer.gov/webanalytics/WA_DCCPS_PageLoad.js"></script>
+
+<!-- create Facebook share URL for current page-->
+<script>
+    var fb_page = window.location.href; //current page url
+    var page_title = $("title").text(); //current page title
+    fb_page = "https://www.facebook.com/sharer/sharer.php?u=" + fb_page + "&t=" + page_title; //insert url and title into the FB sharer
+    $(".facebook-share-button").attr('href', fb_page); //add sharer url to link
+</script>
+<!-- Additional Scripts -->
+<script src="/j/d3.js" type="text/javascript"></script>
+		<script src="/j/nv.d3.min.js" type="text/javascript"></script> 
+	  	<script src="j/csrSiteLabels.js" charset="utf-8"></script>
+	  	<script src="j/csrRaceLabels.js" charset="utf-8"></script>
+	  	<script src="j/sharedFunctions.js" charset="utf-8"></script>
+      	<script src="j/graphColors.js" charset="utf-8"></script>
+      	<script src="j/aapcTrendChart.js" charset="utf-8"></script>
+      	<script src="j/simpleHorizBar.js" charset="utf-8"></script>
+      	<script src="j/eaglePlotBars.js" charset="utf-8"></script>
+      	<script src="j/simpleLineChart.js" charset="utf-8"></script>
+      	<script src="j/pieChartWithTable.js" charset="utf-8"></script>
+      	<script src="j/topByRaceBar.js" charset="utf-8"></script>
+      	<script src="j/TopByRaceLineChart.js" charset="utf-8"></script>
+
+		<script src="/j/jquery.tablesorter.js"></script>
+		<script src="j/factSheetsData.js" charset="utf-8"></script>
+		<script src="j/commonConfigs.js" charset="utf-8"></script>
+		<script>
+			$(function(){ $(".dataTable").tablesorter(); });
+		</script>
+		<script>
+
+        $(document).ready(function() {
+        	
+        	// graphing configurations are defined in commonConfigs.js
+        	
+        	
+        	// pie data configs:  rows, type
+        	AddPieChartAndTable("new_cases_pie", scrapePieData($('#scrapeTable_01 tr'), pieGraphConfigs), renderConfigs);
+            AddPieChartAndTable("new_deaths_pie",scrapePieData($('#scrapeTable_02 tr'), pieGraphConfigs), renderConfigs);
+            
+            // bar data configs: rows, key, format, significancePresent, type, hasAgeGroup
+            
+            
+            APCHorizontalBar("aapc_incd_male", scrapeBarData($('#scrapeTable_09 tr'), $('#scrapeTable_09').prev().text(), barGraphConfigs), oGraphConfigs.incd_trends_male);
+            APCHorizontalBar("aapc_incd_female", scrapeBarData($('#scrapeTable_10 tr'), $('#scrapeTable_10').prev().text(), barGraphConfigs ), oGraphConfigs.incd_trends_female);
+            APCHorizontalBar("aapc_mort_male", scrapeBarData($('#scrapeTable_11 tr'), $('#scrapeTable_11').prev().text(), barGraphConfigs ), oGraphConfigs.mort_trends_male);
+            APCHorizontalBar("aapc_mort_female", scrapeBarData($('#scrapeTable_12 tr'), $('#scrapeTable_12').prev().text(), barGraphConfigs ), oGraphConfigs.mort_trends_female);
+            
+            barGraphConfigs.format = ',';
+            barGraphConfigs.significancePresent = false;
+            
+            EaglePlot("new_cases_male", scrapeBarData($('#scrapeTable_03 tr'), $('#scrapeTable_03').prev().text(), barGraphConfigs), oGraphConfigs.new_cases_male, renderConfigs);
+            EaglePlot("new_cases_female", scrapeBarData($('#scrapeTable_04 tr'), $('#scrapeTable_04').prev().text(), barGraphConfigs ), oGraphConfigs.new_cases_female, renderConfigs);
+            EaglePlot("new_deaths_male", scrapeBarData($('#scrapeTable_05 tr'), $('#scrapeTable_05').prev().text(), barGraphConfigs ) ,oGraphConfigs.new_deaths_male, renderConfigs);
+            EaglePlot("new_deaths_female", scrapeBarData($('#scrapeTable_06 tr'), $('#scrapeTable_06').prev().text(), barGraphConfigs ) ,oGraphConfigs.new_deaths_female, renderConfigs);
+            
+            
+            barGraphConfigs.hasAgeGroup = true;
+            
+            SimpleHorizontalBar("leading_cod", scrapeBarData($('#scrapeTable_13 tr'), $('#scrapeTable_13').prev().text(), barGraphConfigs));
+            
+                        
+             // line data configs: rows, keyPresent, isCommon, from1992
+             
+            lineScrapeConfigs.rows = $('#scrapeTable_07 tbody tr'); 
+            TopByRaceLineChart("incd_top_sites_by_race", scrapeLineData(lineScrapeConfigs),oGraphConfigs.incd_top_sites_by_race);
+            
+            lineScrapeConfigs.rows = $('#scrapeTable_08 tbody tr'); 
+            TopByRaceLineChart("mort_top_sites_by_race", scrapeLineData(lineScrapeConfigs),oGraphConfigs.mort_top_sites_by_race);
+            
+            
+            lineScrapeConfigs.keyPresent = true;
+            lineScrapeConfigs.from1992 = true;
+
+            lineScrapeConfigs.rows = $('#scrapeTable_14 tbody tr'); 
+            SimpleLineChart("heart_vs_cancer_lt65", scrapeLineData(lineScrapeConfigs),25,100,2023);
+            
+            lineScrapeConfigs.rows = $('#scrapeTable_15 tbody tr'); 
+            SimpleLineChart("heart_vs_cancer_ge65", scrapeLineData(lineScrapeConfigs),500,3000,2023);
+
+			
+			
+        });
+        </script>
+
+        <script>
+			// pull the accessible data table into a modal for graphs where keyboard users cant access details
+			$(document).ready(function(){
+				// Most Common Cancers, Line Chart 1
+				var table1 = $(".showData-table-1").html();
+				$('<div class="modal fade" tabindex="-1" id="showData1" aria-labelledby="modalTitle1"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><p class="modal-title" id="modalTitle1"><strong>Rate of New Cases, by Race and Ethnicity, for the Four Most Commonly Diagnosed Cancers</strong></p><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">'+table1+'</div></div></div></div>').insertAfter('.showData-btn-1');
+
+				// Most Common Cancers, Line Chart 2
+				var table2 = $(".showData-table-2").html();
+				$('<div class="modal fade" tabindex="-1" id="showData2" aria-labelledby="modalTitle2"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><p class="modal-title" id="modalTitle2"><strong>Death Rate, by Race and Ethnicity, for the Five Most Deadly Cancers</strong></p><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">'+table2+'</div></div></div></div>').insertAfter('.showData-btn-2');
+
+				// Death Rates, Line Chart 1
+				var table3 = $(".showData-table-3").html();
+				$('<div class="modal fade" tabindex="-1" id="showData3" aria-labelledby="modalTitle3"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><p class="modal-title" id="modalTitle3"><strong>U.S. Death Rates</strong></p><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">'+table3+'</div></div></div></div>').insertAfter('.showData-btn-3');
+
+				// Death Rates, Line Chart 2
+				var table4 = $(".showData-table-4").html();
+				$('<div class="modal fade" tabindex="-1" id="showData4" aria-labelledby="modalTitle4"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><p class="modal-title" id="modalTitle4"><strong>U.S. Death Rates</strong></p><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">'+table4+'</div></div></div></div>').insertAfter('.showData-btn-4');
+				
+				// jump to link and open toggle
+				// when an anchor with this data attribute is clicked...
+				$("a[data-toggle='scroll-expand']").click(function(){
+					// store the href attribute/ID we are jumping to
+					var jumpto = $(this).attr("href");
+					// go to that IDs button and click it so relevant aria is updated automatically
+					$(jumpto + ' button').click();
+					// animate scrollto/FF fix
+					$('html,body').animate({
+						 scrollTop: $(jumpto).offset().top
+					 }, 1);
+				});
+			});
+		</script>
+</body>
+</html>
