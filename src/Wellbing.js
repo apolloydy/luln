@@ -22,6 +22,19 @@ const Wellbing = () => {
         </NavLink>
 
         <NavLink
+          to="mortality-explorer"
+          className={({ isActive }) =>
+            `block mb-4 ${
+              isActive
+                ? 'text-green-400 font-bold'
+                : 'text-gray-600 hover:text-green-400'
+            }`
+          }
+        >
+          Mortality Explorer
+        </NavLink>
+
+        <NavLink
           to="chronic-disease"
           className={({ isActive }) =>
             `block mb-4 ${

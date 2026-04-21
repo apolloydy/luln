@@ -8,6 +8,7 @@ import DeathStatistics from "./DeathStatistics";   // 子页面组件
 import ChronicDisease from "./ChronicDisease";
 import ChronicDiseaseMitigation from "./ChronicDiseaseMitigation";
 import Vo2Max from "./Vo2Max";
+import MortalityExplorer from "./MortalityExplorer";
 import Contact from './Contact';
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
           <Route index element={<Navigate to="cause-of-death" replace />} />
           {/* 在 Wellbing 的子路由下继续定义三个分支 */}
           <Route path="cause-of-death" element={<DeathStatistics />} />
+          <Route path="mortality-explorer" element={<MortalityExplorer />} />
           <Route path="chronic-disease" element={<ChronicDisease />} />
           <Route path="life-style-changes" element={<ChronicDiseaseMitigation />} />
           <Route path="vo2max" element={<Vo2Max />} />
