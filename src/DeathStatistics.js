@@ -8,18 +8,19 @@ const DeathStatistics = () => {
     <div className="death-page">
       <section className="death-hero">
         <div>
-          <span className="death-eyebrow">Wellbing / Cause of Death</span>
-          <h1 className="death-page-title">Mortality patterns, updated to CDC 2024 final data</h1>
+          <span className="death-eyebrow">Know The Problem</span>
+          <h1 className="death-page-title">If you want to change the outcome, first understand what actually kills.</h1>
           <p className="death-page-copy">
-            Start with the national picture, then drill into cancer and accidental causes as
-            supplementary views. The goal is not shock value. The goal is perspective.
+            Most people would rather not look at this. That is exactly why it is worth looking at.
+            Stay close to what comforts you, but even closer to what threatens you. Start with the
+            national picture, then move into the causes that deserve real attention.
           </p>
         </div>
 
         <div className="death-hero-note">
-          <strong>2024 key shift</strong>
-          <span>Suicide became the 10th leading cause of death.</span>
-          <span>COVID-19 fell out of the top 10 and dropped to 15th.</span>
+          <strong>Perspective before strategy</strong>
+          <span>You cannot seriously reduce a risk you refuse to name.</span>
+          <span>Look at the pattern first. Then decide what is worth changing.</span>
         </div>
       </section>
 

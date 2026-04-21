@@ -1,43 +1,76 @@
-// ChronicDisease.js
 import React from "react";
 
-const ChronicDisease = () => {
-    const diseases = [
-        {
-            name: "Atherosclerotic Diseases",
-            description: "Encompasses cardiovascular diseases and cerebrovascular diseases; leading causes of death worldwide.",
-        },
-        {
-            name: "Cancer",
-            description: "Various types of malignant tumors; the second leading cause of death globally.",
-        },
-        {
-            name: "Neurodegenerative Diseases",
-            description: "Includes conditions like Alzheimer's disease, common among the elderly, with mortality rates increasing with age.",
-        },
-        {
-            name: "Metabolic Diseases",
-            description: "Covers disorders such as type 2 diabetes, where patients have a higher mortality risk compared to non-diabetic individuals.",
-        },
-        {
-            name: "Immune System Disorders",
-            description: "Declining immune function increases the risk of infections and diseases; for example, patients with systemic lupus erythematosus have higher mortality rates.",
-        },
-    ];
+const diseases = [
+  {
+    name: "Atherosclerotic disease",
+    description:
+      "Cardiovascular and cerebrovascular disease remain the biggest long-range threats because they build quietly for years before they become obvious.",
+  },
+  {
+    name: "Cancer",
+    description:
+      "Cancer is not one disease but a family of diseases. Risk changes by age, sex, behavior, screening, and exposure history.",
+  },
+  {
+    name: "Neurodegenerative disease",
+    description:
+      "Alzheimer disease and related disorders become more common with age and matter because they erode both lifespan and quality of life.",
+  },
+  {
+    name: "Metabolic disease",
+    description:
+      "Type 2 diabetes, insulin resistance, and obesity often travel together and amplify downstream risk across the whole system.",
+  },
+  {
+    name: "Immune and inflammatory disorders",
+    description:
+      "Chronic inflammation and immune dysfunction make recovery harder and increase vulnerability across multiple disease categories.",
+  },
+];
 
-    return (
-        <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">The Five Horsemen of Chronic Disease</h2>
-            <ul className="space-y-4">
-                {diseases.map((disease, index) => (
-                    <li key={index} className="p-4 border rounded-lg shadow">
-                        <h3 className="text-xl font-semibold">{disease.name}</h3>
-                        <p>{disease.description}</p>
-                    </li>
-                ))}
-            </ul>
+const ChronicDisease = () => {
+  return (
+    <div className="well-page">
+      <section className="well-hero">
+        <div>
+          <span className="well-eyebrow">Understand The Long Game</span>
+          <h1 className="well-title">Most chronic disease is not random. It is cumulative.</h1>
+          <p className="well-copy">
+            The point of looking at these categories is not to memorize labels. The point is to see
+            where long-term risk tends to come from, so prevention stops being abstract.
+          </p>
         </div>
-    );
+
+        <div className="well-hero-note">
+          <strong>What matters</strong>
+          <span>These are the categories that quietly shape late-life outcomes.</span>
+          <span>They overlap, compound, and usually reward early action.</span>
+        </div>
+      </section>
+
+      <section className="well-card">
+        <div className="well-card-header">
+          <div>
+            <span className="well-eyebrow">Core Framework</span>
+            <h2 className="well-card-title">The five chronic disease fronts worth watching</h2>
+            <p className="well-card-copy">
+              Think of these as the major fronts where lifespan and healthspan are usually won or lost.
+            </p>
+          </div>
+        </div>
+
+        <div className="horsemen-grid">
+          {diseases.map((disease, index) => (
+            <article key={disease.name} className="horseman-card">
+              <span className="horseman-rank">{`0${index + 1}`}</span>
+              <h3>{disease.name}</h3>
+              <p>{disease.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
 };
 
 export default ChronicDisease;
