@@ -124,6 +124,8 @@ const techEvents = {
     2022: "Nuclear fusion breakthrough: scientists achieve net energy gain in fusion reaction.",
     2023: "AI becomes mainstream with ChatGPT and MidJourney.",
     2024: "Tools like ChatGPT, Claude, and Gemini became popular for content creation, coding, and problem solving ",
+    2025: "AI agents moved from chat to action, while physical AI and local AI computing accelerated.",
+    2026: "Agentic coding entered the mainstream, with AI writing more code while humans still directed, reviewed, and decided.",
   };
   
   export default techEvents;

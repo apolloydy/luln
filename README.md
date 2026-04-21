@@ -1,4 +1,21 @@
 # luln
+
+## Cloudflare Pages Deployment
+
+This project is suitable for `Cloudflare Pages`.
+
+Recommended settings in the `Cloudflare Pages` dashboard:
+
+- Framework preset: `Create React App`
+- Build command: `npm run build`
+- Build output directory: `build`
+- Root directory: `/`
+- Production branch: your main branch, usually `main`
+
+This repo includes `public/_redirects` so `BrowserRouter` routes work correctly on refresh and direct visits.
+
+Once the GitHub repo is connected to `Cloudflare Pages`, future `git push` operations to the production branch will trigger automatic deployments.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

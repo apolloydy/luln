@@ -1,6 +1,4 @@
 const futurePredictions = {
-    2025: "AI becomes an essential part of daily life, enhancing personal assistants, education, and decision-making.",
-    2026: "Fully autonomous delivery drones and self-driving trucks revolutionize logistics and transportation.",
     2027: "Brain-computer interfaces allow direct communication between humans and machines, enabling thought-controlled devices.",
     2028: "First commercially viable fusion power plant goes online, marking the beginning of limitless clean energy.",
     2029: "AI-powered medical diagnostics outperform human doctors in detecting diseases at early stages.",
