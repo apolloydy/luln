@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
 import { Tooltip } from "react-tooltip";
-import techEvents from "./techEvents";
-import quotes from "./quote";
-import bodyDevelopmentFacts from "./bodyDevelopmentFacts";
-import futurePredictions from "./futurePredictions";
+import { getTechEvents } from "./techEvents";
+import { getQuotes } from "./quote";
+import { getBodyDevelopmentFacts } from "./bodyDevelopmentFacts";
+import { getFuturePredictions } from "./futurePredictions";
 import {
   buildCalendarYearRows,
   calculateMetrics,
@@ -20,7 +20,7 @@ function getColorTran(pct) {
   return `hsl(${hue}, 84%, ${finalLightness}%)`;
 }
 
-function getRandomQuote() {
+function pickRandomQuote(quotes) {
   return quotes[Math.floor(Math.random() * quotes.length)];
 }
 
@@ -180,12 +180,16 @@ function renderGrid({
 }
 
 const LifeExpectancy = () => {
-  const { t, formatDate, formatNumber } = useLocale();
+  const { locale, t, formatDate, formatNumber } = useLocale();
+  const quotes = getQuotes(locale);
+  const techEvents = getTechEvents(locale);
+  const bodyDevelopmentFacts = getBodyDevelopmentFacts(locale);
+  const futurePredictions = getFuturePredictions(locale);
   const [birthDate, setBirthDate] = useState(() => localStorage.getItem("birthDate") || "1962-06-18");
   const [firstChildBirth, setFirstChildBirth] = useState(() => localStorage.getItem("firstChildBirth") || "");
   const [lastChildBirth, setLastChildBirth] = useState(() => localStorage.getItem("lastChildBirth") || "");
   const [lifeExpectancy, setLifeExpectancy] = useState(() => Number(localStorage.getItem("lifeExpectancy")) || 80);
-  const [quote, setQuote] = useState(getRandomQuote());
+  const [quote, setQuote] = useState(() => pickRandomQuote(quotes));
 
   useEffect(() => {
     localStorage.setItem("birthDate", birthDate);
@@ -205,11 +209,15 @@ const LifeExpectancy = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setQuote(getRandomQuote());
+      setQuote(pickRandomQuote(quotes));
     }, 20000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [quotes]);
+
+  useEffect(() => {
+    setQuote(pickRandomQuote(quotes));
+  }, [locale, quotes]);
 
   const metrics = calculateMetrics(birthDate, lifeExpectancy, new Date());
   const remainingColor = getColorTran(100 - Number(metrics.lifePercentage));
