@@ -15,10 +15,10 @@
   --child-18: #fde047;
   --last-years: #ef4444;
   --life-axis-width: 82px;
-  --life-row-height: 10px;
-  --life-grid-gap: 1px;
+  --life-row-height: 9px;
+  --life-grid-gap: 0px;
   --life-bead-width: 6px;
-  --life-bead-height: 8px;
+  --life-bead-height: 7px;
 }
 
 .life-page {
@@ -1010,9 +1010,9 @@
 
   .life-grid-frame {
     --life-axis-width: 66px;
-    --life-row-height: 9px;
+    --life-row-height: 8px;
     --life-bead-width: 4px;
-    --life-bead-height: 7px;
+    --life-bead-height: 6px;
     grid-template-columns: 78px minmax(0, 1fr);
     column-gap: 4px;
   }
