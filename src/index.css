@@ -23,3 +23,68 @@ html, body {
   color: white;            /* 文字默认白色 */
   height: 100%;            /* 可选，如果需要让容器撑满可视高度 */
 }
+
+#root {
+  min-height: 100%;
+}
+
+.site-header {
+  gap: 20px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-brand {
+  margin: 0;
+  line-height: 1.05;
+}
+
+.site-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.site-nav {
+  flex-wrap: wrap;
+}
+
+.locale-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #cbd5e1;
+  font-size: 0.92rem;
+}
+
+.locale-switcher select {
+  min-width: 110px;
+  border: 1px solid rgba(125, 211, 252, 0.28);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.82);
+  color: #f8fafc;
+  padding: 8px 14px;
+  outline: none;
+}
+
+.locale-switcher select:focus {
+  border-color: #7dd3fc;
+  box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.14);
+}
+
+@media (max-width: 900px) {
+  .site-header {
+    align-items: flex-start;
+  }
+
+  .site-brand {
+    font-size: 1.7rem;
+  }
+
+  .site-header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

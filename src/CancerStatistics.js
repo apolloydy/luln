@@ -6,16 +6,19 @@ import {
   femaleCancerDeathCauses,
   maleCancerDeathCauses,
 } from "./data/wellbing/cancerDeathCauses";
+import { useLocale } from "./i18n/LocaleProvider";
 
 // 注册 Chart.js 组件
 Chart.register(ArcElement, Tooltip, Legend);
 
 const CancerStatistics = () => {
+  const { t } = useLocale();
   const maleCancerCauses = maleCancerDeathCauses;
   const femaleCancerCauses = femaleCancerDeathCauses;
+  const causeLabels = t("death.causeLabels");
 
   const createChartData = (causes) => ({
-    labels: causes.map((cause) => cause.name),
+    labels: causes.map((cause) => causeLabels[cause.name] || cause.name),
     datasets: [
       {
         data: causes.map((cause) => cause.percentage),
@@ -59,7 +62,7 @@ const CancerStatistics = () => {
   return (
     <div className="p-6 flex flex-col items-center w-full">
       <h1 className="text-3xl font-bold mb-6 text-white">
-        Cancer Death Statistics
+        {t("death.supplementary.cancerTitle")}
       </h1>
 
       {/* 并排布局：外层一个 flex row，里面两个各占一半宽度 */}
@@ -67,7 +70,7 @@ const CancerStatistics = () => {
         {/* 左侧：男性癌症饼图 */}
         <div className="w-1/2">
           <h2 className="text-2xl font-semibold mb-4 text-white">
-            Male Cancer Death Causes
+            {t("death.filters.male")} {t("death.supplementary.cancerTitle")}
           </h2>
           <div className="relative w-full" style={{ height: "400px" }}>
             <Pie
@@ -80,7 +83,7 @@ const CancerStatistics = () => {
         {/* 右侧：女性癌症饼图 */}
         <div className="w-1/2">
           <h2 className="text-2xl font-semibold mb-4 text-white">
-            Female Cancer Death Causes
+            {t("death.filters.female")} {t("death.supplementary.cancerTitle")}
           </h2>
           <div className="relative w-full" style={{ height: "400px" }}>
             <Pie
@@ -92,7 +95,7 @@ const CancerStatistics = () => {
       </div>
 
       <p className="death-footnote w-full max-w-4xl">
-        Source: <a href={cancerDeathCausesSource.url} target="_blank" rel="noopener noreferrer" className="death-inline-link">{cancerDeathCausesSource.label}</a>. Accessed {cancerDeathCausesSource.accessed}. {cancerDeathCausesSource.notes}
+        {t("common.source")}: <a href={cancerDeathCausesSource.url} target="_blank" rel="noopener noreferrer" className="death-inline-link">{cancerDeathCausesSource.label}</a>. {t("common.accessedOn", { date: cancerDeathCausesSource.accessed })}. {cancerDeathCausesSource.notes}
       </p>
     </div>
   );

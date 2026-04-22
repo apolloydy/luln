@@ -2,25 +2,24 @@ import React from "react";
 import CausesOfDeath from "./CausesOfDeath";
 import CancerStatistics from "./CancerStatistics";
 import AccidentCauses from "./AccidentCauses";
+import { useLocale } from "./i18n/LocaleProvider";
 
 const DeathStatistics = () => {
+  const { t } = useLocale();
+
   return (
     <div className="death-page">
       <section className="death-hero">
         <div>
-          <span className="death-eyebrow">Know The Problem</span>
-          <h1 className="death-page-title">If you want to change the outcome, first understand what actually kills.</h1>
-          <p className="death-page-copy">
-            Most people would rather not look at this. That is exactly why it is worth looking at.
-            Stay close to what comforts you, but even closer to what threatens you. Start with the
-            national picture, then move into the causes that deserve real attention.
-          </p>
+          <span className="death-eyebrow">{t("death.hero.eyebrow")}</span>
+          <h1 className="death-page-title">{t("death.hero.title")}</h1>
+          <p className="death-page-copy">{t("death.hero.copy")}</p>
         </div>
 
         <div className="death-hero-note">
-          <strong>Perspective before strategy</strong>
-          <span>You cannot seriously reduce a risk you refuse to name.</span>
-          <span>Look at the pattern first. Then decide what is worth changing.</span>
+          <strong>{t("death.hero.noteTitle")}</strong>
+          <span>{t("death.hero.noteLine1")}</span>
+          <span>{t("death.hero.noteLine2")}</span>
         </div>
       </section>
 
@@ -30,11 +29,9 @@ const DeathStatistics = () => {
         <section className="death-secondary-card">
           <div className="death-card-header">
             <div>
-              <span className="death-eyebrow">Supplementary Breakdown</span>
-              <h2 className="death-title">Cancer death causes</h2>
-              <p className="death-subtitle">
-                Sex-specific breakdown for major cancer death categories, kept as a supporting view.
-              </p>
+              <span className="death-eyebrow">{t("death.supplementary.eyebrow")}</span>
+              <h2 className="death-title">{t("death.supplementary.cancerTitle")}</h2>
+              <p className="death-subtitle">{t("death.supplementary.cancerSubtitle")}</p>
             </div>
             <a
               href="https://www.cancer.org/research/cancer-facts-statistics/all-cancer-facts-figures/2025-cancer-facts-figures.html"
@@ -51,11 +48,9 @@ const DeathStatistics = () => {
         <section className="death-secondary-card">
           <div className="death-card-header">
             <div>
-              <span className="death-eyebrow">Supplementary Breakdown</span>
-              <h2 className="death-title">Accidental death causes</h2>
-              <p className="death-subtitle">
-                A focused view on unintentional injury categories to complement the national top-10 list.
-              </p>
+              <span className="death-eyebrow">{t("death.supplementary.eyebrow")}</span>
+              <h2 className="death-title">{t("death.supplementary.accidentTitle")}</h2>
+              <p className="death-subtitle">{t("death.supplementary.accidentSubtitle")}</p>
             </div>
             <a
               href="https://www.cdc.gov/injury/wisqars/"

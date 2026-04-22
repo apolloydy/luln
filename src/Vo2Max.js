@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
+import { useLocale } from "./i18n/LocaleProvider";
 
 Chart.register(...registerables);
 
@@ -100,6 +101,7 @@ function generateVo2Array(ageNow, vo2Now, trainingLevel, customRate, endAge) {
 }
 
 function Vo2Max() {
+  const { t } = useLocale();
   const storedBirthday = localStorage.getItem("birthDate") || "1962-03-02";
   const now = new Date();
   const birth = new Date(storedBirthday);
@@ -136,7 +138,7 @@ function Vo2Max() {
   const chartData = {
     datasets: [
       {
-        label: "VO2 Max (ml/kg/min)",
+        label: t("vo2.chartLabel"),
         data: vo2MaxData.map((d) => ({ x: d.age, y: d.vo2 })),
         borderColor: "#38bdf8",
         backgroundColor: "rgba(56, 189, 248, 0.15)",
@@ -156,7 +158,7 @@ function Vo2Max() {
         type: "linear",
         title: {
           display: true,
-          text: "Age",
+          text: t("vo2.ageAxis"),
           color: "#cbd5e1",
         },
         ticks: {
@@ -169,7 +171,7 @@ function Vo2Max() {
       y: {
         title: {
           display: true,
-          text: "VO2 Max (ml/kg/min)",
+          text: t("vo2.chartLabel"),
           color: "#cbd5e1",
         },
         ticks: {
@@ -193,52 +195,46 @@ function Vo2Max() {
     <div className="well-page">
       <section className="well-hero">
         <div>
-          <span className="well-eyebrow">Aerobic Reserve</span>
-          <h1 className="well-title">VO2 Max is not vanity. It is capacity.</h1>
-          <p className="well-copy">
-            Cardiorespiratory fitness tells you how much aerobic reserve you can draw on. That is
-            one reason it correlates so strongly with long-term outcomes.
-          </p>
+          <span className="well-eyebrow">{t("vo2.heroEyebrow")}</span>
+          <h1 className="well-title">{t("vo2.heroTitle")}</h1>
+          <p className="well-copy">{t("vo2.heroCopy")}</p>
         </div>
 
         <div className="well-hero-note">
-          <strong>Current setup</strong>
-          <span>{`Birthday: ${storedBirthday}`}</span>
-          <span>{`Current age: ${ageNow} | Life expectancy: ${endAge}`}</span>
+          <strong>{t("vo2.noteTitle")}</strong>
+          <span>{t("vo2.birthday", { date: storedBirthday })}</span>
+          <span>{`${t("vo2.currentAge", { age: ageNow })} | ${t("vo2.lifeExpectancy", { age: endAge })}`}</span>
         </div>
       </section>
 
       <section className="well-card">
         <div className="well-card-header">
           <div>
-            <span className="well-eyebrow">Projection Inputs</span>
-            <h2 className="well-card-title">Estimate the decline curve</h2>
-            <p className="well-card-copy">
-              This is a simple scenario model, not a diagnostic tool. Change the assumptions and
-              inspect the slope.
-            </p>
+            <span className="well-eyebrow">{t("vo2.inputsEyebrow")}</span>
+            <h2 className="well-card-title">{t("vo2.inputsTitle")}</h2>
+            <p className="well-card-copy">{t("vo2.inputsCopy")}</p>
           </div>
         </div>
 
         <div className="well-input-grid">
           <label className="field">
-            <span className="field-label">Current VO2 Max</span>
+            <span className="field-label">{t("vo2.currentVo2")}</span>
             <input type="number" step="1" value={currentVo2} onChange={(e) => setCurrentVo2(Number(e.target.value))} />
           </label>
 
           <label className="field">
-            <span className="field-label">Training Level</span>
+            <span className="field-label">{t("vo2.trainingLevel")}</span>
             <select value={trainingLevel} onChange={(e) => setTrainingLevel(e.target.value)}>
-              <option value="high">High</option>
-              <option value="moderate">Moderate</option>
-              <option value="low">Low</option>
-              <option value="custom">Custom</option>
+              <option value="high">{t("vo2.levels.high")}</option>
+              <option value="moderate">{t("vo2.levels.moderate")}</option>
+              <option value="low">{t("vo2.levels.low")}</option>
+              <option value="custom">{t("vo2.levels.custom")}</option>
             </select>
           </label>
 
           {trainingLevel === "custom" ? (
             <label className="field">
-              <span className="field-label">Custom Annual Decline</span>
+              <span className="field-label">{t("vo2.customAnnualDecline")}</span>
               <input
                 type="number"
                 step="0.001"
@@ -257,8 +253,8 @@ function Vo2Max() {
       <section className="well-card">
         <div className="well-card-header">
           <div>
-            <span className="well-eyebrow">Reference Ranges</span>
-            <h2 className="well-card-title">What the numbers usually mean</h2>
+            <span className="well-eyebrow">{t("vo2.referenceEyebrow")}</span>
+            <h2 className="well-card-title">{t("vo2.referenceTitle")}</h2>
           </div>
         </div>
 
@@ -266,15 +262,15 @@ function Vo2Max() {
           <table className="vo2-table">
             <thead>
               <tr>
-                <th>VO2 Max Range</th>
-                <th>Interpretation</th>
+                <th>{t("vo2.rangeColumn")}</th>
+                <th>{t("vo2.interpretationColumn")}</th>
               </tr>
             </thead>
             <tbody>
               {vo2MaxCategories.map((cat) => (
                 <tr key={`${cat.min}-${cat.max}`}>
                   <td>{`${cat.min}-${cat.max} ml/kg/min`}</td>
-                  <td>{cat.description}</td>
+                  <td>{t(`vo2.categories.${cat.min}-${cat.max}`)}</td>
                 </tr>
               ))}
             </tbody>

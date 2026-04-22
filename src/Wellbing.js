@@ -1,8 +1,11 @@
 // Wellbing.js
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import { useLocale } from './i18n/LocaleProvider';
 
 const Wellbing = () => {
+  const { t } = useLocale();
+
   return (
     <div className="flex min-h-screen">
       {/* 左侧竖直导航栏 */}
@@ -18,7 +21,7 @@ const Wellbing = () => {
             }`
           }
         >
-          Cause of Death
+          {t("wellbing.nav.causeOfDeath")}
         </NavLink>
 
         <NavLink
@@ -31,7 +34,7 @@ const Wellbing = () => {
             }`
           }
         >
-          Mortality Explorer
+          {t("wellbing.nav.mortalityExplorer")}
         </NavLink>
 
         <NavLink
@@ -44,7 +47,7 @@ const Wellbing = () => {
             }`
           }
         >
-          Chronic Disease
+          {t("wellbing.nav.chronicDisease")}
         </NavLink>
 
         <NavLink
@@ -57,7 +60,7 @@ const Wellbing = () => {
             }`
           }
         >
-          Life Style Changes
+          {t("wellbing.nav.lifeStyleChanges")}
         </NavLink>
 
         <NavLink
@@ -70,7 +73,7 @@ const Wellbing = () => {
             }`
           }
         >
-          VO₂ Max
+          {t("wellbing.nav.vo2max")}
         </NavLink>
       </nav>
 

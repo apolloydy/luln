@@ -1,54 +1,73 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useLocale } from "./i18n/LocaleProvider";
+import { SUPPORTED_LOCALES } from "./i18n/config";
 
 const Tabs = () => {
-    return (
-        <header className="flex items-center justify-between px-6 py-4 bg-black">
-            {/* 左边的大标题 */}
-            <h1 className="text-3xl font-bold text-white">
-                <span className="text-green-500">L</span>IFE IS <span className="text-green-500">U</span>RGENT, <span className="text-green-500">L</span>IFE IS <span className="text-green-500">N</span>OW
-            </h1>
+  const { locale, setLocale, t } = useLocale();
 
-            {/* 右边的导航链接（Tab） */}
-            <nav className="flex space-x-6">
-                <NavLink
-                    to="/life-expectancy"
-                    className={({ isActive }) =>
-                        "text-lg font-semibold transition " +
-                        (isActive
-                            ? "text-green-400 border-b-2 border-green-400"
-                            : "text-gray-300 hover:text-white")
-                    }
-                >
-                    Life Expectancy
-                </NavLink>
+  return (
+    <header className="site-header flex items-center justify-between px-6 py-4 bg-black">
+      <h1 className="site-brand text-3xl font-bold text-white">
+        <span className="text-green-500">L</span>IFE IS <span className="text-green-500">U</span>RGENT, <span className="text-green-500">L</span>IFE IS <span className="text-green-500">N</span>OW
+      </h1>
 
-                <NavLink
-                    to="/wellbing"
-                    className={({ isActive }) =>
-                        "text-lg font-semibold transition " +
-                        (isActive
-                            ? "text-green-400 border-b-2 border-green-400"
-                            : "text-gray-300 hover:text-white")
-                    }
-                >
-                    Wellbing
-                </NavLink>
+      <div className="site-header-actions">
+        <nav className="site-nav flex space-x-6">
+          <NavLink
+            to="/life-expectancy"
+            className={({ isActive }) =>
+              "text-lg font-semibold transition " +
+              (isActive
+                ? "text-green-400 border-b-2 border-green-400"
+                : "text-gray-300 hover:text-white")
+            }
+          >
+            {t("nav.lifeExpectancy")}
+          </NavLink>
 
-                <NavLink
-                    to="/contact"
-                    className={({ isActive }) =>
-                        "text-lg font-semibold transition " +
-                        (isActive
-                            ? "text-green-400 border-b-2 border-green-400"
-                            : "text-gray-300 hover:text-white")
-                    }
-                >
-                    Contact Us
-                </NavLink>
-            </nav>
-        </header>
-    );
+          <NavLink
+            to="/wellbing"
+            className={({ isActive }) =>
+              "text-lg font-semibold transition " +
+              (isActive
+                ? "text-green-400 border-b-2 border-green-400"
+                : "text-gray-300 hover:text-white")
+            }
+          >
+            {t("nav.wellbing")}
+          </NavLink>
+
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              "text-lg font-semibold transition " +
+              (isActive
+                ? "text-green-400 border-b-2 border-green-400"
+                : "text-gray-300 hover:text-white")
+            }
+          >
+            {t("nav.contact")}
+          </NavLink>
+        </nav>
+
+        <label className="locale-switcher">
+          <span>{t("common.language")}</span>
+          <select
+            aria-label={t("localeSwitcher.ariaLabel")}
+            value={locale}
+            onChange={(event) => setLocale(event.target.value)}
+          >
+            {SUPPORTED_LOCALES.map((option) => (
+              <option key={option.code} value={option.code}>
+                {option.nativeLabel}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+    </header>
+  );
 };
 
 export default Tabs;

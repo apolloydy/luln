@@ -11,6 +11,7 @@ import {
   isDateWithinSlot,
   parseLocalDate,
 } from "./lifeGrid";
+import { useLocale } from "./i18n/LocaleProvider";
 
 function getColorTran(pct) {
   const hue = 140 - pct * 1.35;
@@ -23,20 +24,26 @@ function getRandomQuote() {
   return quotes[Math.floor(Math.random() * quotes.length)];
 }
 
-function formatDisplayDate(date) {
-  return date.toLocaleDateString("en-US", {
+function getSlotRangeLabel(slot, formatDate, t) {
+  if (!slot.startDate || !slot.endDate) {
+    return t("life.slot.emptySlot", {
+      date: formatDate(slot.representativeDate, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      }),
+    });
+  }
+
+  return `${formatDate(slot.startDate, {
     year: "numeric",
     month: "short",
     day: "numeric",
-  });
-}
-
-function getSlotRangeLabel(slot) {
-  if (!slot.startDate || !slot.endDate) {
-    return `${formatDisplayDate(slot.representativeDate)} (empty slot)`;
-  }
-
-  return `${formatDisplayDate(slot.startDate)} - ${formatDisplayDate(slot.endDate)}`;
+  })} - ${formatDate(slot.endDate, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  })}`;
 }
 
 function renderGrid({
@@ -48,6 +55,8 @@ function renderGrid({
   techEventsMap,
   bodyFactsMap,
   futurePredictionsMap,
+  formatDate,
+  t,
 }) {
   const birth = metrics.birth;
   const deathDate = metrics.deathDate;
@@ -76,7 +85,7 @@ function renderGrid({
               <span className="year-label year-label-inline">
                 <span className="year-label-main">{year}</span>
                 <span className="year-label-divider">·</span>
-                <span className="year-label-age">{`Age ${age}`}</span>
+                <span className="year-label-age">{t("life.slot.age", { age })}</span>
               </span>
             ) : (
               <span className="year-label-placeholder">....</span>
@@ -86,22 +95,28 @@ function renderGrid({
               {slots.map((slot) => {
                 const referenceDate = slot.representativeDate;
                 const effectiveAge = Math.max(0, Math.floor((referenceDate - birth) / (365.25 * 24 * 60 * 60 * 1000)));
-                const rangeLabel = getSlotRangeLabel(slot);
+                const rangeLabel = getSlotRangeLabel(slot, formatDate, t);
 
                 let eventText = "";
 
                 if (techEventsMap[year]) {
                   eventText = techEventsMap[year];
                 } else if (futurePredictionsMap[year]) {
-                  eventText = `(Prediction) ${futurePredictionsMap[year]}`;
+                  eventText = `(${t("life.slot.predictionPrefix")}) ${futurePredictionsMap[year]}`;
                 } else {
-                  eventText = "The future belongs to those who innovate.";
+                  eventText = t("life.slot.defaultFuture");
                 }
 
                 const bodyDevelopmentFactsText =
                   bodyFactsMap[effectiveAge] ||
-                  "You have unlocked the secret to immortality. Please share the cheat code!";
-                const tooltipText = `[${rangeLabel}]<br/>[age ${effectiveAge}]: ${bodyDevelopmentFactsText}<br/>[${year}]: ${eventText}`;
+                  t("life.slot.immortalityFallback");
+                const tooltipText = `[${rangeLabel}]<br/>${t("life.slot.tooltipAgeLine", {
+                  age: effectiveAge,
+                  text: bodyDevelopmentFactsText,
+                })}<br/>${t("life.slot.tooltipYearLine", {
+                  year,
+                  text: eventText,
+                })}`;
 
                 const hasLife = Boolean(slot.startDate);
                 const isCurrent = hasLife && isDateWithinSlot(metrics.today, slot);
@@ -165,6 +180,7 @@ function renderGrid({
 }
 
 const LifeExpectancy = () => {
+  const { t, formatDate, formatNumber } = useLocale();
   const [birthDate, setBirthDate] = useState(() => localStorage.getItem("birthDate") || "1962-06-18");
   const [firstChildBirth, setFirstChildBirth] = useState(() => localStorage.getItem("firstChildBirth") || "");
   const [lastChildBirth, setLastChildBirth] = useState(() => localStorage.getItem("lastChildBirth") || "");
@@ -203,56 +219,54 @@ const LifeExpectancy = () => {
     <div className="life-page">
       <section className="hero-panel">
         <div className="hero-copy">
-          <span className="eyebrow">Time, made visible</span>
-          <h2>Life Expectancy</h2>
-          <p className="hero-lead">
-            Each square is a week-like step inside a year. The point is not fear. The point is clarity.
-          </p>
+          <span className="eyebrow">{t("life.eyebrow")}</span>
+          <h2>{t("life.title")}</h2>
+          <p className="hero-lead">{t("life.lead")}</p>
         </div>
 
         <div className="stats-grid">
           <div className="stat-card primary">
-            <span className="stat-label">Days Left</span>
+            <span className="stat-label">{t("life.stats.daysLeft")}</span>
             <strong className="stat-value" style={{ color: remainingColor }}>
-              {metrics.remainingDays.toLocaleString()}
+              {formatNumber(metrics.remainingDays)}
             </strong>
-            <span className="stat-meta">Approximately {metrics.remainingWeeks.toLocaleString()} weeks</span>
+            <span className="stat-meta">{t("life.stats.weeksApprox", { value: formatNumber(metrics.remainingWeeks) })}</span>
           </div>
 
           <div className="stat-card">
-            <span className="stat-label">Years Left</span>
+            <span className="stat-label">{t("life.stats.yearsLeft")}</span>
             <strong className="stat-value">{metrics.yearsLeft.toFixed(1)}</strong>
-            <span className="stat-meta">Based on current life expectancy</span>
+            <span className="stat-meta">{t("life.stats.basedOnLifeExpectancy")}</span>
           </div>
 
           <div className="stat-card">
-            <span className="stat-label">Life Remaining</span>
+            <span className="stat-label">{t("life.stats.lifeRemaining")}</span>
             <strong className="stat-value">{metrics.lifePercentage}%</strong>
-            <span className="stat-meta">{livedPercentage}% already used</span>
+            <span className="stat-meta">{t("life.stats.alreadyUsed", { value: livedPercentage })}</span>
           </div>
 
           <div className="stat-card">
-            <span className="stat-label">Current Age</span>
+            <span className="stat-label">{t("life.stats.currentAge")}</span>
             <strong className="stat-value">{metrics.ageYears}</strong>
-            <span className="stat-meta">{metrics.livedDays.toLocaleString()} days lived</span>
+            <span className="stat-meta">{t("life.stats.daysLived", { value: formatNumber(metrics.livedDays) })}</span>
           </div>
         </div>
       </section>
 
       <section className="control-panel">
         <div className="panel-header">
-          <h3>Inputs</h3>
-          <p>Tune the model, then inspect the timeline below.</p>
+          <h3>{t("life.inputs.title")}</h3>
+          <p>{t("life.inputs.subtitle")}</p>
         </div>
 
         <div className="input-grid">
           <label className="field">
-            <span className="field-label">Birth Date</span>
+            <span className="field-label">{t("life.inputs.birthDate")}</span>
             <input type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} />
           </label>
 
           <label className="field">
-            <span className="field-label">Life Expectancy</span>
+            <span className="field-label">{t("life.inputs.lifeExpectancy")}</span>
             <input
               type="number"
               value={lifeExpectancy}
@@ -263,19 +277,19 @@ const LifeExpectancy = () => {
           </label>
 
           <label className="field">
-            <span className="field-label">First Child Birth Date</span>
+            <span className="field-label">{t("life.inputs.firstChildBirthDate")}</span>
             <input type="date" value={firstChildBirth} onChange={(e) => setFirstChildBirth(e.target.value)} />
           </label>
 
           <label className="field">
-            <span className="field-label">Last Child Birth Date</span>
+            <span className="field-label">{t("life.inputs.lastChildBirthDate")}</span>
             <input type="date" value={lastChildBirth} onChange={(e) => setLastChildBirth(e.target.value)} />
           </label>
         </div>
       </section>
 
       <section className="quote-card">
-        <span className="quote-kicker">Rotating Reminder</span>
+        <span className="quote-kicker">{t("life.quoteKicker")}</span>
         <em>
           {quote.split("\n").map((line, index) => (
             <React.Fragment key={index}>
@@ -288,7 +302,7 @@ const LifeExpectancy = () => {
 
       <section className="grid-panel">
         <div className="panel-header">
-          <h3>Your Years</h3>
+          <h3>{t("life.yearsTitle")}</h3>
         </div>
 
         {renderGrid({
@@ -300,41 +314,41 @@ const LifeExpectancy = () => {
           techEventsMap: techEvents,
           bodyFactsMap: bodyDevelopmentFacts,
           futurePredictionsMap: futurePredictions,
+          formatDate,
+          t,
         })}
       </section>
 
-      <p className="grid-note">
-        Each row is one calendar year. Each row has 54 fixed slots, and dates are rounded into the nearest slot inside that year.
-      </p>
+      <p className="grid-note">{t("life.gridNote")}</p>
 
       <div className="legend">
         <div className="legend-item">
           <div className="legend-box current"></div>
-          <span>Current Slot</span>
+          <span>{t("life.legend.current")}</span>
         </div>
         <div className="legend-item">
           <div className="legend-box past"></div>
-          <span>Past</span>
+          <span>{t("life.legend.past")}</span>
         </div>
         <div className="legend-item">
           <div className="legend-box remaining"></div>
-          <span>Remaining</span>
+          <span>{t("life.legend.remaining")}</span>
         </div>
         <div className="legend-item">
           <div className="legend-box child-birth"></div>
-          <span>Child Birth</span>
+          <span>{t("life.legend.childBirth")}</span>
         </div>
         <div className="legend-item">
           <div className="legend-box child-18"></div>
-          <span>Child Turns 18</span>
+          <span>{t("life.legend.childTurns18")}</span>
         </div>
         <div className="legend-item">
           <span className="raising-symbol">-</span>
-          <span>Raising Children</span>
+          <span>{t("life.legend.raisingChildren")}</span>
         </div>
         <div className="legend-item">
           <div className="legend-box last-years"></div>
-          <span>Last 5 Years</span>
+          <span>{t("life.legend.lastFiveYears")}</span>
         </div>
       </div>
     </div>

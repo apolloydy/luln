@@ -12,34 +12,30 @@ import {
   leadingCausesOfDeath2024,
   leadingCausesOfDeath2024Source,
 } from "./data/wellbing/leadingCausesOfDeath2024";
+import { useLocale } from "./i18n/LocaleProvider";
 
 Chart.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
-const sexOptions = ["All", "Male", "Female"];
-const raceOptions = ["All", "White", "Black", "Asian", "AIAN"];
-const ageOptions = ["All ages", "25-44", "45-64", "65-74", "75+"];
-
-function getExplorerNote({ sex, race, ageGroup }) {
-  if (sex === "All" && race === "All" && ageGroup === "All ages") {
-    return "This first version uses the national 2024 leading-causes dataset as the base layer. The filter framework is live; deeper subgroup datasets will be connected next.";
-  }
-
-  return `Current filters are set to ${sex}, ${race}, ${ageGroup}. The UI is ready for subgroup data, but this version still displays the national 2024 baseline until the expanded dataset is wired in.`;
-}
+const sexOptions = ["all", "male", "female"];
+const raceOptions = ["all", "white", "black", "asian", "aian"];
+const ageOptions = ["allAges", "25-44", "45-64", "65-74", "75+"];
 
 const MortalityExplorer = () => {
-  const [sex, setSex] = useState("All");
-  const [race, setRace] = useState("All");
-  const [ageGroup, setAgeGroup] = useState("All ages");
+  const { t } = useLocale();
+  const [sex, setSex] = useState("all");
+  const [race, setRace] = useState("all");
+  const [ageGroup, setAgeGroup] = useState("allAges");
+  const causeLabels = t("death.causeLabels");
+  const filterLabels = t("death.filters");
 
   const chartData = useMemo(() => {
     const filtered = leadingCausesOfDeath2024.slice(0, 10);
 
     return {
-      labels: filtered.map((item) => item.name),
+      labels: filtered.map((item) => causeLabels[item.name] || item.name),
       datasets: [
         {
-          label: "% of all deaths",
+          label: t("death.leadingCauses.chartLabel"),
           data: filtered.map((item) => item.percentage),
           backgroundColor: filtered.map((item) => item.color),
           borderRadius: 10,
@@ -48,7 +44,7 @@ const MortalityExplorer = () => {
         },
       ],
     };
-  }, []);
+  }, [causeLabels, t]);
 
   const chartOptions = {
     responsive: true,
@@ -92,59 +88,56 @@ const MortalityExplorer = () => {
     <div className="death-page">
       <section className="death-hero">
         <div>
-          <span className="death-eyebrow">Interactive Explorer</span>
-          <h1 className="death-page-title">Filter mortality patterns by the dimensions that matter.</h1>
-          <p className="death-page-copy">
-            This page is where the static overview becomes an explorable system. Start with sex,
-            race, and age group, then trace how the pattern shifts.
-          </p>
+          <span className="death-eyebrow">{t("death.explorer.heroEyebrow")}</span>
+          <h1 className="death-page-title">{t("death.explorer.heroTitle")}</h1>
+          <p className="death-page-copy">{t("death.explorer.heroCopy")}</p>
         </div>
 
         <div className="death-hero-note">
-          <strong>Current version</strong>
-          <span>Filter framework is now live.</span>
-          <span>Expanded subgroup datasets are the next step.</span>
+          <strong>{t("death.explorer.noteTitle")}</strong>
+          <span>{t("death.explorer.noteLine1")}</span>
+          <span>{t("death.explorer.noteLine2")}</span>
         </div>
       </section>
 
       <section className="death-card">
         <div className="death-card-header">
           <div>
-            <span className="death-eyebrow">Filter Bar</span>
-            <h2 className="death-title">Choose the population slice</h2>
-            <p className="death-subtitle">These controls are intentionally narrow in v1: sex, race, and age group only.</p>
+            <span className="death-eyebrow">{t("death.explorer.filterEyebrow")}</span>
+            <h2 className="death-title">{t("death.explorer.filterTitle")}</h2>
+            <p className="death-subtitle">{t("death.explorer.filterSubtitle")}</p>
           </div>
         </div>
 
         <div className="well-input-grid">
           <label className="field">
-            <span className="field-label">Sex</span>
+            <span className="field-label">{t("death.explorer.sex")}</span>
             <select value={sex} onChange={(e) => setSex(e.target.value)}>
               {sexOptions.map((option) => (
                 <option key={option} value={option}>
-                  {option}
+                  {filterLabels[option]}
                 </option>
               ))}
             </select>
           </label>
 
           <label className="field">
-            <span className="field-label">Race</span>
+            <span className="field-label">{t("death.explorer.race")}</span>
             <select value={race} onChange={(e) => setRace(e.target.value)}>
               {raceOptions.map((option) => (
                 <option key={option} value={option}>
-                  {option}
+                  {filterLabels[option]}
                 </option>
               ))}
             </select>
           </label>
 
           <label className="field">
-            <span className="field-label">Age Group</span>
+            <span className="field-label">{t("death.explorer.ageGroup")}</span>
             <select value={ageGroup} onChange={(e) => setAgeGroup(e.target.value)}>
               {ageOptions.map((option) => (
                 <option key={option} value={option}>
-                  {option}
+                  {filterLabels[option] || option}
                 </option>
               ))}
             </select>
@@ -155,9 +148,17 @@ const MortalityExplorer = () => {
       <section className="death-card" style={{ marginTop: 20 }}>
         <div className="death-card-header">
           <div>
-            <span className="death-eyebrow">Current Output</span>
-            <h2 className="death-title">Leading causes view</h2>
-            <p className="death-subtitle">{getExplorerNote({ sex, race, ageGroup })}</p>
+            <span className="death-eyebrow">{t("death.explorer.currentOutputEyebrow")}</span>
+            <h2 className="death-title">{t("death.explorer.currentOutputTitle")}</h2>
+            <p className="death-subtitle">
+              {sex === "all" && race === "all" && ageGroup === "allAges"
+                ? t("death.explorer.defaultNote")
+                : t("death.explorer.filteredNote", {
+                    sex: filterLabels[sex],
+                    race: filterLabels[race],
+                    ageGroup: filterLabels[ageGroup] || ageGroup,
+                  })}
+            </p>
           </div>
           <a
             href={leadingCausesOfDeath2024Source.url}
@@ -165,7 +166,7 @@ const MortalityExplorer = () => {
             rel="noopener noreferrer"
             className="death-source-link"
           >
-            View Source
+            {t("common.viewSource")}
           </a>
         </div>
 
@@ -176,7 +177,7 @@ const MortalityExplorer = () => {
         </div>
 
         <p className="death-footnote">
-          Source:{" "}
+          {t("common.source")}:{" "}
           <a
             href={leadingCausesOfDeath2024Source.url}
             target="_blank"
@@ -185,7 +186,7 @@ const MortalityExplorer = () => {
           >
             {leadingCausesOfDeath2024Source.label}
           </a>
-          . Accessed {leadingCausesOfDeath2024Source.accessed}. {leadingCausesOfDeath2024Source.notes}
+          . {t("common.accessedOn", { date: leadingCausesOfDeath2024Source.accessed })}. {leadingCausesOfDeath2024Source.notes}
         </p>
       </section>
     </div>
