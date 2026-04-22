@@ -14,6 +14,11 @@
   --child-birth: #38bdf8;
   --child-18: #fde047;
   --last-years: #ef4444;
+  --life-axis-width: 82px;
+  --life-row-height: 10px;
+  --life-grid-gap: 1px;
+  --life-bead-width: 6px;
+  --life-bead-height: 8px;
 }
 
 .life-page {
@@ -184,118 +189,272 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 6px;
-  margin-top: 18px;
+  gap: var(--life-grid-gap);
+  margin-top: 0;
   overflow-x: auto;
-  padding: 6px 2px 10px;
+  padding: 5px 5px 7px;
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    rgba(4, 12, 24, 0.42);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  scrollbar-width: thin;
+}
+
+.life-grid-shell {
+  display: grid;
+  gap: 5px;
+}
+
+.life-grid-frame {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 5px;
+}
+
+.life-axis {
+  display: flex;
+  flex-direction: column;
+  gap: var(--life-grid-gap);
+  padding: 5px 0 7px;
+}
+
+.life-axis-row {
+  height: var(--life-row-height);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.life-axis-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: 100%;
+}
+
+.life-axis-line {
+  width: 16px;
+  height: 1px;
+  flex: 0 0 auto;
+  background: linear-gradient(90deg, rgba(125, 211, 252, 0.15), rgba(125, 211, 252, 0.8));
+  box-shadow: 0 0 10px rgba(125, 211, 252, 0.2);
+}
+
+.life-grid-intro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.life-grid-kicker {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(125, 211, 252, 0.08);
+  border: 1px solid rgba(125, 211, 252, 0.14);
+  color: var(--accent);
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.life-grid-summary {
+  margin: 0;
+  max-width: 40rem;
+  color: var(--text-soft);
+  font-size: 0.94rem;
+  line-height: 1.55;
 }
 
 .year-row {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
+  display: block;
   min-width: fit-content;
+  height: var(--life-row-height);
   line-height: 1;
+  padding: 0;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.year-row:hover {
+  transform: translateX(2px);
+}
+
+.year-row-decade {
+  position: relative;
+}
+
+.year-row-decade::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -2px;
+  bottom: -2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(125, 211, 252, 0.08), rgba(125, 211, 252, 0));
+  pointer-events: none;
+}
+
+.year-row-final-band::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  bottom: -1px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.07), rgba(239, 68, 68, 0));
+  pointer-events: none;
 }
 
 .year-label,
 .year-label-placeholder {
-  width: 72px;
-  font-weight: bold;
+  font-weight: 700;
   text-align: right;
-  font-size: 11px;
-  flex: 0 0 auto;
 }
 
-.year-label-rich {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
+.year-label-inline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 0;
+}
+
+.year-label-decade .year-label-main {
+  color: #ffffff;
+}
+
+.year-label-decade .year-label-age {
+  color: #c4f3ff;
 }
 
 .year-label-main {
-  color: #f8fafc;
-  font-size: 11px;
+  color: rgba(248, 250, 252, 0.9);
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.year-label-divider {
+  color: rgba(142, 167, 192, 0.55);
+  font-size: 0.84rem;
+  line-height: 1;
 }
 
 .year-label-age {
   color: var(--accent);
-  font-size: 10px;
+  font-size: 0.96rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-}
-
-.year-progress {
-  color: var(--accent);
+  letter-spacing: 0.02em;
+  line-height: 1;
 }
 
 .year-label-placeholder {
   color: transparent;
+  opacity: 0.12;
+  line-height: 1;
 }
 
 .weeks {
   display: flex;
   flex-wrap: nowrap;
-  gap: 2px;
+  gap: 1px;
   justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  padding: 0;
 }
 
 .grid-box {
-  width: 11px;
-  height: 11px;
-  border-radius: 3px;
-  background-color: #ddd;
+  position: relative;
+  width: var(--life-bead-width);
+  height: var(--life-bead-height);
+  border-radius: 999px;
+  background-color: rgba(221, 221, 221, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 5px;
   line-height: 1;
   padding-bottom: 1px;
-  transition: transform 120ms ease, filter 120ms ease;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 0 1px rgba(2, 8, 23, 0.16);
+  transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
+}
+
+.grid-box::after {
+  content: "";
+  position: absolute;
+  inset: 1px 2px auto;
+  height: 24%;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  opacity: 0.55;
 }
 
 .grid-box:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.12);
+  transform: translateY(-1px) scale(1.08);
+  filter: brightness(1.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 0 0 1px rgba(2, 8, 23, 0.12),
+    0 6px 16px rgba(8, 15, 31, 0.24);
 }
 
 .__react_component_tooltip {
-  font-size: 14px;
-  max-width: 320px;
-  padding: 10px 12px;
-  background: rgb(2 8 23 / 95%);
+  font-size: 0.98rem;
+  max-width: 360px;
+  padding: 12px 14px;
+  background:
+    radial-gradient(circle at top left, rgba(125, 211, 252, 0.1), transparent 34%),
+    rgba(2, 8, 23, 0.96);
   color: white;
-  border-radius: 10px;
-  box-shadow: 0 12px 40px rgb(15 23 42 / 55%);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgb(15 23 42 / 55%);
   transition: opacity 0.2s ease-in-out;
-  line-height: 1.5;
+  line-height: 1.65;
+  backdrop-filter: blur(18px);
 }
 
 .past {
-  background-color: var(--past);
+  background: linear-gradient(180deg, rgba(111, 128, 148, 0.95), rgba(71, 85, 105, 0.95));
 }
 
 .current {
-  background-color: var(--current);
-  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+  background: linear-gradient(180deg, #ffd36a, #f59e0b);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 0 2px rgba(245, 158, 11, 0.16),
+    0 0 18px rgba(245, 158, 11, 0.24);
 }
 
 .remaining {
-  background-color: var(--remaining);
+  background: linear-gradient(180deg, #2dd4bf, #10b981);
 }
 
 .child-birth {
-  background-color: var(--child-birth);
+  background: linear-gradient(180deg, #7dd3fc, #38bdf8);
 }
 
 .child-18 {
-  background-color: var(--child-18);
+  background: linear-gradient(180deg, #fde68a, #fde047);
 }
 
 .last-years {
-  background-color: var(--last-years);
+  background: linear-gradient(180deg, #fb7185, #ef4444);
 }
 
 .legend {
@@ -303,16 +462,13 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-  gap: 14px 18px;
-  margin-top: 20px;
-  padding: 4px 6px;
+  gap: 5px 6px;
+  margin-top: 8px;
 }
 
-.grid-note {
-  margin: 12px 6px 0;
-  color: var(--text-soft);
-  font-size: 0.9rem;
-  line-height: 1.6;
+.life-legend {
+  padding-top: 7px;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
 }
 
 .death-page {
@@ -725,16 +881,20 @@
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   white-space: nowrap;
   color: var(--text-dim);
-  font-size: 0.94rem;
+  font-size: 0.9rem;
+  padding: 4px 6px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.44);
+  border: 1px solid rgba(148, 163, 184, 0.08);
 }
 
 .legend-box {
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
+  width: 8px;
+  height: 10px;
+  border-radius: 999px;
 }
 
 .legend-box.current {
@@ -839,19 +999,45 @@
     justify-content: flex-start;
   }
 
-  .grid-container {
-    padding-bottom: 12px;
+  .life-grid-intro {
+    flex-direction: column;
   }
 
   .year-label,
   .year-label-placeholder {
-    width: 58px;
-    font-size: 9px;
+    font-size: 8px;
+  }
+
+  .life-grid-frame {
+    --life-axis-width: 66px;
+    --life-row-height: 9px;
+    --life-bead-width: 4px;
+    --life-bead-height: 7px;
+    grid-template-columns: 78px minmax(0, 1fr);
+    column-gap: 4px;
+  }
+
+  .year-row-decade::before,
+  .year-row-final-band::before {
+    left: 0;
+  }
+
+  .life-axis-mark {
+    gap: 5px;
+  }
+
+  .life-axis-line {
+    width: 10px;
+  }
+
+  .year-label-main,
+  .year-label-age {
+    font-size: 0.78rem;
   }
 
   .grid-box {
-    width: 8px;
-    height: 8px;
+    width: var(--life-bead-width);
+    height: var(--life-bead-height);
   }
 }
 

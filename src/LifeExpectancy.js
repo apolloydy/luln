@@ -75,106 +75,140 @@ function renderGrid({
   }
 
   return (
-    <div className="grid-container">
-      {rows.map(({ year, age, slots, isLastFiveYears }) => {
-        const shouldShowLabel = age % 5 === 0;
+    <div className="life-grid-shell">
+      <div className="life-grid-intro">
+        <span className="life-grid-kicker">{t("life.eyebrow")}</span>
+        <p className="life-grid-summary">{t("life.gridNote")}</p>
+      </div>
 
-        return (
-          <div key={`calendar-year-${year}`} className="year-row">
-            {shouldShowLabel ? (
-              <span className="year-label year-label-inline">
-                <span className="year-label-main">{year}</span>
-                <span className="year-label-divider">·</span>
-                <span className="year-label-age">{t("life.slot.age", { age })}</span>
-              </span>
-            ) : (
-              <span className="year-label-placeholder">....</span>
-            )}
+      <div className="life-grid-frame">
+        <div className="life-axis" aria-hidden="true">
+          {rows.map(({ year, age }) => {
+            const isDecadeMarker = age % 10 === 0;
 
-            <div className="weeks">
-              {slots.map((slot) => {
-                const referenceDate = slot.representativeDate;
-                const effectiveAge = Math.max(0, Math.floor((referenceDate - birth) / (365.25 * 24 * 60 * 60 * 1000)));
-                const rangeLabel = getSlotRangeLabel(slot, formatDate, t);
+            return (
+              <div key={`axis-${year}`} className="life-axis-row">
+                {isDecadeMarker ? (
+                  <span className="life-axis-mark">
+                    <span className="life-axis-line" />
+                    <span className="year-label year-label-inline year-label-decade">
+                      <span className="year-label-main">{year}</span>
+                      <span className="year-label-divider">·</span>
+                      <span className="year-label-age">{t("life.slot.age", { age })}</span>
+                    </span>
+                  </span>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
 
-                let eventText = "";
+        <div className="grid-container">
+        {rows.map(({ year, age, slots, isLastFiveYears }) => {
+          const isDecadeMarker = age % 10 === 0;
 
-                if (techEventsMap[year]) {
-                  eventText = techEventsMap[year];
-                } else if (futurePredictionsMap[year]) {
-                  eventText = `(${t("life.slot.predictionPrefix")}) ${futurePredictionsMap[year]}`;
-                } else {
-                  eventText = t("life.slot.defaultFuture");
-                }
+          return (
+            <div
+              key={`calendar-year-${year}`}
+              className={`year-row${isDecadeMarker ? " year-row-decade" : ""}${isLastFiveYears ? " year-row-final-band" : ""}`}
+            >
+              <div className="weeks">
+                {slots.map((slot) => {
+                  const referenceDate = slot.representativeDate;
+                  const effectiveAge = Math.max(0, Math.floor((referenceDate - birth) / (365.25 * 24 * 60 * 60 * 1000)));
+                  const rangeLabel = getSlotRangeLabel(slot, formatDate, t);
 
-                const bodyDevelopmentFactsText =
-                  bodyFactsMap[effectiveAge] ||
-                  t("life.slot.immortalityFallback");
-                const tooltipText = `[${rangeLabel}]<br/>${t("life.slot.tooltipAgeLine", {
-                  age: effectiveAge,
-                  text: bodyDevelopmentFactsText,
-                })}<br/>${t("life.slot.tooltipYearLine", {
-                  year,
-                  text: eventText,
-                })}`;
+                  let eventText = "";
 
-                const hasLife = Boolean(slot.startDate);
-                const isCurrent = hasLife && isDateWithinSlot(metrics.today, slot);
-                const isPast = hasLife && slot.endDate < metrics.today;
-                const isFirstChildBirth = isDateWithinSlot(firstChild, slot);
-                const isLastChildBirth = isDateWithinSlot(lastChild, slot);
-                const isChildTurns18 = isDateWithinSlot(raisingEnd, slot);
-                const isRaisingChildren =
-                  hasLife &&
-                  firstChild &&
-                  raisingEnd &&
-                  slot.endDate >= firstChild &&
-                  slot.startDate <= raisingEnd;
+                  if (techEventsMap[year]) {
+                    eventText = techEventsMap[year];
+                  } else if (futurePredictionsMap[year]) {
+                    eventText = `(${t("life.slot.predictionPrefix")}) ${futurePredictionsMap[year]}`;
+                  } else {
+                    eventText = t("life.slot.defaultFuture");
+                  }
 
-                let boxClass = "grid-box";
-                let content = null;
+                  const bodyDevelopmentFactsText =
+                    bodyFactsMap[effectiveAge] ||
+                    t("life.slot.immortalityFallback");
+                  const tooltipText = `[${rangeLabel}]<br/>${t("life.slot.tooltipAgeLine", {
+                    age: effectiveAge,
+                    text: bodyDevelopmentFactsText,
+                  })}<br/>${t("life.slot.tooltipYearLine", {
+                    year,
+                    text: eventText,
+                  })}`;
 
-                if (!hasLife) {
-                  boxClass += " empty placeholder";
-                } else if (isCurrent) {
-                  boxClass += " current";
-                } else if (isPast) {
-                  boxClass += " past";
-                } else if (isLastFiveYears) {
-                  boxClass += " last-years";
-                } else {
-                  boxClass += " remaining";
-                }
+                  const hasLife = Boolean(slot.startDate);
+                  const isCurrent = hasLife && isDateWithinSlot(metrics.today, slot);
+                  const isPast = hasLife && slot.endDate < metrics.today;
+                  const isFirstChildBirth = isDateWithinSlot(firstChild, slot);
+                  const isLastChildBirth = isDateWithinSlot(lastChild, slot);
+                  const isChildTurns18 = isDateWithinSlot(raisingEnd, slot);
+                  const isRaisingChildren =
+                    hasLife &&
+                    firstChild &&
+                    raisingEnd &&
+                    slot.endDate >= firstChild &&
+                    slot.startDate <= raisingEnd;
 
-                if (isFirstChildBirth || isLastChildBirth) {
-                  boxClass += " child-birth";
-                }
+                  let boxClass = "grid-box";
+                  let content = null;
 
-                if (isChildTurns18) {
-                  boxClass += " child-18";
-                }
+                  if (!hasLife) {
+                    boxClass += " empty placeholder";
+                  } else if (isCurrent) {
+                    boxClass += " current";
+                  } else if (isPast) {
+                    boxClass += " past";
+                  } else if (isLastFiveYears) {
+                    boxClass += " last-years";
+                  } else {
+                    boxClass += " remaining";
+                  }
 
-                if (isRaisingChildren && !isFirstChildBirth && !isLastChildBirth && !isChildTurns18) {
-                  content = <span className="child-raising-text">-</span>;
-                }
+                  if (isFirstChildBirth || isLastChildBirth) {
+                    boxClass += " child-birth";
+                  }
 
-                return (
-                  <div
-                    key={`${year}-${slot.index}`}
-                    className={boxClass}
-                    data-tooltip-id="year-tooltip"
-                    data-tooltip-html={tooltipText}
-                  >
-                    {content}
-                  </div>
-                );
-              })}
+                  if (isChildTurns18) {
+                    boxClass += " child-18";
+                  }
+
+                  if (isRaisingChildren && !isFirstChildBirth && !isLastChildBirth && !isChildTurns18) {
+                    content = <span className="child-raising-text">-</span>;
+                  }
+
+                  return (
+                    <div
+                      key={`${year}-${slot.index}`}
+                      className={boxClass}
+                      data-tooltip-id="year-tooltip"
+                      data-tooltip-html={tooltipText}
+                      data-slot-state={
+                        !hasLife
+                          ? "empty"
+                          : isCurrent
+                            ? "current"
+                            : isPast
+                              ? "past"
+                              : isLastFiveYears
+                                ? "final"
+                                : "remaining"
+                      }
+                    >
+                      {content}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
 
-      <Tooltip id="year-tooltip" place="top" effect="solid" />
+        <Tooltip id="year-tooltip" place="top" effect="solid" />
+        </div>
+      </div>
     </div>
   );
 }
@@ -325,40 +359,37 @@ const LifeExpectancy = () => {
           formatDate,
           t,
         })}
+        <div className="legend life-legend">
+          <div className="legend-item">
+            <div className="legend-box current"></div>
+            <span>{t("life.legend.current")}</span>
+          </div>
+          <div className="legend-item">
+            <div className="legend-box past"></div>
+            <span>{t("life.legend.past")}</span>
+          </div>
+          <div className="legend-item">
+            <div className="legend-box remaining"></div>
+            <span>{t("life.legend.remaining")}</span>
+          </div>
+          <div className="legend-item">
+            <div className="legend-box child-birth"></div>
+            <span>{t("life.legend.childBirth")}</span>
+          </div>
+          <div className="legend-item">
+            <div className="legend-box child-18"></div>
+            <span>{t("life.legend.childTurns18")}</span>
+          </div>
+          <div className="legend-item">
+            <span className="raising-symbol">-</span>
+            <span>{t("life.legend.raisingChildren")}</span>
+          </div>
+          <div className="legend-item">
+            <div className="legend-box last-years"></div>
+            <span>{t("life.legend.lastFiveYears")}</span>
+          </div>
+        </div>
       </section>
-
-      <p className="grid-note">{t("life.gridNote")}</p>
-
-      <div className="legend">
-        <div className="legend-item">
-          <div className="legend-box current"></div>
-          <span>{t("life.legend.current")}</span>
-        </div>
-        <div className="legend-item">
-          <div className="legend-box past"></div>
-          <span>{t("life.legend.past")}</span>
-        </div>
-        <div className="legend-item">
-          <div className="legend-box remaining"></div>
-          <span>{t("life.legend.remaining")}</span>
-        </div>
-        <div className="legend-item">
-          <div className="legend-box child-birth"></div>
-          <span>{t("life.legend.childBirth")}</span>
-        </div>
-        <div className="legend-item">
-          <div className="legend-box child-18"></div>
-          <span>{t("life.legend.childTurns18")}</span>
-        </div>
-        <div className="legend-item">
-          <span className="raising-symbol">-</span>
-          <span>{t("life.legend.raisingChildren")}</span>
-        </div>
-        <div className="legend-item">
-          <div className="legend-box last-years"></div>
-          <span>{t("life.legend.lastFiveYears")}</span>
-        </div>
-      </div>
     </div>
   );
 };
