@@ -21,6 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:data": "python3 -m unittest discover -s tools/public_health -p 'test_*.py'",
+    "verify": "npm run test:data && npm test -- --watchAll=false && npm run build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
