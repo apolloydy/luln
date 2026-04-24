@@ -156,6 +156,8 @@ export const messages = {
           "All-ages uses BYSITE age-adjusted rates. Age-group slices use BYAGE counts and population to compute age-specific crude rates.",
         locationAgeNote:
           "State slices use BYAREA all-ages age-adjusted rates, so age is locked to All ages when a state is selected.",
+        locationDisabledHint: "Location is available for Cancer burden only.",
+        ageDisabledHint: "State data is all-ages only.",
       },
       filters: {
         national: "National",
@@ -512,6 +514,8 @@ export const messages = {
         cancerNote: "显示 CDC USCS 2023 年癌症负担数据：{sex}、{race}、{ageGroup}、{location}，死亡 {deaths} 例，{rateLabel}为每 10 万人 {rate}。",
         ageDataAvailable: "所有年龄使用 BYSITE 的年龄调整死亡率；具体年龄段使用 BYAGE 的 deaths 和 population 计算年龄段粗死亡率。",
         locationAgeNote: "州级切片来自 BYAREA 的所有年龄年龄调整率，所以选择州时年龄会锁定为所有年龄。",
+        locationDisabledHint: "地区筛选目前只支持癌症负担。",
+        ageDisabledHint: "州级数据目前只能看所有年龄。",
       },
       filters: {
         national: "全国",
@@ -857,6 +861,8 @@ export const messages = {
           "Tous âges utilise les taux ajustés selon l'âge de BYSITE. Les tranches d'âge utilisent les décès et populations de BYAGE pour calculer des taux bruts par âge.",
         locationAgeNote:
           "Les segments par État utilisent les taux tous âges ajustés selon l'âge de BYAREA ; l'âge reste donc sur Tous âges quand un État est sélectionné.",
+        locationDisabledHint: "Le lieu est disponible seulement pour la charge du cancer.",
+        ageDisabledHint: "Les données par État sont tous âges uniquement.",
       },
       filters: {
         national: "National",
@@ -1206,6 +1212,8 @@ export const messages = {
           "全年齢は BYSITE の年齢調整率を使います。年齢層別は BYAGE の死亡数と人口から年齢層別粗死亡率を計算します。",
         locationAgeNote:
           "州別切片は BYAREA の全年齢・年齢調整率を使うため、州を選ぶと年齢は全年齢に固定されます。",
+        locationDisabledHint: "地域はがん負担のみで利用できます。",
+        ageDisabledHint: "州別データは全年齢のみです。",
       },
       filters: {
         national: "全国",
@@ -1556,6 +1564,8 @@ export const messages = {
           "Todas las edades usa las tasas ajustadas por edad de BYSITE. Los grupos de edad usan muertes y población de BYAGE para calcular tasas brutas por edad.",
         locationAgeNote:
           "Los segmentos estatales usan tasas ajustadas por edad para todas las edades de BYAREA, por eso la edad queda fijada en Todas las edades cuando se selecciona un estado.",
+        locationDisabledHint: "El lugar solo está disponible para carga de cáncer.",
+        ageDisabledHint: "Los datos estatales solo están disponibles para todas las edades.",
       },
       filters: {
         national: "Nacional",

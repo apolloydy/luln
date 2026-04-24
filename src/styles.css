@@ -174,6 +174,18 @@
   text-transform: uppercase;
 }
 
+.field-help {
+  min-height: 1rem;
+  color: rgba(148, 163, 184, 0.72);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.field-disabled .field-label,
+.field-disabled .field-help {
+  color: rgba(148, 163, 184, 0.52);
+}
+
 .quote-card em {
   display: block;
   margin-top: 14px;
@@ -1072,6 +1084,22 @@ select {
   padding: 12px 14px;
   border-radius: 12px;
   box-sizing: border-box;
+}
+
+select:disabled {
+  cursor: not-allowed;
+  color: rgba(203, 213, 225, 0.46);
+  border-color: rgba(148, 163, 184, 0.12);
+  background:
+    linear-gradient(0deg, rgba(15, 23, 42, 0.52), rgba(15, 23, 42, 0.52)),
+    repeating-linear-gradient(
+      135deg,
+      rgba(148, 163, 184, 0.08) 0,
+      rgba(148, 163, 184, 0.08) 6px,
+      rgba(15, 23, 42, 0.08) 6px,
+      rgba(15, 23, 42, 0.08) 12px
+    );
+  opacity: 1;
 }
 
 input[type="text"]:focus,

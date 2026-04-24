@@ -275,7 +275,7 @@ const MortalityExplorer = () => {
             </select>
           </label>
 
-          <label className="field">
+          <label className={`field ${!isCancerView ? "field-disabled" : ""}`}>
             <span className="field-label">{t("death.explorer.location")}</span>
             <select
               value={location}
@@ -293,9 +293,12 @@ const MortalityExplorer = () => {
                 </option>
               ))}
             </select>
+            {!isCancerView && (
+              <span className="field-help">{t("death.explorer.locationDisabledHint")}</span>
+            )}
           </label>
 
-          <label className="field">
+          <label className={`field ${isCancerView && !isNational ? "field-disabled" : ""}`}>
             <span className="field-label">{t("death.explorer.ageGroup")}</span>
             <select
               value={effectiveAgeGroup}
@@ -308,6 +311,9 @@ const MortalityExplorer = () => {
                 </option>
               ))}
             </select>
+            {isCancerView && !isNational && (
+              <span className="field-help">{t("death.explorer.ageDisabledHint")}</span>
+            )}
           </label>
         </div>
       </section>
