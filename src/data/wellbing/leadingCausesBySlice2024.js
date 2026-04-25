@@ -2,7 +2,7 @@ export const leadingCausesBySlice2024Source = {
   label: "CDC/NCHS Multiple Cause-of-Death Public Use File, 2024",
   url: "https://www.cdc.gov/nchs/nvss/mortality_public_use_data.htm",
   accessed: "2026-04-23",
-  notes: "Derived from mort2024us.zip using the underlying ICD-10 cause field and NCHS leading-cause group definitions.",
+  notes: "Derived locally from DuckDB table nchs_mortality_2024, built from mort2024us.zip, using the underlying ICD-10 cause field and NCHS leading-cause group definitions.",
 };
 
 export const leadingCausesBySlice2024 = {

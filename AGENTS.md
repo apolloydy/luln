@@ -65,6 +65,17 @@
   - `/wellbing/life-style-changes`
   - `/wellbing/vo2max`
 
+## Local Data Pipeline And DuckDB
+
+- The production website does not need a database.
+- `luln` should remain a static `React` site on `Cloudflare Pages`; do not add a runtime DB, backend API, or Cloudflare database just to serve public-health data.
+- Use `DuckDB` only as a local WSL data-build/analytics warehouse for generating frontend datasets.
+- The intended flow is: official raw files -> local `DuckDB` -> Python generation scripts -> compact `src/data/wellbing/*.js` modules -> static site build.
+- Local raw datasets, CSV/TXT extracts, ZIP archives, and `.duckdb` files are local working artifacts and should not be committed to Git unless the user explicitly asks for a specific source artifact to be tracked.
+- Frontend JS data should stay small and precomputed. The browser should import only the slices, rankings, and summaries needed by the UI, not raw official datasets.
+- Every new public-health table should follow the same pattern: ingest the raw source into local `DuckDB`, generate the minimal JS data module from `DuckDB`, add source attribution, and verify with focused tests.
+- Accidental/unintentional injury data should not remain hand-entered seed percentages; it should be generated from official injury/mortality source data through the same local `DuckDB` pipeline.
+
 ## Cloudflare Functions
 
 - Repo contains `functions/submit.js`, intended for `Cloudflare Pages Functions`

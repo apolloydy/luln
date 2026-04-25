@@ -49,7 +49,7 @@ const AccidentCauses = () => {
                 callbacks: {
                     label: function (tooltipItem) {
                         const cause = causes[tooltipItem.dataIndex];
-                        return `${causeLabels[cause.name] || cause.name}: ${cause.percentage}%`;
+                        return `${causeLabels[cause.name] || cause.name}: ${cause.deaths.toLocaleString()} deaths (${cause.percentage}%)`;
                     },
                 }
             }

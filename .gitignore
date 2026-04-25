@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/.venv
 /.pnp
 .pnp.js
 
@@ -25,6 +26,7 @@ __pycache__/
 
 # Large official raw data archives are fetched locally by scripts.
 /research/public-health/mortality/*.zip
+/research/public-health/local-data/
 
 # 忽略 Vim 交换文件
 *.swp

@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""Build the small frontend cancer mortality slice from the CDC USCS ZIP."""
+"""Build the small frontend cancer mortality slice from local DuckDB USCS tables."""
 
 from __future__ import annotations
 
-import csv
+import argparse
 from pathlib import Path
-from zipfile import ZipFile
+
+import duckdb
 
 
-SOURCE_ZIP = Path("research/public-health/cancer/USCS-1999-2022-ASCII.zip")
+DEFAULT_DB = Path("research/public-health/local-data/public_health.duckdb")
 OUTPUT = Path("src/data/wellbing/uscsCancerMortality2023.js")
 YEAR = "2023"
 EVENT_TYPE = "Mortality"
@@ -143,25 +144,51 @@ def js_value(value):
     return str(value)
 
 
-def read_bysite_rows() -> list[dict[str, str]]:
-    with ZipFile(SOURCE_ZIP) as zf:
-        with zf.open("BYSITE.TXT") as raw:
-            reader = csv.DictReader((line.decode("latin1") for line in raw), delimiter="|")
-            return [row for row in reader if row["YEAR"] == YEAR and row["EVENT_TYPE"] == EVENT_TYPE]
+def normalize_duckdb_row(row: dict) -> dict[str, str]:
+    return {key.upper(): "" if value is None else str(value) for key, value in row.items()}
 
 
-def read_byage_rows() -> list[dict[str, str]]:
-    with ZipFile(SOURCE_ZIP) as zf:
-        with zf.open("BYAGE.TXT") as raw:
-            reader = csv.DictReader((line.decode("latin1") for line in raw), delimiter="|")
-            return [row for row in reader if row["YEAR"] == YEAR and row["EVENT_TYPE"] == EVENT_TYPE]
+def read_rows(con: duckdb.DuckDBPyConnection, table: str) -> list[dict[str, str]]:
+    rows = con.execute(
+        f"SELECT * FROM {table} WHERE year = ? AND event_type = ?",
+        [YEAR, EVENT_TYPE],
+    ).fetchall()
+    columns = [column[0] for column in con.description]
+    return [normalize_duckdb_row(dict(zip(columns, row))) for row in rows]
 
 
-def read_byarea_rows() -> list[dict[str, str]]:
-    with ZipFile(SOURCE_ZIP) as zf:
-        with zf.open("BYAREA.TXT") as raw:
-            reader = csv.DictReader((line.decode("latin1") for line in raw), delimiter="|")
-            return [row for row in reader if row["YEAR"] == YEAR and row["EVENT_TYPE"] == EVENT_TYPE]
+def read_table_rows(table: str, db_path: Path = DEFAULT_DB) -> list[dict[str, str]]:
+    con = duckdb.connect(str(db_path), read_only=True)
+    try:
+        return read_rows(con, table)
+    finally:
+        con.close()
+
+
+def read_bysite_rows(con: duckdb.DuckDBPyConnection | None = None) -> list[dict[str, str]]:
+    if con is None:
+        return read_table_rows("uscs_bysite")
+    return read_rows(con, "uscs_bysite")
+
+
+def read_byage_rows(con: duckdb.DuckDBPyConnection | None = None) -> list[dict[str, str]]:
+    if con is None:
+        return read_table_rows("uscs_byage")
+    return read_rows(con, "uscs_byage")
+
+
+def read_byarea_rows(con: duckdb.DuckDBPyConnection | None = None) -> list[dict[str, str]]:
+    if con is None:
+        return read_table_rows("uscs_byarea")
+    return read_rows(con, "uscs_byarea")
+
+
+def read_source_rows(db_path: Path) -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+    con = duckdb.connect(str(db_path), read_only=True)
+    try:
+        return read_bysite_rows(con), read_byage_rows(con), read_byarea_rows(con)
+    finally:
+        con.close()
 
 
 def calculate_rate(deaths: int | None, population: int | None) -> float | None:
@@ -362,7 +389,7 @@ def write_js(slices: list[dict]) -> None:
         '  label: "CDC U.S. Cancer Statistics ASCII Data Tables, 1999-2022 release",',
         '  url: "https://www.cdc.gov/united-states-cancer-statistics/dataviz/data-tables.html",',
         '  accessed: "2026-04-23",',
-        f'  notes: "Derived from BYSITE.TXT, BYAGE.TXT, and BYAREA.TXT where YEAR={YEAR}, EVENT_TYPE=Mortality. Incidence coverage is 1999-2022; mortality coverage is 1999-2023 in the CDC SAS import notes.",',
+        f'  notes: "Derived locally from DuckDB tables uscs_bysite, uscs_byage, and uscs_byarea, built from BYSITE.TXT, BYAGE.TXT, and BYAREA.TXT where YEAR={YEAR}, EVENT_TYPE=Mortality. Incidence coverage is 1999-2022; mortality coverage is 1999-2023 in the CDC SAS import notes.",',
         "};",
         "",
         "export const uscsCancerMortality2023 = {",
@@ -403,10 +430,15 @@ def write_js(slices: list[dict]) -> None:
     OUTPUT.write_text("\n".join(lines), encoding="utf-8")
 
 
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--db", type=Path, default=DEFAULT_DB)
+    return parser
+
+
 def main() -> int:
-    bysite_rows = read_bysite_rows()
-    byage_rows = read_byage_rows()
-    byarea_rows = read_byarea_rows()
+    args = build_parser().parse_args()
+    bysite_rows, byage_rows, byarea_rows = read_source_rows(args.db)
     slices = []
     for race in RACE_MAP:
         for sex in SEX_MAP:

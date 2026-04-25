@@ -2,7 +2,7 @@ export const uscsCancerMortality2023Source = {
   label: "CDC U.S. Cancer Statistics ASCII Data Tables, 1999-2022 release",
   url: "https://www.cdc.gov/united-states-cancer-statistics/dataviz/data-tables.html",
   accessed: "2026-04-23",
-  notes: "Derived from BYSITE.TXT, BYAGE.TXT, and BYAREA.TXT where YEAR=2023, EVENT_TYPE=Mortality. Incidence coverage is 1999-2022; mortality coverage is 1999-2023 in the CDC SAS import notes.",
+  notes: "Derived locally from DuckDB tables uscs_bysite, uscs_byage, and uscs_byarea, built from BYSITE.TXT, BYAGE.TXT, and BYAREA.TXT where YEAR=2023, EVENT_TYPE=Mortality. Incidence coverage is 1999-2022; mortality coverage is 1999-2023 in the CDC SAS import notes.",
 };
 
 export const uscsCancerMortality2023 = {

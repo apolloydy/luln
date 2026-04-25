@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Build frontend leading-cause slices from NCHS mortality public-use records."""
+"""Build frontend leading-cause slices from local DuckDB NCHS mortality data."""
 
 from __future__ import annotations
 
+import argparse
 from collections import Counter
 from pathlib import Path
-from zipfile import ZipFile
 
-from nchs_mortality_query import read_field
+import duckdb
 
 
-SOURCE_ZIP = Path("research/public-health/mortality/mort2024us.zip")
+DEFAULT_DB = Path("research/public-health/local-data/public_health.duckdb")
 OUTPUT = Path("src/data/wellbing/leadingCausesBySlice2024.js")
 YEAR = 2024
 COLORS = {
@@ -144,7 +144,21 @@ SEX_CODE_TO_KEY = {value: key for key, value in SEX_MAP.items() if value is not 
 RACE_CODE_TO_KEY = {value: key for key, value in RACE_MAP.items() if value is not None}
 
 
-def build_slices() -> list[dict]:
+def iter_grouped_mortality_rows(db_path: Path):
+    con = duckdb.connect(str(db_path), read_only=True)
+    try:
+        yield from con.execute(
+            """
+            SELECT icd10, sex, hispanic_race, age52, count(*) AS deaths
+            FROM nchs_mortality_2024
+            GROUP BY icd10, sex, hispanic_race, age52
+            """
+        ).fetchall()
+    finally:
+        con.close()
+
+
+def build_slices(db_path: Path) -> list[dict]:
     counters = {
         f"{sex}|{race}|{age}": Counter()
         for race in RACE_MAP
@@ -152,25 +166,18 @@ def build_slices() -> list[dict]:
         for age in AGE_MAP
     }
 
-    with ZipFile(SOURCE_ZIP) as zf:
-        filename = zf.namelist()[0]
-        with zf.open(filename) as raw:
-            for line in raw:
-                cause = classify_underlying_cause(read_field(line, "icd10"))
-                sex_keys = ["all"]
-                race_keys = ["all"]
-                age_keys = ["allAges"]
-                sex_keys.extend([SEX_CODE_TO_KEY[read_field(line, "sex")]] if read_field(line, "sex") in SEX_CODE_TO_KEY else [])
-                race_keys.extend(
-                    [RACE_CODE_TO_KEY[read_field(line, "hispanic_race")]]
-                    if read_field(line, "hispanic_race") in RACE_CODE_TO_KEY
-                    else []
-                )
-                age_keys.extend([AGE_CODE_TO_KEY[read_field(line, "age52")]] if read_field(line, "age52") in AGE_CODE_TO_KEY else [])
-                for race in race_keys:
-                    for sex in sex_keys:
-                        for age in age_keys:
-                            counters[f"{sex}|{race}|{age}"][cause] += 1
+    for icd10, sex_code, race_code, age_code, deaths in iter_grouped_mortality_rows(db_path):
+        cause = classify_underlying_cause(icd10)
+        sex_keys = ["all"]
+        race_keys = ["all"]
+        age_keys = ["allAges"]
+        sex_keys.extend([SEX_CODE_TO_KEY[sex_code]] if sex_code in SEX_CODE_TO_KEY else [])
+        race_keys.extend([RACE_CODE_TO_KEY[race_code]] if race_code in RACE_CODE_TO_KEY else [])
+        age_keys.extend([AGE_CODE_TO_KEY[age_code]] if age_code in AGE_CODE_TO_KEY else [])
+        for race in race_keys:
+            for sex in sex_keys:
+                for age in age_keys:
+                    counters[f"{sex}|{race}|{age}"][cause] += deaths
 
     slices = []
     for key, counter in counters.items():
@@ -223,7 +230,7 @@ def write_js(slices: list[dict]) -> None:
         '  label: "CDC/NCHS Multiple Cause-of-Death Public Use File, 2024",',
         '  url: "https://www.cdc.gov/nchs/nvss/mortality_public_use_data.htm",',
         '  accessed: "2026-04-23",',
-        '  notes: "Derived from mort2024us.zip using the underlying ICD-10 cause field and NCHS leading-cause group definitions.",',
+        '  notes: "Derived locally from DuckDB table nchs_mortality_2024, built from mort2024us.zip, using the underlying ICD-10 cause field and NCHS leading-cause group definitions.",',
         "};",
         "",
         "export const leadingCausesBySlice2024 = {",
@@ -243,8 +250,15 @@ def write_js(slices: list[dict]) -> None:
     OUTPUT.write_text("\n".join(lines), encoding="utf-8")
 
 
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--db", type=Path, default=DEFAULT_DB)
+    return parser
+
+
 def main() -> int:
-    slices = build_slices()
+    args = build_parser().parse_args()
+    slices = build_slices(args.db)
     write_js(slices)
     print(f"Wrote {OUTPUT} with {len(slices)} population slices.")
     return 0

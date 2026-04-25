@@ -16,6 +16,10 @@ import {
   uscsCancerMortality2023,
   uscsCancerMortality2023Source,
 } from "./data/wellbing/uscsCancerMortality2023";
+import {
+  accidentalDeathCausesBySlice2024,
+  accidentalDeathCausesSource,
+} from "./data/wellbing/accidentalDeathCauses";
 import { useLocale } from "./i18n/LocaleProvider";
 
 Chart.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
@@ -93,11 +97,12 @@ const ageOptions = [
   "80-84",
   "85+",
 ];
-const viewOptions = ["leadingCauses", "cancerMortality"];
+const viewOptions = ["ageCauseStack", "leadingCauses", "cancerMortality", "accidentalInjuries"];
+const ageBandOptions = ageOptions.filter((option) => option !== "allAges");
 
 const MortalityExplorer = () => {
   const { t, formatNumber } = useLocale();
-  const [view, setView] = useState("cancerMortality");
+  const [view, setView] = useState("ageCauseStack");
   const [sex, setSex] = useState("all");
   const [race, setRace] = useState("all");
   const [location, setLocation] = useState("national");
@@ -107,9 +112,11 @@ const MortalityExplorer = () => {
   const filterLabels = t("death.filters");
   const viewLabels = t("death.explorer.views");
   const isCancerView = view === "cancerMortality";
+  const isAccidentView = view === "accidentalInjuries";
+  const isAgeStackView = view === "ageCauseStack";
   const isNational = location === "national";
   const locationLabel = locationOptions.find(([value]) => value === location)?.[1] || location;
-  const effectiveAgeGroup = isCancerView && !isNational ? "allAges" : ageGroup;
+  const effectiveAgeGroup = (isCancerView && !isNational) || isAgeStackView ? "allAges" : ageGroup;
   const leadingSlice =
     leadingCausesBySlice2024[`${sex}|${race}|${effectiveAgeGroup}`] ||
     leadingCausesBySlice2024["all|all|allAges"];
@@ -119,7 +126,31 @@ const MortalityExplorer = () => {
   const cancerSlice =
     uscsCancerMortality2023[cancerKey] ||
     uscsCancerMortality2023["all|all|allAges"];
-  const activeSource = isCancerView ? uscsCancerMortality2023Source : leadingCausesBySlice2024Source;
+  const accidentSlice =
+    accidentalDeathCausesBySlice2024[`${sex}|${race}|${effectiveAgeGroup}`] ||
+    accidentalDeathCausesBySlice2024["all|all|allAges"];
+  const ageStackSlices = ageBandOptions.map((age) => leadingCausesBySlice2024[`${sex}|${race}|${age}`]);
+  const ageStackCauseTotals = new Map();
+  ageStackSlices.forEach((slice) => {
+    slice?.causes.forEach((cause) => {
+      ageStackCauseTotals.set(cause.name, (ageStackCauseTotals.get(cause.name) || 0) + cause.deaths);
+    });
+  });
+  const ageStackCauses = Array.from(ageStackCauseTotals.keys()).sort((a, b) => {
+    if (a === "All other causes") {
+      return -1;
+    }
+    if (b === "All other causes") {
+      return 1;
+    }
+    return (ageStackCauseTotals.get(a) || 0) - (ageStackCauseTotals.get(b) || 0);
+  });
+  const ageStackTotalDeaths = ageStackSlices.reduce((total, slice) => total + (slice?.totalDeaths || 0), 0);
+  const activeSource = isCancerView
+    ? uscsCancerMortality2023Source
+    : isAccidentView
+      ? accidentalDeathCausesSource
+      : leadingCausesBySlice2024Source;
   const rateLabel =
     cancerSlice.rateType === "ageAdjusted"
       ? t("death.explorer.ageAdjustedRate")
@@ -142,6 +173,41 @@ const MortalityExplorer = () => {
       };
     }
 
+    if (isAccidentView) {
+      return {
+        labels: accidentSlice.mechanisms.map((item) => causeLabels[item.name] || item.name),
+        datasets: [
+          {
+            label: t("death.explorer.accidentDeathsLabel"),
+            data: accidentSlice.mechanisms.map((item) => item.deaths),
+            backgroundColor: accidentSlice.mechanisms.map((item) => item.color),
+            borderRadius: 10,
+            borderSkipped: false,
+            maxBarThickness: 18,
+          },
+        ],
+      };
+    }
+
+    if (isAgeStackView) {
+      return {
+        labels: ageBandOptions.map((age) => filterLabels[age] || age),
+        datasets: ageStackCauses.map((causeName) => {
+          const referenceCause = leadingSlice.causes.find((cause) => cause.name === causeName);
+          return {
+            label: causeLabels[causeName] || causeName,
+            data: ageStackSlices.map((slice) => {
+              const cause = slice?.causes.find((item) => item.name === causeName);
+              return cause?.deaths || 0;
+            }),
+            backgroundColor: referenceCause?.color || "#64748b",
+            borderWidth: 0,
+            maxBarThickness: 42,
+          };
+        }),
+      };
+    }
+
     return {
       labels: leadingSlice.causes.slice(0, 12).map((item) => causeLabels[item.name] || item.name),
       datasets: [
@@ -155,47 +221,107 @@ const MortalityExplorer = () => {
         },
       ],
     };
-  }, [cancerSiteLabels, cancerSlice, causeLabels, isCancerView, leadingSlice, t]);
+  }, [
+    accidentSlice,
+    ageStackCauses,
+    ageStackSlices,
+    cancerSiteLabels,
+    cancerSlice,
+    causeLabels,
+    filterLabels,
+    isAccidentView,
+    isAgeStackView,
+    isCancerView,
+    leadingSlice,
+    t,
+  ]);
 
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    indexAxis: "y",
+    indexAxis: isAgeStackView ? "x" : "y",
     scales: {
       x: {
+        stacked: isAgeStackView,
         grid: {
           color: "rgba(148, 163, 184, 0.12)",
         },
         ticks: {
           color: "#cbd5e1",
           callback(value) {
-            if (isCancerView) {
+            if (isAgeStackView) {
+              return this.getLabelForValue(value);
+            }
+            if (isCancerView || isAccidentView) {
               return formatNumber(value, { notation: "compact", maximumFractionDigits: 1 });
             }
             return `${value}%`;
           },
         },
+        title: {
+          display: isAgeStackView,
+          text: t("death.explorer.ageStackXAxis"),
+          color: "#cbd5e1",
+        },
       },
       y: {
+        stacked: isAgeStackView,
         grid: {
-          display: false,
+          display: isAgeStackView,
+          color: "rgba(148, 163, 184, 0.12)",
         },
         ticks: {
           color: "#e2e8f0",
+          callback(value) {
+            if (isAgeStackView) {
+              return formatNumber(value, { notation: "compact", maximumFractionDigits: 1 });
+            }
+            return this.getLabelForValue(value);
+          },
+        },
+        title: {
+          display: isAgeStackView,
+          text: t("death.explorer.deathCountAxis"),
+          color: "#cbd5e1",
         },
       },
     },
     plugins: {
       legend: {
-        display: false,
+        display: isAgeStackView,
+        position: "bottom",
+        reverse: isAgeStackView,
+        labels: {
+          color: "#e2e8f0",
+          boxWidth: 10,
+          boxHeight: 10,
+        },
       },
       tooltip: {
         backgroundColor: "rgba(15, 23, 42, 0.96)",
         titleColor: "#f8fafc",
         bodyColor: "#e2e8f0",
-        displayColors: false,
+        displayColors: isAgeStackView,
         callbacks: {
           label(context) {
+            if (isAgeStackView) {
+              const slice = ageStackSlices[context.dataIndex];
+              const deaths = context.parsed.y || 0;
+              const share = slice?.totalDeaths ? ((deaths / slice.totalDeaths) * 100).toFixed(1) : "0.0";
+              return [
+                `${context.dataset.label}: ${formatNumber(deaths)}`,
+                t("death.explorer.tooltipShare", { value: share }),
+              ];
+            }
+
+            if (isAccidentView) {
+              const item = accidentSlice.mechanisms[context.dataIndex];
+              return [
+                t("death.explorer.tooltipDeaths", { value: formatNumber(item.deaths) }),
+                t("death.explorer.tooltipShare", { value: item.percentage }),
+              ];
+            }
+
             if (!isCancerView) {
               const item = leadingSlice.causes[context.dataIndex];
               return [
@@ -298,11 +424,11 @@ const MortalityExplorer = () => {
             )}
           </label>
 
-          <label className={`field ${isCancerView && !isNational ? "field-disabled" : ""}`}>
+          <label className={`field ${(isCancerView && !isNational) || isAgeStackView ? "field-disabled" : ""}`}>
             <span className="field-label">{t("death.explorer.ageGroup")}</span>
             <select
               value={effectiveAgeGroup}
-              disabled={isCancerView && !isNational}
+              disabled={(isCancerView && !isNational) || isAgeStackView}
               onChange={(e) => setAgeGroup(e.target.value)}
             >
               {ageOptions.map((option) => (
@@ -313,6 +439,9 @@ const MortalityExplorer = () => {
             </select>
             {isCancerView && !isNational && (
               <span className="field-help">{t("death.explorer.ageDisabledHint")}</span>
+            )}
+            {isAgeStackView && (
+              <span className="field-help">{t("death.explorer.ageStackAgeHint")}</span>
             )}
           </label>
         </div>
@@ -325,6 +454,10 @@ const MortalityExplorer = () => {
             <h2 className="death-title">
               {isCancerView
                 ? t("death.explorer.cancerOutputTitle")
+                : isAccidentView
+                  ? t("death.explorer.accidentOutputTitle")
+                : isAgeStackView
+                  ? t("death.explorer.ageStackOutputTitle")
                 : t("death.explorer.currentOutputTitle")}
             </h2>
             <p className="death-subtitle">
@@ -336,8 +469,21 @@ const MortalityExplorer = () => {
                     location: isNational ? t("death.filters.national") : locationLabel,
                     deaths: formatNumber(cancerSlice.totalDeaths),
                     rateLabel,
-                    rate: cancerSlice.totalRate,
-                  })
+                      rate: cancerSlice.totalRate,
+                    })
+                : isAccidentView
+                  ? t("death.explorer.accidentNote", {
+                      sex: filterLabels[sex],
+                      race: filterLabels[race],
+                      ageGroup: filterLabels[effectiveAgeGroup] || effectiveAgeGroup,
+                      deaths: formatNumber(accidentSlice.totalDeaths),
+                    })
+                : isAgeStackView
+                  ? t("death.explorer.ageStackNote", {
+                      sex: filterLabels[sex],
+                      race: filterLabels[race],
+                      deaths: formatNumber(ageStackTotalDeaths),
+                    })
                 : t("death.explorer.leadingNote", {
                     sex: filterLabels[sex],
                     race: filterLabels[race],
@@ -387,7 +533,7 @@ const MortalityExplorer = () => {
             rel="noopener noreferrer"
             className="death-inline-link"
           >
-            {activeSource.label}
+          {activeSource.label}
           </a>
           . {t("common.accessedOn", { date: activeSource.accessed })}. {activeSource.notes}{" "}
           {isCancerView ? t("death.explorer.ageDataAvailable") : ""}

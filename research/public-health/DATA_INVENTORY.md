@@ -16,10 +16,18 @@ This file lists the public-health datasets that the current site either uses now
 
 - Site area: `/wellbing/cause-of-death`
 - Local data file: `src/data/wellbing/accidentalDeathCauses.js`
-- Primary source: CDC WISQARS Fatal Injury Data
-- URL: `https://wisqars.cdc.gov/reports/`
-- Coverage: fatal injury mechanism breakdowns by age, sex, race, ethnicity, geography, and year
-- Notes: best source for injury mechanism detail; should be used instead of trying to force all injury detail out of a leading-causes table
+- Local raw package: `research/public-health/mortality/mort2024us.zip`
+- Local DuckDB table: `nchs_mortality_2024` in local-only `research/public-health/local-data/public_health.duckdb`
+- Local generator: `tools/public_health/build_accidental_injury_data.py`
+- Frontend slice: `src/data/wellbing/accidentalDeathCauses.js`, generated with 210 national `sex × race × age` slices from NCHS underlying ICD-10 external-cause codes
+- Primary source: CDC/NCHS Multiple Cause-of-Death Public Use File, 2024
+- URL: `https://www.cdc.gov/nchs/nvss/mortality_public_use_data.htm`
+- Classification source: CDC/NCHS External Cause of Injury Mortality Matrix / CDC WONDER injury mechanism documentation
+- URLs:
+  - `https://www.cdc.gov/nchs/injury/injury_tools.htm`
+  - `https://wonder.cdc.gov/wonder/help/mcd-expanded.html`
+- Coverage: U.S. unintentional injury deaths by underlying ICD-10 external-cause mechanism, 2024
+- Notes: WISQARS remains a useful presentation/checking source, but the reproducible local pipeline should derive this site data from NCHS raw mortality records through DuckDB so it can be rebuilt and tested.
 
 ### Cancer Death Causes
 
@@ -44,6 +52,19 @@ This file lists the public-health datasets that the current site either uses now
 - Coverage: final 2024 maternal mortality rate, trend from 2018-2024, and major disparities by race/ethnicity and age
 
 ## Data Backbone For Future Filters
+
+### Local DuckDB Build Layer
+
+- Local DB path: `research/public-health/local-data/public_health.duckdb`
+- Local DB builder: `tools/public_health/build_public_health_duckdb.py`
+- Python dependency file: `requirements-public-health.txt`
+- Git policy: `research/public-health/local-data/`, raw CSV/TXT extracts, and local `.duckdb` files are not committed
+- Runtime policy: the website does not use DuckDB or any DB; DuckDB is only a local WSL data-build warehouse for producing compact `src/data/wellbing/*.js` modules
+- Current intended tables:
+  - `nchs_mortality_2024`
+  - `uscs_bysite`
+  - `uscs_byage`
+  - `uscs_byarea`
 
 ### All-Cause Mortality Backbone
 
