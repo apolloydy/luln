@@ -39,6 +39,12 @@ html, body {
   line-height: 1.05;
 }
 
+.site-brand-letter {
+  color: #22c55e;
+  font-size: 1.12em;
+  letter-spacing: 0.02em;
+}
+
 .site-header-actions {
   display: flex;
   align-items: center;
@@ -86,5 +92,47 @@ html, body {
   .site-header-actions {
     width: 100%;
     justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    gap: 12px;
+    padding: 14px 12px !important;
+  }
+
+  .site-brand {
+    width: 100%;
+    font-size: 1.16rem !important;
+    line-height: 1.15;
+  }
+
+  .site-header-actions {
+    gap: 10px;
+  }
+
+  .site-nav {
+    display: flex;
+    width: 100%;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    white-space: nowrap;
+  }
+
+  .site-nav a {
+    flex: 0 0 auto;
+    font-size: 0.94rem !important;
+  }
+
+  .locale-switcher {
+    width: 100%;
+    justify-content: space-between;
+    font-size: 0.84rem;
+  }
+
+  .locale-switcher select {
+    min-width: 128px;
+    padding: 7px 12px;
   }
 }

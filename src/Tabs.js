@@ -9,13 +9,13 @@ const Tabs = () => {
   return (
     <header className="site-header flex items-center justify-between px-6 py-4 bg-black">
       <h1 className="site-brand text-3xl font-bold text-white">
-        <span className="text-green-500">L</span>IFE IS <span className="text-green-500">U</span>RGENT, <span className="text-green-500">L</span>IFE IS <span className="text-green-500">N</span>OW
+        <span className="site-brand-letter">L</span>ife is <span className="site-brand-letter">U</span>rgent, <span className="site-brand-letter">L</span>ife is <span className="site-brand-letter">N</span>ow
       </h1>
 
       <div className="site-header-actions">
         <nav className="site-nav flex space-x-6">
           <NavLink
-            to="/life-expectancy"
+            to="/time-you-have"
             className={({ isActive }) =>
               "text-lg font-semibold transition " +
               (isActive

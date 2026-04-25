@@ -1,23 +1,34 @@
 // Wellbing.js
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useLocale } from './i18n/LocaleProvider';
 
 const Wellbing = () => {
   const { t } = useLocale();
+  const location = useLocation();
+  const theme =
+    location.pathname.includes("life-style-changes")
+      ? "lifestyle"
+      : location.pathname.includes("chronic-disease")
+        ? "chronic"
+        : location.pathname.includes("mortality-explorer")
+          ? "explorer"
+          : location.pathname.includes("vo2max")
+            ? "vo2"
+            : "overview";
 
   return (
-    <div className="flex min-h-screen">
+    <div className={`wellbing-layout wellbing-theme-${theme}`}>
       {/* 左侧竖直导航栏 */}
-      <nav className="w-48 border-r p-4">
+      <nav className="wellbing-side-nav">
         <NavLink
           to="cause-of-death"
           className={({ isActive }) =>
             // 根据 isActive 动态设置类名
-            `block mb-4 ${
+            `wellbing-nav-link ${
               isActive
-                ? 'text-green-400 font-bold'
-                : 'text-gray-600 hover:text-green-400'
+                ? 'active'
+                : ''
             }`
           }
         >
@@ -27,10 +38,10 @@ const Wellbing = () => {
         <NavLink
           to="mortality-explorer"
           className={({ isActive }) =>
-            `block mb-4 ${
+            `wellbing-nav-link ${
               isActive
-                ? 'text-green-400 font-bold'
-                : 'text-gray-600 hover:text-green-400'
+                ? 'active'
+                : ''
             }`
           }
         >
@@ -40,10 +51,10 @@ const Wellbing = () => {
         <NavLink
           to="chronic-disease"
           className={({ isActive }) =>
-            `block mb-4 ${
+            `wellbing-nav-link ${
               isActive
-                ? 'text-green-400 font-bold'
-                : 'text-gray-600 hover:text-green-400'
+                ? 'active'
+                : ''
             }`
           }
         >
@@ -53,10 +64,10 @@ const Wellbing = () => {
         <NavLink
           to="life-style-changes"
           className={({ isActive }) =>
-            `block mb-4 ${
+            `wellbing-nav-link ${
               isActive
-                ? 'text-green-400 font-bold'
-                : 'text-gray-600 hover:text-green-400'
+                ? 'active'
+                : ''
             }`
           }
         >
@@ -66,10 +77,10 @@ const Wellbing = () => {
         <NavLink
           to="vo2max"
           className={({ isActive }) =>
-            `block mb-4 ${
+            `wellbing-nav-link ${
               isActive
-                ? 'text-green-400 font-bold'
-                : 'text-gray-600 hover:text-green-400'
+                ? 'active'
+                : ''
             }`
           }
         >
@@ -78,7 +89,7 @@ const Wellbing = () => {
       </nav>
 
       {/* 右侧内容区域：用于渲染子路由的内容 */}
-      <div className="flex-1 p-4">
+      <div className="wellbing-content">
         <Outlet />
       </div>
     </div>

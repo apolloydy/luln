@@ -14,7 +14,7 @@ export const messages = {
       full: "LIFE IS URGENT, LIFE IS NOW",
     },
     nav: {
-      lifeExpectancy: "Life Expectancy",
+      lifeExpectancy: "Time You Have",
       wellbing: "Wellbeing",
       contact: "Contact",
     },
@@ -410,7 +410,7 @@ export const messages = {
       notMedicalAdvice: "本页用于建立认知，不构成医疗诊断。筛查和治疗决策仍应由合格专业人士完成。",
     },
     brand: { full: "LIFE IS URGENT, LIFE IS NOW" },
-    nav: { lifeExpectancy: "预期寿命", wellbing: "健康", contact: "联系" },
+    nav: { lifeExpectancy: "你拥有的时间", wellbing: "健康", contact: "联系" },
     localeSwitcher: { ariaLabel: "选择网站语言" },
     life: {
       eyebrow: "让时间被看见",
@@ -768,7 +768,7 @@ export const messages = {
         "Cette page sert à donner du contexte, pas à poser un diagnostic médical. Les décisions de dépistage et de traitement relèvent toujours de professionnels qualifiés.",
     },
     brand: { full: "LIFE IS URGENT, LIFE IS NOW" },
-    nav: { lifeExpectancy: "Espérance de vie", wellbing: "Bien-être", contact: "Contact" },
+    nav: { lifeExpectancy: "Le temps que vous avez", wellbing: "Bien-être", contact: "Contact" },
     localeSwitcher: { ariaLabel: "Choisir la langue du site" },
     life: {
       eyebrow: "Rendre le temps visible",
@@ -1502,7 +1502,7 @@ export const messages = {
         "Esta página sirve para dar perspectiva, no para ofrecer un diagnóstico médico. Las decisiones de cribado y tratamiento siguen correspondiendo a profesionales cualificados.",
     },
     brand: { full: "LIFE IS URGENT, LIFE IS NOW" },
-    nav: { lifeExpectancy: "Esperanza de vida", wellbing: "Bienestar", contact: "Contacto" },
+    nav: { lifeExpectancy: "El tiempo que tienes", wellbing: "Bienestar", contact: "Contacto" },
     localeSwitcher: { ariaLabel: "Seleccionar el idioma del sitio" },
     life: {
       eyebrow: "El tiempo, hecho visible",

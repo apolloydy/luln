@@ -1,5 +1,5 @@
 import React from "react";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 import {
   accidentalDeathCauses,
@@ -14,6 +14,8 @@ const AccidentCauses = () => {
     const { t } = useLocale();
     const causes = accidentalDeathCauses;
     const causeLabels = t("death.causeLabels");
+    const topCause = causes[0];
+    const topLabel = causeLabels[topCause.name] || topCause.name;
 
     const chartData = {
         labels: causes.map(cause => causeLabels[cause.name] || cause.name),
@@ -22,7 +24,10 @@ const AccidentCauses = () => {
                 data: causes.map(cause => cause.percentage),
                 backgroundColor: causes.map(cause => cause.color),
                 hoverBackgroundColor: causes.map(cause => cause.color),
-                borderWidth: 1,
+                borderColor: "rgba(15, 23, 42, 0.88)",
+                borderWidth: 3,
+                borderRadius: 8,
+                spacing: 2,
             },
         ],
     };
@@ -30,20 +35,16 @@ const AccidentCauses = () => {
     const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
+        cutout: "68%",
         plugins: {
             legend: {
-                display: true,
-                position: "right",
-                labels: {
-                    color: "white",
-                    font: { size: 14 },
-                },
+                display: false,
             },
             tooltip: {
-                backgroundColor: "rgba(255,255,255,0.95)",
-                titleColor: "#333",
-                bodyColor: "#333",
-                borderColor: "#ccc",
+                backgroundColor: "rgba(15, 23, 42, 0.96)",
+                titleColor: "#f8fafc",
+                bodyColor: "#cbd5e1",
+                borderColor: "rgba(148, 163, 184, 0.22)",
                 borderWidth: 1,
                 displayColors: false,
                 callbacks: {
@@ -57,12 +58,32 @@ const AccidentCauses = () => {
     };
 
     return (
-        <div className="p-6 flex flex-col items-center w-full">
-            <h2 className="text-2xl font-bold mb-4 text-white">{t("death.supplementary.accidentTitle")}</h2>
-            <div className="relative w-full" style={{ maxWidth: "600px", height: "400px" }}>
-                <Pie data={chartData} options={chartOptions} />
-            </div>
-            <p className="death-footnote w-full" style={{ maxWidth: "600px" }}>
+        <div className="modern-donut-section">
+            <article className="modern-donut-card modern-donut-card-wide">
+                <div className="modern-donut-card-header">
+                    <h3>{t("death.supplementary.accidentTitle")}</h3>
+                    <span>{topLabel}</span>
+                </div>
+                <div className="modern-donut-layout">
+                    <div className="modern-donut-chart">
+                        <Doughnut data={chartData} options={chartOptions} />
+                        <div className="modern-donut-center" aria-hidden="true">
+                            <strong>{topCause.percentage}%</strong>
+                            <span>{topLabel}</span>
+                        </div>
+                    </div>
+                    <div className="modern-donut-legend">
+                        {causes.map((cause) => (
+                            <div key={cause.name} className="modern-donut-legend-item">
+                                <span className="modern-donut-dot" style={{ background: cause.color }} />
+                                <span>{causeLabels[cause.name] || cause.name}</span>
+                                <strong>{cause.percentage}%</strong>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </article>
+            <p className="death-footnote modern-donut-source">
                 {t("common.source")}: <a href={accidentalDeathCausesSource.url} target="_blank" rel="noopener noreferrer" className="death-inline-link">{accidentalDeathCausesSource.label}</a>. {t("common.accessedOn", { date: accidentalDeathCausesSource.accessed })}. {accidentalDeathCausesSource.notes}
             </p>
         </div>

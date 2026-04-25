@@ -1,5 +1,5 @@
 import React from "react";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 import {
   cancerDeathCausesSource,
@@ -16,40 +16,75 @@ const CancerStatistics = () => {
   const maleCancerCauses = maleCancerDeathCauses;
   const femaleCancerCauses = femaleCancerDeathCauses;
   const causeLabels = t("death.causeLabels");
+  const renderModernDonut = (title, causes) => {
+    const topCause = causes[0];
+    const topLabel = causeLabels[topCause.name] || topCause.name;
+    const chartData = createChartData(causes);
 
-  const createChartData = (causes) => ({
+    return (
+      <article className="modern-donut-card">
+        <div className="modern-donut-card-header">
+          <h3>{title}</h3>
+          <span>{topLabel}</span>
+        </div>
+
+        <div className="modern-donut-layout">
+          <div className="modern-donut-chart">
+            <Doughnut data={chartData} options={chartOptions} />
+            <div className="modern-donut-center" aria-hidden="true">
+              <strong>{topCause.percentage}%</strong>
+              <span>{topLabel}</span>
+            </div>
+          </div>
+
+          <div className="modern-donut-legend">
+            {causes.map((cause) => (
+              <div key={cause.name} className="modern-donut-legend-item">
+                <span className="modern-donut-dot" style={{ background: cause.color }} />
+                <span>{causeLabels[cause.name] || cause.name}</span>
+                <strong>{cause.percentage}%</strong>
+              </div>
+            ))}
+          </div>
+        </div>
+      </article>
+    );
+  };
+
+  function createChartData(causes) {
+    return {
     labels: causes.map((cause) => causeLabels[cause.name] || cause.name),
     datasets: [
       {
         data: causes.map((cause) => cause.percentage),
         backgroundColor: causes.map((cause) => cause.color),
         hoverBackgroundColor: causes.map((cause) => cause.color),
-        borderWidth: 1,
+        borderColor: "rgba(15, 23, 42, 0.88)",
+        borderWidth: 3,
+        borderRadius: 8,
+        spacing: 2,
       },
     ],
-  });
+    };
+  }
 
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    cutout: "68%",
     plugins: {
       legend: {
-        display: true,
-        position: "right",
-        labels: {
-          color: "white",
-          font: { size: 14 },
-        },
+        display: false,
       },
       tooltip: {
-        backgroundColor: "rgba(255,255,255,0.95)",
-        titleColor: "#333",
-        bodyColor: "#333",
-        borderColor: "#ccc",
+        backgroundColor: "rgba(15, 23, 42, 0.96)",
+        titleColor: "#f8fafc",
+        bodyColor: "#cbd5e1",
+        borderColor: "rgba(148, 163, 184, 0.22)",
         borderWidth: 1,
         displayColors: false,
         callbacks: {
-          label: function (tooltipItem) {
+          label(tooltipItem) {
             const cause = tooltipItem.chart.data.labels[tooltipItem.dataIndex];
             const percentage = tooltipItem.raw;
             return `${cause}: ${percentage}%`;
@@ -60,41 +95,13 @@ const CancerStatistics = () => {
   };
 
   return (
-    <div className="p-6 flex flex-col items-center w-full">
-      <h1 className="text-3xl font-bold mb-6 text-white">
-        {t("death.supplementary.cancerTitle")}
-      </h1>
-
-      {/* 并排布局：外层一个 flex row，里面两个各占一半宽度 */}
-      <div className="w-full max-w-4xl flex flex-row justify-between items-start space-x-4">
-        {/* 左侧：男性癌症饼图 */}
-        <div className="w-1/2">
-          <h2 className="text-2xl font-semibold mb-4 text-white">
-            {t("death.filters.male")} {t("death.supplementary.cancerTitle")}
-          </h2>
-          <div className="relative w-full" style={{ height: "400px" }}>
-            <Pie
-              data={createChartData(maleCancerCauses)}
-              options={chartOptions}
-            />
-          </div>
-        </div>
-
-        {/* 右侧：女性癌症饼图 */}
-        <div className="w-1/2">
-          <h2 className="text-2xl font-semibold mb-4 text-white">
-            {t("death.filters.female")} {t("death.supplementary.cancerTitle")}
-          </h2>
-          <div className="relative w-full" style={{ height: "400px" }}>
-            <Pie
-              data={createChartData(femaleCancerCauses)}
-              options={chartOptions}
-            />
-          </div>
-        </div>
+    <div className="modern-donut-section">
+      <div className="modern-donut-grid">
+        {renderModernDonut(`${t("death.filters.male")} ${t("death.supplementary.cancerTitle")}`, maleCancerCauses)}
+        {renderModernDonut(`${t("death.filters.female")} ${t("death.supplementary.cancerTitle")}`, femaleCancerCauses)}
       </div>
 
-      <p className="death-footnote w-full max-w-4xl">
+      <p className="death-footnote modern-donut-source">
         {t("common.source")}: <a href={cancerDeathCausesSource.url} target="_blank" rel="noopener noreferrer" className="death-inline-link">{cancerDeathCausesSource.label}</a>. {t("common.accessedOn", { date: cancerDeathCausesSource.accessed })}. {cancerDeathCausesSource.notes}
       </p>
     </div>

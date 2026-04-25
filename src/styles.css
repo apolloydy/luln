@@ -699,11 +699,373 @@
   text-decoration: underline;
 }
 
+.modern-donut-section {
+  width: 100%;
+}
+
+.modern-donut-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.modern-donut-card {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.018)),
+    rgba(2, 6, 23, 0.38);
+}
+
+.modern-donut-card-wide {
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.modern-donut-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.modern-donut-card-header h3 {
+  margin: 0;
+  color: var(--text-main);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  line-height: 1.15;
+}
+
+.modern-donut-card-header span {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.modern-donut-layout {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.9fr) minmax(210px, 1.1fr);
+  gap: 18px;
+  align-items: center;
+}
+
+.modern-donut-chart {
+  position: relative;
+  height: 270px;
+  min-width: 0;
+}
+
+.modern-donut-center {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  display: flex;
+  width: 120px;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.modern-donut-center strong {
+  color: #ffffff;
+  font-size: 1.7rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.modern-donut-center span {
+  color: var(--text-soft);
+  font-size: 0.72rem;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.modern-donut-legend {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.modern-donut-legend-item {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 10px;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.42);
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  line-height: 1.25;
+}
+
+.modern-donut-legend-item span:nth-child(2) {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modern-donut-legend-item strong {
+  color: var(--text-main);
+  font-variant-numeric: tabular-nums;
+}
+
+.modern-donut-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.modern-donut-source {
+  margin-top: 14px;
+}
+
 .death-secondary-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
   margin-top: 20px;
+}
+
+.wellbing-layout {
+  --well-bg-image: url("./assets/well-ocean-moon.png");
+  --well-bg-a: rgba(6, 19, 13, 0.92);
+  --well-bg-b: rgba(9, 24, 17, 0.96);
+  --well-glow-a: rgba(111, 191, 115, 0.16);
+  --well-glow-b: rgba(215, 168, 79, 0.14);
+  --well-nav-accent: #9fb86f;
+  display: flex;
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, var(--well-bg-a), var(--well-bg-b)),
+    radial-gradient(circle at 86% 18%, var(--well-glow-b), transparent 34%),
+    var(--well-bg-image);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--text-main);
+}
+
+.wellbing-theme-overview {
+  --well-bg-image: url("./assets/well-ocean-moon.png");
+  --well-bg-a: rgba(21, 14, 10, 0.82);
+  --well-bg-b: rgba(39, 24, 14, 0.88);
+  --well-glow-a: rgba(215, 168, 79, 0.18);
+  --well-glow-b: rgba(156, 85, 48, 0.18);
+  --well-nav-accent: #d7a84f;
+}
+
+.wellbing-theme-explorer {
+  --well-bg-image: url("./assets/well-lake-reeds.png");
+  --well-bg-a: rgba(7, 18, 22, 0.84);
+  --well-bg-b: rgba(10, 31, 32, 0.9);
+  --well-glow-a: rgba(125, 211, 252, 0.16);
+  --well-glow-b: rgba(215, 168, 79, 0.12);
+  --well-nav-accent: #9ad7df;
+}
+
+.wellbing-theme-chronic {
+  --well-bg-image: url("./assets/well-snow-mountain-lake.png");
+  --well-bg-a: rgba(4, 18, 14, 0.9);
+  --well-bg-b: rgba(7, 31, 24, 0.94);
+  --well-glow-a: rgba(78, 145, 114, 0.18);
+  --well-glow-b: rgba(125, 211, 252, 0.08);
+  --well-nav-accent: #8fd0a3;
+}
+
+.wellbing-theme-lifestyle {
+  --well-bg-image: url("./assets/well-grassland-river.png");
+  --well-bg-a: rgba(7, 27, 15, 0.93);
+  --well-bg-b: rgba(17, 41, 23, 0.96);
+  --well-glow-a: rgba(134, 203, 112, 0.2);
+  --well-glow-b: rgba(240, 179, 91, 0.16);
+  --well-nav-accent: #a9d977;
+}
+
+.wellbing-theme-vo2 {
+  --well-bg-image: url("./assets/well-lake-reeds.png");
+  --well-bg-a: rgba(5, 22, 27, 0.94);
+  --well-bg-b: rgba(7, 35, 34, 0.96);
+  --well-glow-a: rgba(125, 211, 252, 0.16);
+  --well-glow-b: rgba(134, 203, 112, 0.14);
+  --well-nav-accent: #7dd3fc;
+}
+
+.wellbing-side-nav {
+  position: sticky;
+  top: 0;
+  width: 210px;
+  height: 100vh;
+  flex: 0 0 210px;
+  padding: 24px 16px;
+  border-right: 1px solid rgba(255, 255, 255, 0.09);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02)),
+    rgba(2, 6, 23, 0.34);
+  backdrop-filter: blur(18px);
+}
+
+.contact-page {
+  min-height: calc(100vh - 86px);
+  display: grid;
+  place-items: center;
+  padding: 48px 20px;
+  background:
+    linear-gradient(180deg, rgba(4, 16, 11, 0.74), rgba(4, 16, 11, 0.9)),
+    url("./assets/well-lake-reeds.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.contact-panel {
+  width: min(760px, 100%);
+  padding: clamp(28px, 6vw, 58px);
+  border: 1px solid rgba(207, 181, 118, 0.16);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    rgba(6, 19, 13, 0.72);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(18px);
+}
+
+.contact-eyebrow {
+  display: inline-flex;
+  margin-bottom: 16px;
+  padding: 8px 11px;
+  border: 1px solid rgba(215, 168, 79, 0.34);
+  border-radius: 999px;
+  color: #d7e6b0;
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+}
+
+.contact-panel h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  line-height: 1;
+}
+
+.contact-panel p {
+  max-width: 42rem;
+  margin: 18px 0 0;
+  color: #c9d6c6;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.contact-mail-link {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 30px;
+  padding: 16px 18px;
+  border: 1px solid rgba(215, 168, 79, 0.34);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(47, 107, 69, 0.86), rgba(183, 121, 50, 0.72));
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.contact-mail-link span {
+  color: #d7e6b0;
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.contact-mail-link strong {
+  font-size: clamp(1.05rem, 4vw, 1.45rem);
+}
+
+.wellbing-nav-link {
+  display: block;
+  margin-bottom: 10px;
+  padding: 11px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: rgba(226, 232, 240, 0.7);
+  font-weight: 750;
+  line-height: 1.25;
+  text-decoration: none;
+  transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+
+.wellbing-nav-link:hover,
+.wellbing-nav-link.active {
+  border-color: color-mix(in srgb, var(--well-nav-accent) 38%, transparent);
+  background: color-mix(in srgb, var(--well-nav-accent) 12%, transparent);
+  color: #ffffff;
+}
+
+.wellbing-content {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 0;
+}
+
+.wellbing-layout .well-hero,
+.wellbing-layout .well-card,
+.wellbing-layout .death-hero,
+.wellbing-layout .death-card,
+.wellbing-layout .death-secondary-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.022)),
+    rgba(5, 15, 18, 0.68);
+  border-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+}
+
+.wellbing-theme-lifestyle .well-hero,
+.wellbing-theme-lifestyle .well-card {
+  background:
+    linear-gradient(135deg, rgba(134, 203, 112, 0.12), rgba(240, 179, 91, 0.06)),
+    rgba(8, 24, 14, 0.7);
+}
+
+.wellbing-theme-chronic .well-hero,
+.wellbing-theme-chronic .well-card {
+  background:
+    linear-gradient(135deg, rgba(78, 145, 114, 0.12), rgba(125, 211, 252, 0.045)),
+    rgba(4, 18, 14, 0.72);
+}
+
+.wellbing-theme-vo2 .well-hero,
+.wellbing-theme-vo2 .well-card {
+  background:
+    linear-gradient(135deg, rgba(125, 211, 252, 0.12), rgba(134, 203, 112, 0.055)),
+    rgba(5, 22, 27, 0.7);
+}
+
+.wellbing-theme-overview .death-hero,
+.wellbing-theme-overview .death-card,
+.wellbing-theme-overview .death-secondary-card {
+  background:
+    linear-gradient(135deg, rgba(215, 168, 79, 0.11), rgba(156, 85, 48, 0.08)),
+    rgba(21, 14, 10, 0.72);
+}
+
+.wellbing-theme-explorer .death-hero,
+.wellbing-theme-explorer .death-card,
+.wellbing-theme-explorer .death-secondary-card {
+  background:
+    linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(215, 168, 79, 0.055)),
+    rgba(14, 16, 27, 0.72);
 }
 
 .well-page {
@@ -940,6 +1302,37 @@
 }
 
 @media screen and (width <= 768px) {
+  .wellbing-layout {
+    display: block;
+    background-attachment: scroll;
+  }
+
+  .wellbing-side-nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    width: auto;
+    height: auto;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 10px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .wellbing-nav-link {
+    flex: 0 0 auto;
+    margin-bottom: 0;
+    padding: 9px 11px;
+    font-size: 0.92rem;
+    white-space: nowrap;
+  }
+
+  .wellbing-content {
+    padding: 0;
+  }
+
   .life-page {
     width: min(100vw - 20px, 1320px);
     padding-top: 18px;
@@ -972,11 +1365,31 @@
     padding: 18px;
   }
 
+  .death-page-title,
+  .well-title {
+    font-size: clamp(1.75rem, 9vw, 2.45rem);
+    line-height: 1.04;
+  }
+
+  .death-page-copy,
+  .well-copy,
+  .death-subtitle,
+  .well-card-copy {
+    font-size: 0.96rem;
+    line-height: 1.65;
+  }
+
   .death-card-header,
   .death-list-heading,
   .death-list-meta {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .death-source-link {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
   }
 
   .well-hero,
@@ -989,6 +1402,38 @@
   .well-hero,
   .well-card {
     padding: 18px;
+  }
+
+  .death-chart-panel,
+  .death-list-panel {
+    padding: 14px;
+  }
+
+  .vo2-chart-wrap {
+    height: 340px;
+  }
+
+  .vo2-table {
+    min-width: 620px;
+  }
+
+  .modern-donut-grid,
+  .modern-donut-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .modern-donut-card {
+    padding: 14px;
+  }
+
+  .modern-donut-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .modern-donut-chart {
+    height: 250px;
   }
 
   .control-panel,
@@ -1120,4 +1565,746 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   appearance: textfield;
   -moz-appearance: textfield;
+}
+
+.life-redesign-page {
+  --life-forest-950: #06130d;
+  --life-forest-900: #0b1f16;
+  --life-forest-800: #123526;
+  --life-leaf: #6fbf73;
+  --life-moss: #9fb86f;
+  --life-gold: #d7a84f;
+  --life-amber: #f0b35b;
+  --life-bark: #5f432d;
+  --life-panel: rgba(9, 24, 17, 0.86);
+  --life-panel-soft: rgba(17, 39, 27, 0.72);
+  --life-border: rgba(207, 181, 118, 0.16);
+  min-height: 100vh;
+  padding: 34px 0 64px;
+  color: #f8fafc;
+  background:
+    linear-gradient(180deg, rgba(4, 16, 11, 0.82), rgba(6, 19, 13, 0.92) 44%, rgba(4, 16, 11, 0.96)),
+    radial-gradient(circle at 78% 8%, rgba(215, 168, 79, 0.18), transparent 32%),
+    url("./assets/life-autumn-forest.png");
+  background-attachment: fixed;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.life-redesign-page > * {
+  width: min(1180px, calc(100vw - 40px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.life-redesign-hero,
+.life-redesign-section,
+.life-redesign-final {
+  border: 1px solid var(--life-border);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.02)),
+    rgba(8, 22, 15, 0.74);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(18px);
+}
+
+.life-redesign-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+  gap: 32px;
+  align-items: center;
+  min-height: calc(100vh - 130px);
+  padding: clamp(28px, 5vw, 58px);
+  border-radius: 8px;
+}
+
+.life-redesign-hero-copy,
+.life-redesign-section-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.life-redesign-eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 18px;
+  padding: 8px 11px;
+  border: 1px solid rgba(215, 168, 79, 0.34);
+  border-radius: 999px;
+  background: rgba(111, 191, 115, 0.12);
+  color: #d7e6b0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.life-redesign-hero h1,
+.life-redesign-section h2,
+.life-redesign-final h2 {
+  max-width: 760px;
+  margin: 0;
+  color: #ffffff;
+  line-height: 0.96;
+  letter-spacing: 0;
+}
+
+.life-redesign-hero h1 {
+  font-size: clamp(3.4rem, 7vw, 6.7rem);
+}
+
+.life-redesign-section h2,
+.life-redesign-final h2 {
+  font-size: clamp(2.3rem, 4.4vw, 4.6rem);
+}
+
+.life-redesign-hero p,
+.life-redesign-section p,
+.life-redesign-final p {
+  max-width: 680px;
+  margin: 18px 0 0;
+  color: #c9d6c6;
+  font-size: 1.04rem;
+  line-height: 1.75;
+}
+
+.life-redesign-inputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  width: min(480px, 100%);
+  margin-top: 30px;
+}
+
+.life-redesign-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.life-redesign-field span {
+  color: #b5c8aa;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.life-redesign-field input {
+  width: 100%;
+  border: 1px solid rgba(207, 181, 118, 0.18);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(95, 67, 45, 0.16), rgba(9, 24, 17, 0.82)),
+    rgba(9, 24, 17, 0.82);
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 800;
+  padding: 14px 15px;
+  outline: none;
+}
+
+.life-redesign-field input:focus {
+  border-color: rgba(159, 184, 111, 0.78);
+  box-shadow: 0 0 0 3px rgba(111, 191, 115, 0.16);
+}
+
+.life-redesign-age-output {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  border: 1px solid rgba(207, 181, 118, 0.16);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(111, 191, 115, 0.16), rgba(9, 24, 17, 0.78)),
+    rgba(9, 24, 17, 0.78);
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 850;
+  padding: 0 15px;
+}
+
+.life-redesign-warning {
+  color: #f0d18a !important;
+  font-size: 0.95rem !important;
+}
+
+.life-redesign-primary-button,
+.life-redesign-link-row a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border: 1px solid rgba(215, 168, 79, 0.38);
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2f6b45, #b77932);
+  color: #ffffff;
+  font-weight: 850;
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.life-redesign-primary-button {
+  margin-top: 22px;
+  padding: 0 18px;
+  cursor: pointer;
+}
+
+.life-redesign-primary-button:hover,
+.life-redesign-link-row a:hover,
+.life-redesign-action-card:hover {
+  transform: translateY(-2px);
+}
+
+.life-redesign-primary-button:focus-visible,
+.life-redesign-link-row a:focus-visible,
+.life-redesign-action-card:focus-visible {
+  outline: 3px solid rgba(215, 168, 79, 0.42);
+  outline-offset: 3px;
+}
+
+.life-redesign-countdown {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  min-height: 360px;
+  padding: clamp(24px, 4vw, 42px);
+  border: 1px solid rgba(207, 181, 118, 0.18);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(111, 191, 115, 0.1), rgba(215, 168, 79, 0.08)),
+    rgba(9, 24, 17, 0.58);
+  overflow: hidden;
+}
+
+.life-redesign-countdown::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.life-redesign-hero-stat {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 96px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid rgba(207, 181, 118, 0.14);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(111, 191, 115, 0.13), rgba(215, 168, 79, 0.1)),
+    rgba(6, 19, 13, 0.46);
+}
+
+.life-redesign-hero-stat span {
+  color: #d7e6b0;
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.life-redesign-hero-stat strong {
+  color: #ffffff;
+  font-size: clamp(2.1rem, 4vw, 3.55rem);
+  line-height: 1;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.life-redesign-section,
+.life-redesign-final {
+  margin-top: 22px;
+  padding: clamp(24px, 4vw, 44px);
+  border-radius: 8px;
+}
+
+.life-redesign-grid-section {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.34fr) minmax(0, 0.66fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.life-redesign-now {
+  color: #f0d18a !important;
+  font-weight: 850;
+}
+
+.life-redesign-week-grid-wrap {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(2, 6, 23, 0.64);
+}
+
+.life-redesign-grid-stack {
+  display: grid;
+  min-width: 0;
+  gap: 14px;
+}
+
+.life-redesign-week-grid {
+  display: grid;
+  grid-template-columns: repeat(52, minmax(5px, 1fr));
+  gap: 3px;
+  max-height: 620px;
+  overflow: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
+}
+
+.life-redesign-week-cell {
+  aspect-ratio: 1;
+  min-width: 5px;
+  border-radius: 2px;
+  transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+}
+
+.life-redesign-week-cell.used {
+  background: #334155;
+}
+
+.life-redesign-week-cell.current {
+  background: #ef4444;
+  box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.28), 0 0 18px rgba(239, 68, 68, 0.62);
+  animation: lifeCurrentPulse 1.7s ease-in-out infinite;
+}
+
+.life-redesign-week-cell.remaining {
+  border: 1px solid rgba(226, 232, 240, 0.26);
+  background: rgba(226, 232, 240, 0.08);
+}
+
+.life-redesign-calendar-detail {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid rgba(207, 181, 118, 0.14);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
+    rgba(6, 19, 13, 0.7);
+}
+
+.life-redesign-calendar-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.life-redesign-calendar-header strong {
+  color: #ffffff;
+  font-size: 0.98rem;
+}
+
+.life-redesign-calendar-header span {
+  color: #b5c8aa;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.life-redesign-calendar-grid {
+  display: grid;
+  gap: 1px;
+  max-height: none;
+  overflow: visible;
+  padding-right: 0;
+}
+
+.life-redesign-calendar-row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-height: 9px;
+}
+
+.life-redesign-calendar-year {
+  color: #aebd9a;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.life-redesign-calendar-slots {
+  display: grid;
+  grid-template-columns: repeat(54, minmax(3px, 1fr));
+  gap: 1px;
+}
+
+.life-redesign-calendar-slot {
+  height: 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.life-redesign-calendar-slot.empty {
+  background: transparent;
+}
+
+.life-redesign-calendar-slot.used {
+  background: linear-gradient(180deg, rgba(91, 107, 91, 0.96), rgba(50, 66, 50, 0.95));
+}
+
+.life-redesign-calendar-slot.current {
+  background: linear-gradient(180deg, #f5d47b, #c9872b);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 0 0 2px rgba(215, 168, 79, 0.18),
+    0 0 18px rgba(215, 168, 79, 0.36);
+}
+
+.life-redesign-calendar-slot.remaining {
+  background: linear-gradient(180deg, #8fca78, #2f8f5b);
+}
+
+.life-redesign-compression {
+  display: grid;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+  gap: 28px;
+}
+
+.life-redesign-breakdown {
+  display: grid;
+  gap: 12px;
+}
+
+.life-redesign-breakdown-card {
+  padding: 16px;
+  border: 1px solid rgba(207, 181, 118, 0.13);
+  border-radius: 8px;
+  background: var(--life-panel-soft);
+}
+
+.life-redesign-breakdown-card.meaningful {
+  border-color: rgba(215, 168, 79, 0.38);
+  background: linear-gradient(135deg, rgba(111, 191, 115, 0.16), rgba(215, 168, 79, 0.13)), rgba(9, 24, 17, 0.82);
+}
+
+.life-redesign-breakdown-card div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  color: #c9d6c6;
+}
+
+.life-redesign-breakdown-card strong {
+  color: #ffffff;
+}
+
+.life-redesign-bar {
+  height: 7px;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.life-redesign-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #42624a, #d7a84f);
+}
+
+.life-redesign-emphasis {
+  grid-column: 1 / -1;
+  color: #f0d18a !important;
+  font-weight: 850;
+}
+
+.life-redesign-mortality {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(30, 72, 48, 0.38), rgba(6, 19, 13, 0.76) 48%),
+    rgba(6, 19, 13, 0.82);
+}
+
+.life-redesign-risk-curve {
+  position: absolute;
+  inset: auto 24px 18px auto;
+  width: min(420px, 46vw);
+  height: 180px;
+  border-bottom: 2px solid rgba(215, 168, 79, 0.34);
+  border-left: 2px solid rgba(215, 168, 79, 0.16);
+  opacity: 0.55;
+}
+
+.life-redesign-risk-curve::after {
+  content: "";
+  position: absolute;
+  inset: 28px 0 0;
+  border-radius: 100% 0 0 0;
+  border-top: 3px solid rgba(215, 168, 79, 0.68);
+  transform: skewY(-12deg);
+}
+
+.life-redesign-link-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.life-redesign-link-row a {
+  padding: 0 16px;
+}
+
+.life-redesign-link-row a + a {
+  background: rgba(111, 191, 115, 0.06);
+}
+
+.life-redesign-action-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.life-redesign-action-card {
+  display: flex;
+  min-height: 260px;
+  flex-direction: column;
+  padding: 18px;
+  border: 1px solid rgba(207, 181, 118, 0.13);
+  border-radius: 8px;
+  background: var(--life-panel-soft);
+  color: #c9d6c6;
+  text-decoration: none;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.life-redesign-action-card:hover {
+  border-color: rgba(215, 168, 79, 0.42);
+  background: rgba(21, 48, 33, 0.82);
+}
+
+.life-redesign-action-icon {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(215, 168, 79, 0.32);
+  border-radius: 8px;
+  color: #f0d18a;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.life-redesign-action-card h3 {
+  margin: 22px 0 10px;
+  color: #ffffff;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.life-redesign-action-card p {
+  margin: 0;
+  color: #c9d6c6;
+  line-height: 1.65;
+}
+
+.life-redesign-action-card strong {
+  margin-top: auto;
+  padding-top: 18px;
+  color: #d7a84f;
+}
+
+.life-redesign-final {
+  text-align: center;
+  background:
+    linear-gradient(180deg, rgba(215, 168, 79, 0.1), rgba(111, 191, 115, 0.06)),
+    rgba(6, 19, 13, 0.84);
+}
+
+.life-redesign-final h2,
+.life-redesign-final p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.life-redesign-link-row.final {
+  justify-content: center;
+}
+
+.life-redesign-input-note {
+  margin-top: 18px;
+  color: #aebd9a;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes lifeCurrentPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.18), 0 0 14px rgba(239, 68, 68, 0.42);
+  }
+
+  50% {
+    box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.34), 0 0 26px rgba(239, 68, 68, 0.8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .life-redesign-page *,
+  .life-redesign-page *::before,
+  .life-redesign-page *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+
+@media screen and (width <= 1024px) {
+  .life-redesign-hero,
+  .life-redesign-grid-section,
+  .life-redesign-compression {
+    grid-template-columns: 1fr;
+  }
+
+  .life-redesign-hero {
+    min-height: auto;
+  }
+
+  .life-redesign-action-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (width <= 640px) {
+  .life-redesign-page {
+    padding: 18px 0 42px;
+    background-attachment: scroll;
+  }
+
+  .life-redesign-page > * {
+    width: min(100vw - 20px, 1180px);
+  }
+
+  .life-redesign-hero,
+  .life-redesign-section,
+  .life-redesign-final {
+    padding: 18px;
+  }
+
+  .life-redesign-hero h1 {
+    font-size: clamp(2.35rem, 12vw, 3.05rem);
+    line-height: 1;
+  }
+
+  .life-redesign-section h2,
+  .life-redesign-final h2 {
+    font-size: clamp(1.9rem, 10vw, 2.65rem);
+    line-height: 1.04;
+  }
+
+  .life-redesign-hero p,
+  .life-redesign-section p,
+  .life-redesign-final p {
+    font-size: 0.96rem;
+    line-height: 1.62;
+  }
+
+  .life-redesign-inputs,
+  .life-redesign-action-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .life-redesign-countdown {
+    min-height: 240px;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .life-redesign-hero-stat {
+    min-height: 82px;
+    padding: 14px;
+  }
+
+  .life-redesign-hero-stat strong {
+    font-size: clamp(1.9rem, 10vw, 2.6rem);
+  }
+
+  .life-redesign-calendar-detail {
+    padding: 10px;
+  }
+
+  .life-redesign-calendar-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .life-redesign-week-grid {
+    grid-template-columns: repeat(34, minmax(5px, 1fr));
+    gap: 2px;
+    max-height: 520px;
+  }
+
+  .life-redesign-calendar-row {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 5px;
+  }
+
+  .life-redesign-calendar-year {
+    font-size: 0.58rem;
+  }
+
+  .life-redesign-calendar-slot {
+    height: 4px;
+  }
+
+  .life-redesign-breakdown-card div:first-child {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .life-redesign-action-card {
+    min-height: auto;
+  }
+
+  .life-redesign-link-row,
+  .life-redesign-link-row.final {
+    flex-direction: column;
+  }
+
+  .life-redesign-link-row a,
+  .life-redesign-primary-button {
+    width: 100%;
+  }
 }

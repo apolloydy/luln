@@ -4,7 +4,8 @@
 
 - Project name: `luln`
 - Production site: `https://luln.org`
-- Primary live page currently referenced by the user: `https://luln.org/life-expectancy`
+- Primary live page: `https://luln.org/time-you-have`
+- Legacy life page paths: `/life-expectancy` and `/time-left` redirect to `/time-you-have`
 - Brand text: `LIFE IS URGENT, LIFE IS NOW`
 
 ## Hosting And Deployment
@@ -55,8 +56,10 @@
 - Framework: `Create React App`
 - Router: `react-router-dom` with `BrowserRouter`
 - Top-level routes:
-  - `/` -> redirects to `/life-expectancy`
-  - `/life-expectancy`
+  - `/` -> redirects to `/time-you-have`
+  - `/time-you-have`
+  - `/time-left` -> redirects to `/time-you-have`
+  - `/life-expectancy` -> redirects to `/time-you-have`
   - `/contact`
   - `/wellbing`
 - Nested routes under `/wellbing`:
@@ -97,7 +100,7 @@
 - Preferred verification flow for this project:
   - make sure the app can start locally
   - check that the local site responds over `localhost`
-  - review key routes such as `/life-expectancy`, `/contact`, and `/wellbing`
+  - review key routes such as `/time-you-have`, `/contact`, and `/wellbing`
   - inspect visible text/content changes for obvious wording mistakes
   - check for obvious route, rendering, or layout regressions
 - The assistant should do as much verification as possible locally each time

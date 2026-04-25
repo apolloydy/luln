@@ -16,11 +16,13 @@ const App = () => {
     <Router>
       <Tabs />
       <Routes>
-        {/* 当访问根路径 `/` 时，自动跳转到 /life-expectancy */}
-        <Route path="/" element={<Navigate to="/life-expectancy" replace />} />
+        {/* 当访问根路径 `/` 时，自动跳转到 /time-you-have */}
+        <Route path="/" element={<Navigate to="/time-you-have" replace />} />
 
         {/* 其他一级路由 */}
-        <Route path="/life-expectancy" element={<LifeExpectancy />} />
+        <Route path="/time-you-have" element={<LifeExpectancy />} />
+        <Route path="/time-left" element={<Navigate to="/time-you-have" replace />} />
+        <Route path="/life-expectancy" element={<Navigate to="/time-you-have" replace />} />
         <Route path="/contact" element={<Contact />} />
 
         {/* Wellbing 相关路由 */}

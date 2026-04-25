@@ -4,7 +4,6 @@ export const SUPPORTED_LOCALES = [
   { code: "en", htmlLang: "en", label: "English", nativeLabel: "English" },
   { code: "zh", htmlLang: "zh-CN", label: "Chinese", nativeLabel: "中文" },
   { code: "fr", htmlLang: "fr", label: "French", nativeLabel: "Français" },
-  { code: "ja", htmlLang: "ja", label: "Japanese", nativeLabel: "日本語" },
   { code: "es", htmlLang: "es", label: "Spanish", nativeLabel: "Español" },
 ];
 

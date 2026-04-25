@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
+import { DEFAULT_BIRTH_DATE, DEFAULT_EXPECTED_AGE } from "./components/life/lifeCalculations";
 import { useLocale } from "./i18n/LocaleProvider";
 
 Chart.register(...registerables);
@@ -102,7 +103,7 @@ function generateVo2Array(ageNow, vo2Now, trainingLevel, customRate, endAge) {
 
 function Vo2Max() {
   const { t } = useLocale();
-  const storedBirthday = localStorage.getItem("birthDate") || "1962-03-02";
+  const storedBirthday = localStorage.getItem("birthDate") || DEFAULT_BIRTH_DATE;
   const now = new Date();
   const birth = new Date(storedBirthday);
   let ageNow = now.getFullYear() - birth.getFullYear();
@@ -115,7 +116,7 @@ function Vo2Max() {
   if (ageNow < 0) ageNow = 0;
 
   const storedLifeExp = localStorage.getItem("lifeExpectancy");
-  const endAge = storedLifeExp ? parseInt(storedLifeExp, 10) : 80;
+  const endAge = storedLifeExp ? parseInt(storedLifeExp, 10) : DEFAULT_EXPECTED_AGE;
 
   const [currentVo2, setCurrentVo2] = useState(() => parseInt(localStorage.getItem("currentVo2"), 10) || 40);
   const [trainingLevel, setTrainingLevel] = useState(() => localStorage.getItem("trainingLevel") || "moderate");
