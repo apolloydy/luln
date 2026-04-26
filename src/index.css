@@ -52,7 +52,7 @@ html, body {
 
 .site-brand {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: var(--fs-lg);
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1.1;
@@ -87,7 +87,7 @@ html, body {
   padding: 7px 16px;
   border-radius: 999px;
   color: rgba(203, 213, 225, 0.72);
-  font-size: 0.94rem;
+  font-size: var(--fs-base);
   font-weight: 500;
   letter-spacing: 0.01em;
   text-decoration: none;
@@ -144,7 +144,7 @@ html, body {
   border: none;
   background: transparent;
   color: inherit;
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   font-weight: 500;
   padding: 0 4px 0 0;
   outline: none;
@@ -156,14 +156,14 @@ html, body {
   color: #f8fafc;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .site-header-inner {
     align-items: flex-start;
     padding: 12px 18px;
   }
 
   .site-brand {
-    font-size: 1.2rem;
+    font-size: var(--fs-md);
   }
 
   .site-header-actions {
@@ -180,7 +180,7 @@ html, body {
 
   .site-brand {
     width: 100%;
-    font-size: 1.05rem;
+    font-size: var(--fs-base);
     line-height: 1.18;
   }
 
@@ -204,7 +204,7 @@ html, body {
   .site-nav-link {
     flex: 0 0 auto;
     padding: 6px 12px;
-    font-size: 0.86rem;
+    font-size: var(--fs-sm);
   }
 
   .locale-switcher {
@@ -212,6 +212,6 @@ html, body {
   }
 
   .locale-switcher select {
-    font-size: 0.84rem;
+    font-size: var(--fs-xs);
   }
 }

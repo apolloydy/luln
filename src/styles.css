@@ -19,13 +19,27 @@
   --life-grid-gap: 0px;
   --life-bead-width: 6px;
   --life-bead-height: 7px;
+  /* Fluid type scale. Values clamp(min, fluid, max) so they
+     stay readable on phones (>= 12.5px floors) and grow gracefully
+     on wide screens. Body base remains the browser default 16px. */
+  --fs-xxs:  clamp(0.78rem, 0.72rem + 0.22vw, 0.86rem);
+  --fs-xs:   clamp(0.84rem, 0.78rem + 0.26vw, 0.94rem);
+  --fs-sm:   clamp(0.92rem, 0.86rem + 0.28vw, 1rem);
+  --fs-base: clamp(1rem, 0.95rem + 0.26vw, 1.1rem);
+  --fs-md:   clamp(1.08rem, 1.02rem + 0.4vw, 1.22rem);
+  --fs-lg:   clamp(1.2rem, 1.1rem + 0.6vw, 1.4rem);
+}
+
+.life-page,
+.well-page,
+.death-page {
+  width: min(1320px, calc(100vw - 40px));
+  margin: 0 auto;
+  color: var(--text-main);
 }
 
 .life-page {
-  width: min(1320px, calc(100vw - 40px));
-  margin: 0 auto;
   padding: 32px 0 56px;
-  color: var(--text-main);
   text-align: left;
 }
 
@@ -66,7 +80,7 @@
   width: fit-content;
   padding: 8px 12px;
   border-radius: 999px;
-  font-size: 0.74rem;
+  font-size: var(--fs-xxs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
@@ -82,7 +96,7 @@
 .hero-lead {
   margin: 0;
   max-width: 32rem;
-  font-size: 1.02rem;
+  font-size: var(--fs-base);
   line-height: 1.7;
   color: var(--text-dim);
 }
@@ -111,7 +125,7 @@
 }
 
 .stat-label {
-  font-size: 0.76rem;
+  font-size: var(--fs-xxs);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-soft);
@@ -125,7 +139,7 @@
 
 .stat-meta {
   color: var(--text-dim);
-  font-size: 0.92rem;
+  font-size: var(--fs-sm);
 }
 
 .control-panel,
@@ -145,7 +159,7 @@
 
 .panel-header h3 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: var(--fs-lg);
 }
 
 .panel-header p {
@@ -168,7 +182,7 @@
 }
 
 .field-label {
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   color: var(--text-soft);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -177,7 +191,7 @@
 .field-help {
   min-height: 1rem;
   color: rgba(148, 163, 184, 0.72);
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   line-height: 1.35;
 }
 
@@ -189,7 +203,7 @@
 .quote-card em {
   display: block;
   margin-top: 14px;
-  font-size: 1.08rem;
+  font-size: var(--fs-md);
   line-height: 1.7;
   color: var(--text-dim);
   white-space: pre-wrap;
@@ -272,7 +286,7 @@
   background: rgba(125, 211, 252, 0.08);
   border: 1px solid rgba(125, 211, 252, 0.14);
   color: var(--accent);
-  font-size: 0.76rem;
+  font-size: var(--fs-xxs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -282,7 +296,7 @@
   margin: 0;
   max-width: 40rem;
   color: var(--text-soft);
-  font-size: 0.94rem;
+  font-size: var(--fs-base);
   line-height: 1.55;
 }
 
@@ -359,13 +373,13 @@
 
 .year-label-divider {
   color: rgba(142, 167, 192, 0.55);
-  font-size: 0.84rem;
+  font-size: var(--fs-sm);
   line-height: 1;
 }
 
 .year-label-age {
   color: var(--accent);
-  font-size: 0.96rem;
+  font-size: var(--fs-base);
   font-weight: 600;
   letter-spacing: 0.02em;
   line-height: 1;
@@ -426,7 +440,7 @@
 }
 
 .__react_component_tooltip {
-  font-size: 0.98rem;
+  font-size: var(--fs-base);
   max-width: 360px;
   padding: 12px 14px;
   background:
@@ -484,10 +498,7 @@
 }
 
 .death-page {
-  width: min(1320px, calc(100vw - 40px));
-  margin: 0 auto;
   padding: 28px 0 56px;
-  color: var(--text-main);
 }
 
 .death-hero,
@@ -538,7 +549,7 @@
 
 .death-hero-note strong {
   color: var(--text-main);
-  font-size: 1.05rem;
+  font-size: var(--fs-md);
 }
 
 .death-card,
@@ -562,7 +573,7 @@
   border-radius: 999px;
   background: rgba(125, 211, 252, 0.12);
   color: var(--accent);
-  font-size: 0.74rem;
+  font-size: var(--fs-xxs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -615,12 +626,12 @@
 
 .death-summary-item strong {
   color: var(--text-main);
-  font-size: 1.05rem;
+  font-size: var(--fs-md);
 }
 
 .death-rank {
   color: var(--accent);
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -674,7 +685,7 @@
 .death-list-meta {
   margin-top: 6px;
   color: var(--text-soft);
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
 }
 
 .death-color-dot {
@@ -686,7 +697,7 @@
 .death-footnote {
   margin: 18px 4px 0;
   color: var(--text-soft);
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   line-height: 1.6;
 }
 
@@ -741,7 +752,7 @@
 
 .modern-donut-card-header span {
   color: var(--accent);
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -784,7 +795,7 @@
 
 .modern-donut-center span {
   color: var(--text-soft);
-  font-size: 0.72rem;
+  font-size: var(--fs-xxs);
   font-weight: 750;
   line-height: 1.2;
 }
@@ -805,7 +816,7 @@
   border-radius: 8px;
   background: rgba(15, 23, 42, 0.42);
   color: var(--text-dim);
-  font-size: 0.88rem;
+  font-size: var(--fs-sm);
   line-height: 1.25;
 }
 
@@ -926,6 +937,19 @@
   backdrop-filter: blur(18px);
 }
 
+@media (min-width: 768.01px) and (max-width: 1024px) {
+  .wellbing-side-nav {
+    width: 168px;
+    flex-basis: 168px;
+    padding: 20px 12px;
+  }
+
+  .wellbing-nav-link {
+    padding: 9px 10px;
+    font-size: var(--fs-sm);
+  }
+}
+
 .contact-page {
   min-height: calc(100vh - 86px);
   display: grid;
@@ -958,7 +982,7 @@
   border: 1px solid rgba(215, 168, 79, 0.34);
   border-radius: 999px;
   color: #d7e6b0;
-  font-size: 0.72rem;
+  font-size: var(--fs-xxs);
   font-weight: 850;
   letter-spacing: 0.14em;
 }
@@ -973,7 +997,7 @@
   max-width: 42rem;
   margin: 18px 0 0;
   color: #c9d6c6;
-  font-size: 1.05rem;
+  font-size: var(--fs-md);
   line-height: 1.7;
 }
 
@@ -992,7 +1016,7 @@
 
 .contact-mail-link span {
   color: #d7e6b0;
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   font-weight: 850;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1078,10 +1102,7 @@
 }
 
 .well-page {
-  width: min(1320px, calc(100vw - 40px));
-  margin: 0 auto;
   padding: 28px 0 56px;
-  color: var(--text-main);
 }
 
 .well-hero,
@@ -1112,7 +1133,7 @@
   border-radius: 999px;
   background: rgba(74, 222, 128, 0.12);
   color: var(--accent-2);
-  font-size: 0.74rem;
+  font-size: var(--fs-xxs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -1144,7 +1165,7 @@
 
 .well-hero-note strong {
   color: var(--text-main);
-  font-size: 1.05rem;
+  font-size: var(--fs-md);
 }
 
 .well-card {
@@ -1192,7 +1213,7 @@
 .mitigation-card h3 {
   margin: 10px 0 8px;
   color: var(--text-main);
-  font-size: 1.12rem;
+  font-size: var(--fs-md);
 }
 
 .horseman-card p,
@@ -1204,7 +1225,7 @@
 
 .horseman-rank {
   color: var(--accent);
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1212,7 +1233,7 @@
 .well-note {
   margin: 16px 4px 0;
   color: var(--text-soft);
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   line-height: 1.6;
 }
 
@@ -1267,7 +1288,7 @@
   display: block;
   margin-bottom: 8px;
   color: var(--text-soft);
-  font-size: 0.74rem;
+  font-size: var(--fs-xxs);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1287,7 +1308,7 @@
   flex-wrap: wrap;
   align-items: baseline;
   gap: 8px;
-  font-size: 0.86rem;
+  font-size: var(--fs-sm);
   line-height: 1.5;
 }
 
@@ -1306,14 +1327,14 @@
 .well-evidence-paf {
   color: var(--text-soft);
   font-variant-numeric: tabular-nums;
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
 }
 
 .well-evidence-source {
   margin-left: auto;
   color: var(--accent);
   text-decoration: none;
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
 }
 
 .well-evidence-source:hover,
@@ -1328,7 +1349,7 @@
   gap: 16px;
   margin-bottom: 18px;
   color: var(--text-main);
-  font-size: 1.1rem;
+  font-size: var(--fs-md);
   font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -1396,14 +1417,14 @@
 
 .risk-node-label {
   fill: #f8fafc;
-  font-size: 14px;
+  font-size: clamp(12px, 1.4vw, 15px);
   font-weight: 600;
   pointer-events: none;
 }
 
 .risk-node-sublabel {
   fill: rgba(248, 250, 252, 0.7);
-  font-size: 11px;
+  font-size: clamp(10px, 1.1vw, 12px);
   pointer-events: none;
   font-variant-numeric: tabular-nums;
 }
@@ -1419,7 +1440,7 @@
   border: 1px solid rgba(148, 163, 184, 0.22);
   box-shadow: 0 18px 38px rgba(0, 0, 0, 0.45);
   color: var(--text-main);
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   pointer-events: none;
   z-index: 4;
 }
@@ -1428,7 +1449,7 @@
   display: block;
   margin-bottom: 6px;
   color: #f8fafc;
-  font-size: 0.84rem;
+  font-size: var(--fs-sm);
 }
 
 .risk-pathways-popover ul {
@@ -1456,14 +1477,14 @@
 .risk-pathways-popover a {
   color: var(--accent);
   text-decoration: none;
-  font-size: 0.74rem;
+  font-size: var(--fs-xxs);
   pointer-events: auto;
 }
 
 .risk-pathways-hint {
   margin: 14px 0 0;
   color: var(--text-soft);
-  font-size: 0.84rem;
+  font-size: var(--fs-sm);
 }
 
 .risk-pathways-sources {
@@ -1473,7 +1494,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  font-size: 0.84rem;
+  font-size: var(--fs-sm);
   line-height: 1.55;
 }
 
@@ -1500,9 +1521,37 @@
     rgba(13, 19, 41, 0.85);
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .risk-pathways-svg {
     max-height: 1200px;
+  }
+}
+
+@media (max-width: 640px) {
+  .risk-pathways-stage {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -6px;
+    padding: 0 6px 6px;
+  }
+
+  .risk-pathways-svg {
+    min-width: 720px;
+  }
+
+  .risk-pathways-headers {
+    font-size: var(--fs-sm);
+    margin-bottom: 12px;
+  }
+
+  .risk-pathways-popover {
+    min-width: 200px;
+    max-width: min(280px, 80vw);
+    font-size: var(--fs-xs);
+  }
+
+  .risk-pathways-hint {
+    font-size: var(--fs-xs);
   }
 }
 
@@ -1517,7 +1566,7 @@
   gap: 6px;
   white-space: nowrap;
   color: var(--text-dim);
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   padding: 4px 6px;
   border-radius: 999px;
   background: rgba(15, 23, 42, 0.44);
@@ -1542,7 +1591,7 @@
 
 .grid-box .child-raising-text {
   color: orange;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -1584,7 +1633,7 @@
     flex: 0 0 auto;
     margin-bottom: 0;
     padding: 9px 11px;
-    font-size: 0.92rem;
+    font-size: var(--fs-sm);
     white-space: nowrap;
   }
 
@@ -1592,17 +1641,9 @@
     padding: 0;
   }
 
-  .life-page {
-    width: min(100vw - 20px, 1320px);
-    padding-top: 18px;
-  }
-
+  .life-page,
+  .well-page,
   .death-page {
-    width: min(100vw - 20px, 1320px);
-    padding-top: 18px;
-  }
-
-  .well-page {
     width: min(100vw - 20px, 1320px);
     padding-top: 18px;
   }
@@ -1634,7 +1675,7 @@
   .well-copy,
   .death-subtitle,
   .well-card-copy {
-    font-size: 0.96rem;
+    font-size: var(--fs-base);
     line-height: 1.65;
   }
 
@@ -1748,7 +1789,7 @@
 
   .year-label-main,
   .year-label-age {
-    font-size: 0.78rem;
+    font-size: var(--fs-xs);
   }
 
   .grid-box {
@@ -1894,7 +1935,7 @@ input[type="number"] {
   border-radius: 999px;
   background: rgba(111, 191, 115, 0.12);
   color: #d7e6b0;
-  font-size: 0.72rem;
+  font-size: var(--fs-xxs);
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1925,7 +1966,7 @@ input[type="number"] {
   max-width: 680px;
   margin: 18px 0 0;
   color: #c9d6c6;
-  font-size: 1.04rem;
+  font-size: var(--fs-base);
   line-height: 1.75;
 }
 
@@ -1945,7 +1986,7 @@ input[type="number"] {
 
 .life-redesign-field span {
   color: #b5c8aa;
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1959,7 +2000,7 @@ input[type="number"] {
     linear-gradient(180deg, rgba(95, 67, 45, 0.16), rgba(9, 24, 17, 0.82)),
     rgba(9, 24, 17, 0.82);
   color: #ffffff;
-  font-size: 1.2rem;
+  font-size: var(--fs-md);
   font-weight: 800;
   padding: 14px 15px;
   outline: none;
@@ -1980,14 +2021,14 @@ input[type="number"] {
     linear-gradient(180deg, rgba(111, 191, 115, 0.16), rgba(9, 24, 17, 0.78)),
     rgba(9, 24, 17, 0.78);
   color: #ffffff;
-  font-size: 1.2rem;
+  font-size: var(--fs-md);
   font-weight: 850;
   padding: 0 15px;
 }
 
 .life-redesign-warning {
   color: #f0d18a !important;
-  font-size: 0.95rem !important;
+  font-size: var(--fs-base) !important;
 }
 
 .life-redesign-primary-button,
@@ -2066,7 +2107,7 @@ input[type="number"] {
 
 .life-redesign-hero-stat span {
   color: #d7e6b0;
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   font-weight: 850;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2167,12 +2208,12 @@ input[type="number"] {
 
 .life-redesign-calendar-header strong {
   color: #ffffff;
-  font-size: 0.98rem;
+  font-size: var(--fs-base);
 }
 
 .life-redesign-calendar-header span {
   color: #b5c8aa;
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2196,7 +2237,7 @@ input[type="number"] {
 
 .life-redesign-calendar-year {
   color: #aebd9a;
-  font-size: 0.72rem;
+  font-size: var(--fs-xxs);
   font-weight: 800;
   line-height: 1;
   text-align: right;
@@ -2369,14 +2410,14 @@ input[type="number"] {
   border: 1px solid rgba(215, 168, 79, 0.32);
   border-radius: 8px;
   color: #f0d18a;
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   font-weight: 900;
 }
 
 .life-redesign-action-card h3 {
   margin: 22px 0 10px;
   color: #ffffff;
-  font-size: 1.2rem;
+  font-size: var(--fs-md);
   line-height: 1.2;
 }
 
@@ -2412,7 +2453,7 @@ input[type="number"] {
 .life-redesign-input-note {
   margin-top: 18px;
   color: #aebd9a;
-  font-size: 0.88rem;
+  font-size: var(--fs-sm);
   line-height: 1.6;
 }
 
@@ -2495,7 +2536,7 @@ input[type="number"] {
   .life-redesign-hero p,
   .life-redesign-section p,
   .life-redesign-final p {
-    font-size: 0.96rem;
+    font-size: var(--fs-base);
     line-height: 1.62;
   }
 
@@ -2541,7 +2582,7 @@ input[type="number"] {
   }
 
   .life-redesign-calendar-year {
-    font-size: 0.58rem;
+    font-size: 0.72rem;
   }
 
   .life-redesign-calendar-slot {
