@@ -29,64 +29,141 @@ html, body {
 }
 
 .site-header {
-  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background:
+    linear-gradient(180deg, rgba(2, 6, 23, 0.78), rgba(2, 6, 23, 0.62));
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
   flex-wrap: wrap;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 14px 28px;
 }
 
 .site-brand {
   margin: 0;
-  line-height: 1.05;
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: rgba(248, 250, 252, 0.92);
 }
 
 .site-brand-letter {
-  color: #22c55e;
-  font-size: 1.12em;
-  letter-spacing: 0.02em;
+  color: #34d399;
+  font-weight: 600;
 }
 
 .site-header-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
 .site-nav {
-  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.06);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.site-nav-link {
+  position: relative;
+  padding: 7px 16px;
+  border-radius: 999px;
+  color: rgba(203, 213, 225, 0.72);
+  font-size: 0.94rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: color 160ms ease, background-color 160ms ease;
+}
+
+.site-nav-link:hover {
+  color: #f8fafc;
+  background: rgba(148, 163, 184, 0.08);
+}
+
+.site-nav-link.is-active {
+  color: #022c22;
+  background: linear-gradient(135deg, #6ee7b7, #34d399);
+  box-shadow: 0 6px 18px rgba(52, 211, 153, 0.22);
+}
+
+.site-nav-link:focus-visible {
+  outline: 2px solid rgba(125, 211, 252, 0.65);
+  outline-offset: 2px;
 }
 
 .locale-switcher {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  color: #cbd5e1;
-  font-size: 0.92rem;
+  gap: 8px;
+  padding: 7px 12px 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(15, 23, 42, 0.55);
+  color: rgba(226, 232, 240, 0.85);
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.locale-switcher:hover,
+.locale-switcher:focus-within {
+  border-color: rgba(125, 211, 252, 0.4);
+  background: rgba(15, 23, 42, 0.75);
+}
+
+.locale-switcher-icon,
+.locale-switcher-chevron {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  color: rgba(203, 213, 225, 0.7);
+  pointer-events: none;
 }
 
 .locale-switcher select {
-  min-width: 110px;
-  border: 1px solid rgba(125, 211, 252, 0.28);
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.82);
-  color: #f8fafc;
-  padding: 8px 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0 4px 0 0;
   outline: none;
+  cursor: pointer;
 }
 
-.locale-switcher select:focus {
-  border-color: #7dd3fc;
-  box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.14);
+.locale-switcher select option {
+  background: #0f172a;
+  color: #f8fafc;
 }
 
 @media (max-width: 900px) {
-  .site-header {
+  .site-header-inner {
     align-items: flex-start;
+    padding: 12px 18px;
   }
 
   .site-brand {
-    font-size: 1.7rem;
+    font-size: 1.2rem;
   }
 
   .site-header-actions {
@@ -96,43 +173,45 @@ html, body {
 }
 
 @media (max-width: 640px) {
-  .site-header {
+  .site-header-inner {
     gap: 12px;
-    padding: 14px 12px !important;
+    padding: 12px 14px;
   }
 
   .site-brand {
     width: 100%;
-    font-size: 1.16rem !important;
-    line-height: 1.15;
+    font-size: 1.05rem;
+    line-height: 1.18;
   }
 
   .site-header-actions {
     gap: 10px;
+    width: 100%;
+    justify-content: space-between;
   }
 
   .site-nav {
-    display: flex;
-    width: 100%;
-    gap: 14px;
+    flex: 1 1 auto;
     overflow-x: auto;
-    padding-bottom: 4px;
-    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
-  .site-nav a {
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-nav-link {
     flex: 0 0 auto;
-    font-size: 0.94rem !important;
+    padding: 6px 12px;
+    font-size: 0.86rem;
   }
 
   .locale-switcher {
-    width: 100%;
-    justify-content: space-between;
-    font-size: 0.84rem;
+    padding: 6px 10px 6px 12px;
   }
 
   .locale-switcher select {
-    min-width: 128px;
-    padding: 7px 12px;
+    font-size: 0.84rem;
   }
 }
