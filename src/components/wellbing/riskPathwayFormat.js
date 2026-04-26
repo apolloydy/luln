@@ -4,6 +4,10 @@ function roundTo(value, decimals) {
 }
 
 function formatNumberValue(value, metric) {
+  if (metric === "pathway") {
+    return "";
+  }
+
   if (metric === "paf" || metric === "mortalityReduction" || metric === "shareOfDeaths") {
     return `${Math.round(value * 100)}%`;
   }
@@ -14,6 +18,10 @@ function formatNumberValue(value, metric) {
 export function formatEffect(effect, t) {
   if (!effect) {
     return "";
+  }
+
+  if (effect.metric === "pathway") {
+    return effect.comparator || t("riskPathways.metrics.pathway");
   }
 
   const metricLabel = t(`riskPathways.metrics.${effect.metric}`);

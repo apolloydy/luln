@@ -38,19 +38,15 @@ const ChronicDisease = () => {
         <div className="horsemen-grid">
           {riskPathwayDiseases.map((disease, index) => {
             const incoming = riskPathwayEdges
-              .filter(
-                (edge) =>
-                  edge.to === disease.id &&
-                  ["exercise", "diet", "screening", "sleep", "stress"].includes(edge.from)
-              )
+              .filter((edge) => edge.to === disease.id)
               .sort((a, b) => b.paf - a.paf)
               .slice(0, 3);
 
             return (
               <article key={disease.id} className="horseman-card">
                 <span className="horseman-rank">{`0${index + 1}`}</span>
-                <h3>{t(`chronic.diseases.${disease.id}.title`)}</h3>
-                <p>{t(`chronic.diseases.${disease.id}.description`)}</p>
+                <h3>{t(`riskPathways.diseases.${disease.id}`)}</h3>
+                <p>{t(`riskPathways.diseaseDescriptions.${disease.id}`)}</p>
 
                 {incoming.length > 0 && (
                   <div className="well-evidence">
@@ -63,7 +59,7 @@ const ChronicDisease = () => {
                         return (
                           <li key={`${edge.from}-${edge.to}-${edge.sourceId}`}>
                             <span className="well-evidence-from">
-                              {t(`lifestyle.measures.${edge.from}.title`)}
+                              {t(`riskPathways.mediators.${edge.from}`)}
                             </span>
                             <span className="well-evidence-effect">
                               {formatEffect(edge.effect, t)}

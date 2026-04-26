@@ -50,9 +50,9 @@ This file lists the public-health datasets that the current site either uses now
 - Local generator: `tools/public_health/build_risk_pathways_data.py`
 - Local test: `tools/public_health/test_risk_pathways.py`
 - Frontend slice: `src/data/wellbing/riskPathways.js` (auto-generated; do not edit by hand)
-- Coverage: 5 lifestyle levers × 5 chronic-disease fronts × 6 mortality buckets, 23 weighted edges with effect sizes (RR / HR / OR / PAF / mortality reduction / share of deaths) and source citations
-- Primary published sources currently in use: GBD 2021 (United States), CDC/NCHS Multiple Cause-of-Death PUF 2024, USPSTF colorectal-cancer screening recommendation, NLST, Marmot et al. on breast-cancer screening, PREDIMED, Afshin et al. on dietary risks, Cappuccio et al. on sleep + CHD / T2D, Sabia et al. on sleep + dementia, Kivimäki et al. on job strain, INTERHEART, Cohen et al. on chronic stress
-- Notes: The GBD 2021 raw bundle from IHME GHDx requires a registered download and is not yet wired into the local DuckDB warehouse. Until it is, GBD-tagged edges in `risk_pathways.json` are taken from the published vizhub tables and re-checked at the `accessed` date in the source map. Adding the GBD ingest path to `build_public_health_duckdb.py` is the next reproducibility step.
+- Coverage: 8 daily inputs × 11 measurable mediators × 7 disease pathways × 8 mortality buckets, 53 weighted edges with evidence-strength tags (`strong`, `moderate`, `emerging`) and source citations
+- Primary published sources currently in use: CDC chronic-disease prevention pages, WHO NCD fact sheet, AHA Life's Essential 8, ACS cancer-prevention guidance, CDC/NCHS mortality 2024, Cappuccio et al. on sleep + CHD / T2D, Sabia et al. on sleep + dementia, Kivimäki et al. on job strain
+- Notes: The current graph intentionally uses a mediator layer (`behavior -> measurable pathway -> disease -> mortality`) to avoid implying deterministic direct causality from one habit to one cause of death. Line width is a product visual weight from the curated data; line style communicates evidence strength.
 
 ### Maternal Mortality
 

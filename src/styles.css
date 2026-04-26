@@ -1344,9 +1344,8 @@
 
 /* Risk-pathway visualization */
 .risk-pathways-page .risk-pathways-headers {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 16px;
+  position: relative;
+  height: 26px;
   margin-bottom: 18px;
   color: var(--text-main);
   font-size: var(--fs-md);
@@ -1354,12 +1353,28 @@
   letter-spacing: 0.02em;
 }
 
-.risk-pathways-headers > span:nth-child(2) {
+.risk-pathways-headers > span {
+  position: absolute;
+  width: 176px;
   text-align: center;
+  transform: translateX(-50%);
+}
+
+.risk-pathways-headers > span:first-child {
+  left: 7.86%;
+}
+
+.risk-pathways-headers > span:nth-child(2),
+.risk-pathways-headers > span:nth-child(3) {
+  left: 35%;
+}
+
+.risk-pathways-headers > span:nth-child(3) {
+  left: 65%;
 }
 
 .risk-pathways-headers > span:last-child {
-  text-align: right;
+  left: 92.14%;
 }
 
 .risk-pathways-stage {
@@ -1382,13 +1397,52 @@
   stroke-opacity: 0.55;
 }
 
+.risk-edge-direction-protective path:first-child {
+  filter: drop-shadow(0 0 4px rgba(52, 211, 153, 0.22));
+}
+
+.risk-edge-direction-risk path:first-child {
+  filter: drop-shadow(0 0 4px rgba(249, 115, 22, 0.24));
+}
+
+.risk-edge-direction-context path:first-child {
+  filter: drop-shadow(0 0 3px rgba(148, 163, 184, 0.18));
+}
+
+.risk-edge-highlight.risk-edge-direction-protective path:first-child {
+  animation: riskSuppressFlow 1.65s ease-in-out infinite;
+  stroke-dasharray: 18 10;
+  stroke-opacity: 0.78;
+}
+
+.risk-edge-highlight.risk-edge-direction-risk path:first-child {
+  animation: riskPulse 0.85s ease-in-out infinite, riskFlow 1.05s linear infinite;
+  stroke-dasharray: 7 6;
+  stroke-opacity: 1;
+}
+
+.risk-edge-highlight.risk-edge-direction-context path:first-child {
+  animation: riskFlow 2.35s linear infinite;
+  stroke-dasharray: 3 10;
+  stroke-opacity: 0.88;
+}
+
+.risk-edge-evidence-moderate path:first-child {
+  stroke-dasharray: 10 7;
+}
+
+.risk-edge-evidence-emerging path:first-child {
+  stroke-dasharray: 2 7;
+  stroke-linecap: round;
+}
+
 .risk-edge:hover path:first-child,
 .risk-edge-highlight path:first-child {
   stroke-opacity: 0.95;
 }
 
 .risk-edge-dimmed path:first-child {
-  stroke-opacity: 0.12;
+  stroke-opacity: 0.05;
 }
 
 .risk-node {
@@ -1412,7 +1466,60 @@
 }
 
 .risk-node-dimmed {
-  opacity: 0.35;
+  opacity: 0.18;
+}
+
+.risk-node-direction-protective rect {
+  stroke: rgba(134, 239, 172, 0.44);
+  stroke-width: 1;
+  filter: drop-shadow(0 0 7px rgba(52, 211, 153, 0.16));
+}
+
+.risk-node-direction-risk rect {
+  stroke: rgba(251, 146, 60, 0.48);
+  stroke-width: 1;
+  filter: drop-shadow(0 0 7px rgba(249, 115, 22, 0.18));
+}
+
+.risk-node-direction-context rect {
+  stroke: rgba(203, 213, 225, 0.34);
+  stroke-width: 1;
+  filter: drop-shadow(0 0 6px rgba(148, 163, 184, 0.12));
+}
+
+.risk-node-impact-suppress:not(.risk-node-lifestyle) rect {
+  animation: riskNodeSuppress 1.45s ease-in-out infinite;
+  fill: color-mix(in srgb, #0f766e 44%, #1e293b);
+}
+
+.risk-node-impact-amplify:not(.risk-node-lifestyle) rect {
+  animation: riskNodeAmplify 0.95s ease-in-out infinite;
+  fill: color-mix(in srgb, #b45309 48%, #1e293b);
+}
+
+.risk-node-impact-mark {
+  pointer-events: none;
+}
+
+.risk-node-impact-mark circle {
+  fill: rgba(2, 6, 23, 0.82);
+  stroke-width: 1;
+}
+
+.risk-node-impact-suppress .risk-node-impact-mark circle {
+  stroke: rgba(134, 239, 172, 0.75);
+  filter: drop-shadow(0 0 6px rgba(52, 211, 153, 0.34));
+}
+
+.risk-node-impact-amplify .risk-node-impact-mark circle {
+  stroke: rgba(251, 146, 60, 0.8);
+  filter: drop-shadow(0 0 7px rgba(249, 115, 22, 0.45));
+}
+
+.risk-node-impact-mark text {
+  fill: #ffffff;
+  font-size: 18px;
+  font-weight: 900;
 }
 
 .risk-node-label {
@@ -1427,6 +1534,27 @@
   font-size: clamp(10px, 1.1vw, 12px);
   pointer-events: none;
   font-variant-numeric: tabular-nums;
+}
+
+.risk-node-badge {
+  fill: rgba(248, 250, 252, 0.82);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+.risk-node-direction-protective .risk-node-badge {
+  fill: #bbf7d0;
+}
+
+.risk-node-direction-risk .risk-node-badge {
+  fill: #fed7aa;
+}
+
+.risk-node-direction-context .risk-node-badge {
+  fill: #cbd5e1;
 }
 
 .risk-pathways-popover {
@@ -1472,6 +1600,161 @@
 .risk-pathways-popover-effect {
   color: var(--text-main);
   font-variant-numeric: tabular-nums;
+}
+
+.risk-pathways-evidence {
+  width: fit-content;
+  padding: 3px 7px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 999px;
+  color: rgba(226, 232, 240, 0.78);
+  font-size: var(--fs-xxs);
+}
+
+.risk-pathways-direction-note {
+  color: rgba(226, 232, 240, 0.76);
+}
+
+.risk-pathways-direction-protective {
+  color: #bbf7d0;
+}
+
+.risk-pathways-direction-risk {
+  color: #fed7aa;
+}
+
+.risk-pathways-direction-context {
+  color: #cbd5e1;
+}
+
+.risk-pathways-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px 14px;
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 8px;
+  background: rgba(2, 6, 23, 0.22);
+  color: var(--text-soft);
+  font-size: var(--fs-xs);
+}
+
+.risk-pathways-legend-title {
+  color: var(--text-main);
+  font-weight: 800;
+}
+
+.risk-pathways-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.risk-pathways-legend-line {
+  display: inline-block;
+  width: 34px;
+  height: 0;
+  border-top: 3px solid rgba(148, 163, 184, 0.8);
+}
+
+.risk-pathways-legend-protective {
+  border-color: #34d399;
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.38);
+}
+
+.risk-pathways-legend-risk {
+  border-color: #f97316;
+  border-top-style: dashed;
+  box-shadow: 0 0 8px rgba(249, 115, 22, 0.38);
+}
+
+.risk-pathways-legend-context {
+  border-color: #94a3b8;
+  border-top-style: dotted;
+}
+
+.risk-pathways-legend-strong {
+  border-color: rgba(226, 232, 240, 0.88);
+}
+
+.risk-pathways-legend-dashed {
+  border-color: rgba(226, 232, 240, 0.72);
+  border-top-style: dashed;
+}
+
+@keyframes riskFlow {
+  from {
+    stroke-dashoffset: 28;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes riskSuppressFlow {
+  0% {
+    stroke-dashoffset: 26;
+    stroke-opacity: 0.95;
+  }
+
+  55% {
+    stroke-dashoffset: 8;
+    stroke-opacity: 0.58;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-opacity: 0.72;
+  }
+}
+
+@keyframes riskPulse {
+  0%,
+  100% {
+    stroke-opacity: 0.62;
+    stroke-width: inherit;
+  }
+
+  50% {
+    stroke-opacity: 1;
+  }
+}
+
+@keyframes riskNodeSuppress {
+  0%,
+  100% {
+    opacity: 0.94;
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    opacity: 0.78;
+    transform: translateY(1.5px) scale(0.985);
+  }
+}
+
+@keyframes riskNodeAmplify {
+  0%,
+  100% {
+    opacity: 0.96;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.025);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .risk-edge-highlight path:first-child,
+  .risk-node-impact-suppress rect,
+  .risk-node-impact-amplify rect {
+    animation: none;
+  }
 }
 
 .risk-pathways-popover a {
@@ -1536,7 +1819,7 @@
   }
 
   .risk-pathways-svg {
-    min-width: 720px;
+    min-width: 1040px;
   }
 
   .risk-pathways-headers {

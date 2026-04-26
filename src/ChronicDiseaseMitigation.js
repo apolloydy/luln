@@ -30,8 +30,6 @@ const measures = [
   },
 ];
 
-const diseaseIds = ["atherosclerotic", "cancer", "metabolic", "neuro", "immune"];
-
 const ChronicDiseaseMitigation = () => {
   const { t } = useLocale();
 
@@ -63,9 +61,7 @@ const ChronicDiseaseMitigation = () => {
         <div className="mitigation-grid">
           {measures.map((measure) => {
             const outgoing = riskPathwayEdges
-              .filter(
-                (edge) => edge.from === measure.key && diseaseIds.includes(edge.to)
-              )
+              .filter((edge) => edge.from === measure.key)
               .sort((a, b) => b.paf - a.paf)
               .slice(0, 3);
 
@@ -87,7 +83,7 @@ const ChronicDiseaseMitigation = () => {
                         return (
                           <li key={`${edge.from}-${edge.to}-${edge.sourceId}`}>
                             <span className="well-evidence-from">
-                              {t(`chronic.diseases.${edge.to}.title`)}
+                              {t(`riskPathways.mediators.${edge.to}`)}
                             </span>
                             <span className="well-evidence-effect">
                               {formatEffect(edge.effect, t)}

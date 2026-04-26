@@ -28,25 +28,38 @@ def make_minimal_dataset():
         "riskFactors": [
             {"id": "exercise", "color": "#22c55e", "origin": "lifestyle"},
         ],
+        "mediators": [
+            {"id": "vo2max", "color": "#22c55e"},
+        ],
         "diseases": [
             {"id": "atherosclerotic", "color": "#fb7185"},
         ],
         "deathOutcomes": [
-            {"id": "heartDisease", "deaths": 100, "percentage": 10.0, "color": "#fb7185"},
+            {"id": "deathHeartDisease", "deaths": 100, "percentage": 10.0, "color": "#fb7185"},
         ],
         "edges": [
             {
                 "from": "exercise",
+                "to": "vo2max",
+                "paf": 0.05,
+                "effect": {"metric": "pathway", "value": 1.0, "comparator": "activity improves fitness"},
+                "evidenceStrength": "strong",
+                "sourceId": "src-a",
+            },
+            {
+                "from": "vo2max",
                 "to": "atherosclerotic",
                 "paf": 0.05,
                 "effect": {"metric": "rr", "value": 1.3, "ciLow": 1.1, "ciHigh": 1.5},
+                "evidenceStrength": "strong",
                 "sourceId": "src-a",
             },
             {
                 "from": "atherosclerotic",
-                "to": "heartDisease",
+                "to": "deathHeartDisease",
                 "paf": 0.95,
                 "effect": {"metric": "shareOfDeaths", "value": 0.95},
+                "evidenceStrength": "strong",
                 "sourceId": "src-a",
             },
         ],
@@ -67,6 +80,7 @@ class BuildRiskPathwaysTest(unittest.TestCase):
             for export_name in (
                 "riskPathwaysSources",
                 "riskPathwayRiskFactors",
+                "riskPathwayMediators",
                 "riskPathwayDiseases",
                 "riskPathwayDeathOutcomes",
                 "riskPathwayEdges",
@@ -104,8 +118,8 @@ class BuildRiskPathwaysTest(unittest.TestCase):
 
     def test_rejects_unknown_node_combo(self):
         data = make_minimal_dataset()
-        data["edges"][0]["to"] = "heartDisease"
-        with self.assertRaisesRegex(ValueError, "exercise->heartDisease"):
+        data["edges"][0]["to"] = "deathHeartDisease"
+        with self.assertRaisesRegex(ValueError, "exercise->deathHeartDisease"):
             builder.validate(data)
 
     def test_curated_dataset_validates(self):
