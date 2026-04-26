@@ -9,13 +9,15 @@ const Wellbing = () => {
   const theme =
     location.pathname.includes("life-style-changes")
       ? "lifestyle"
-      : location.pathname.includes("chronic-disease")
-        ? "chronic"
-        : location.pathname.includes("mortality-explorer")
-          ? "explorer"
-          : location.pathname.includes("vo2max")
-            ? "vo2"
-            : "overview";
+      : location.pathname.includes("risk-pathways")
+        ? "pathways"
+        : location.pathname.includes("chronic-disease")
+          ? "chronic"
+          : location.pathname.includes("mortality-explorer")
+            ? "explorer"
+            : location.pathname.includes("vo2max")
+              ? "vo2"
+              : "overview";
 
   return (
     <div className={`wellbing-layout wellbing-theme-${theme}`}>
@@ -59,6 +61,19 @@ const Wellbing = () => {
           }
         >
           {t("wellbing.nav.chronicDisease")}
+        </NavLink>
+
+        <NavLink
+          to="risk-pathways"
+          className={({ isActive }) =>
+            `wellbing-nav-link ${
+              isActive
+                ? 'active'
+                : ''
+            }`
+          }
+        >
+          {t("wellbing.nav.riskPathways")}
         </NavLink>
 
         <NavLink

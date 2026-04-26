@@ -43,6 +43,17 @@ This file lists the public-health datasets that the current site either uses now
 - Presentation support: American Cancer Society Cancer Facts & Figures 2025
 - URL: `https://www.cancer.org/research/cancer-facts-statistics/all-cancer-facts-figures/2025-cancer-facts-figures.html`
 
+### Risk-Factor Attribution
+
+- Site area: `/wellbing/risk-pathways` (also surfaces as evidence footers on `/wellbing/chronic-disease` and `/wellbing/life-style-changes`)
+- Source-of-truth: `research/public-health/curated/risk_pathways.json` — hand-curated edges, each tagged with the cited paper or dataset
+- Local generator: `tools/public_health/build_risk_pathways_data.py`
+- Local test: `tools/public_health/test_risk_pathways.py`
+- Frontend slice: `src/data/wellbing/riskPathways.js` (auto-generated; do not edit by hand)
+- Coverage: 5 lifestyle levers × 5 chronic-disease fronts × 6 mortality buckets, 23 weighted edges with effect sizes (RR / HR / OR / PAF / mortality reduction / share of deaths) and source citations
+- Primary published sources currently in use: GBD 2021 (United States), CDC/NCHS Multiple Cause-of-Death PUF 2024, USPSTF colorectal-cancer screening recommendation, NLST, Marmot et al. on breast-cancer screening, PREDIMED, Afshin et al. on dietary risks, Cappuccio et al. on sleep + CHD / T2D, Sabia et al. on sleep + dementia, Kivimäki et al. on job strain, INTERHEART, Cohen et al. on chronic stress
+- Notes: The GBD 2021 raw bundle from IHME GHDx requires a registered download and is not yet wired into the local DuckDB warehouse. Until it is, GBD-tagged edges in `risk_pathways.json` are taken from the published vizhub tables and re-checked at the `accessed` date in the source map. Adding the GBD ingest path to `build_public_health_duckdb.py` is the next reproducibility step.
+
 ### Maternal Mortality
 
 - Site area: not yet wired to a route

@@ -9,6 +9,7 @@ import ChronicDisease from "./ChronicDisease";
 import ChronicDiseaseMitigation from "./ChronicDiseaseMitigation";
 import Vo2Max from "./Vo2Max";
 import MortalityExplorer from "./MortalityExplorer";
+import RiskPathways from "./RiskPathways";
 import Contact from './Contact';
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="cause-of-death" element={<DeathStatistics />} />
           <Route path="mortality-explorer" element={<MortalityExplorer />} />
           <Route path="chronic-disease" element={<ChronicDisease />} />
+          <Route path="risk-pathways" element={<RiskPathways />} />
           <Route path="life-style-changes" element={<ChronicDiseaseMitigation />} />
           <Route path="vo2max" element={<Vo2Max />} />
         </Route>

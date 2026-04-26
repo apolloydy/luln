@@ -1,5 +1,10 @@
 import React from "react";
 import { useLocale } from "./i18n/LocaleProvider";
+import {
+  riskPathwayEdges,
+  riskPathwaysSources,
+} from "./data/wellbing/riskPathways";
+import { formatEffect, formatPaf } from "./components/wellbing/riskPathwayFormat";
 
 const measures = [
   {
@@ -24,6 +29,8 @@ const measures = [
     key: "diet",
   },
 ];
+
+const diseaseIds = ["atherosclerotic", "cancer", "metabolic", "neuro", "immune"];
 
 const ChronicDiseaseMitigation = () => {
   const { t } = useLocale();
@@ -54,24 +61,71 @@ const ChronicDiseaseMitigation = () => {
         </div>
 
         <div className="mitigation-grid">
-          {measures.map((measure) => (
-            <article key={measure.key} className="mitigation-card">
-              <h3>{t(`lifestyle.measures.${measure.key}.title`)}</h3>
-              {t(`lifestyle.measures.${measure.key}.body`).map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-              {measure.source ? (
-                <a
-                  href={measure.source.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="well-inline-link"
-                >
-                  {t(`lifestyle.measures.${measure.key}.sourceLabel`)}
-                </a>
-              ) : null}
-            </article>
-          ))}
+          {measures.map((measure) => {
+            const outgoing = riskPathwayEdges
+              .filter(
+                (edge) => edge.from === measure.key && diseaseIds.includes(edge.to)
+              )
+              .sort((a, b) => b.paf - a.paf)
+              .slice(0, 3);
+
+            return (
+              <article key={measure.key} className="mitigation-card">
+                <h3>{t(`lifestyle.measures.${measure.key}.title`)}</h3>
+                {t(`lifestyle.measures.${measure.key}.body`).map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+
+                {outgoing.length > 0 && (
+                  <div className="well-evidence">
+                    <span className="well-evidence-title">
+                      {t("lifestyle.evidence.title")}
+                    </span>
+                    <ul className="well-evidence-list">
+                      {outgoing.map((edge) => {
+                        const source = riskPathwaysSources[edge.sourceId];
+                        return (
+                          <li key={`${edge.from}-${edge.to}-${edge.sourceId}`}>
+                            <span className="well-evidence-from">
+                              {t(`chronic.diseases.${edge.to}.title`)}
+                            </span>
+                            <span className="well-evidence-effect">
+                              {formatEffect(edge.effect, t)}
+                            </span>
+                            <span className="well-evidence-paf">
+                              {formatPaf(edge.paf, t)}
+                            </span>
+                            {source && (
+                              <a
+                                href={source.url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="well-evidence-source"
+                                title={source.label}
+                              >
+                                {t("lifestyle.evidence.sourceLabel")}
+                              </a>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+
+                {measure.source ? (
+                  <a
+                    href={measure.source.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="well-inline-link"
+                  >
+                    {t(`lifestyle.measures.${measure.key}.sourceLabel`)}
+                  </a>
+                ) : null}
+              </article>
+            );
+          })}
         </div>
       </section>
 

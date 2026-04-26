@@ -903,6 +903,15 @@
   --well-nav-accent: #7dd3fc;
 }
 
+.wellbing-theme-pathways {
+  --well-bg-image: url("./assets/well-snow-mountain-lake.png");
+  --well-bg-a: rgba(6, 14, 26, 0.92);
+  --well-bg-b: rgba(11, 22, 39, 0.95);
+  --well-glow-a: rgba(125, 211, 252, 0.16);
+  --well-glow-b: rgba(167, 139, 250, 0.18);
+  --well-nav-accent: #a78bfa;
+}
+
 .wellbing-side-nav {
   position: sticky;
   top: 0;
@@ -1245,6 +1254,256 @@
 
 .vo2-table th {
   color: var(--text-main);
+}
+
+/* Evidence blocks shown inside chronic-disease and lifestyle cards */
+.well-evidence {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(148, 163, 184, 0.18);
+}
+
+.well-evidence-title {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-soft);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.well-evidence-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.well-evidence-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.well-evidence-from {
+  color: var(--text-main);
+  font-weight: 600;
+  flex-basis: 40%;
+  flex-grow: 1;
+}
+
+.well-evidence-effect {
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.well-evidence-paf {
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+}
+
+.well-evidence-source {
+  margin-left: auto;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.78rem;
+}
+
+.well-evidence-source:hover,
+.well-evidence-source:focus-visible {
+  text-decoration: underline;
+}
+
+/* Risk-pathway visualization */
+.risk-pathways-page .risk-pathways-headers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+  color: var(--text-main);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.risk-pathways-headers > span:nth-child(2) {
+  text-align: center;
+}
+
+.risk-pathways-headers > span:last-child {
+  text-align: right;
+}
+
+.risk-pathways-stage {
+  position: relative;
+  width: 100%;
+}
+
+.risk-pathways-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 720px;
+}
+
+.risk-edge path {
+  transition: stroke-opacity 180ms ease, stroke-width 180ms ease;
+}
+
+.risk-edge path:first-child {
+  stroke-opacity: 0.55;
+}
+
+.risk-edge:hover path:first-child,
+.risk-edge-highlight path:first-child {
+  stroke-opacity: 0.95;
+}
+
+.risk-edge-dimmed path:first-child {
+  stroke-opacity: 0.12;
+}
+
+.risk-node {
+  cursor: pointer;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.risk-node:focus-visible {
+  outline: none;
+}
+
+.risk-node:focus-visible rect {
+  stroke: #fef3c7;
+  stroke-width: 2;
+}
+
+.risk-node-active rect {
+  stroke: rgba(255, 255, 255, 0.6);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 6px 18px rgba(167, 139, 250, 0.35));
+}
+
+.risk-node-dimmed {
+  opacity: 0.35;
+}
+
+.risk-node-label {
+  fill: #f8fafc;
+  font-size: 14px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.risk-node-sublabel {
+  fill: rgba(248, 250, 252, 0.7);
+  font-size: 11px;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.risk-pathways-popover {
+  position: absolute;
+  transform: translate(-50%, -110%);
+  min-width: 240px;
+  max-width: 320px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(2, 6, 23, 0.94);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.45);
+  color: var(--text-main);
+  font-size: 0.82rem;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.risk-pathways-popover strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #f8fafc;
+  font-size: 0.84rem;
+}
+
+.risk-pathways-popover ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.risk-pathways-popover li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--text-dim);
+  line-height: 1.45;
+}
+
+.risk-pathways-popover-effect {
+  color: var(--text-main);
+  font-variant-numeric: tabular-nums;
+}
+
+.risk-pathways-popover a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.74rem;
+  pointer-events: auto;
+}
+
+.risk-pathways-hint {
+  margin: 14px 0 0;
+  color: var(--text-soft);
+  font-size: 0.84rem;
+}
+
+.risk-pathways-sources {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.risk-pathways-sources a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.risk-pathways-sources a:hover,
+.risk-pathways-sources a:focus-visible {
+  text-decoration: underline;
+}
+
+.risk-pathways-source-note {
+  color: var(--text-soft);
+}
+
+.wellbing-theme-pathways .well-hero,
+.wellbing-theme-pathways .well-card {
+  border-color: rgba(167, 139, 250, 0.22);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(13, 19, 41, 0.85);
+}
+
+@media (max-width: 720px) {
+  .risk-pathways-svg {
+    max-height: 1200px;
+  }
 }
 
 .vo2-table td {
